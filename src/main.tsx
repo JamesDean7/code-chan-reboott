@@ -8,10 +8,10 @@ import { THEME } from "./theme/index.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={THEME}>
+    <ThemeProvider theme={THEME}>
+      <BrowserRouter>
         <App />
-      </ThemeProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>
 );

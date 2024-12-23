@@ -1,20 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { Route, Routes } from "react-router";
+import Home from "./pages/Home";
+import Bookmark from "./pages/Bookmark";
+import Layout from "./layouts/Layout";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
-      <a href="https://vite.dev" target="_blank">
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-      </a>
-      <a href="https://react.dev" target="_blank">
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </a>
-    </div>
+    <>
+      sfsdf
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/bookmark" element={<Bookmark />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
