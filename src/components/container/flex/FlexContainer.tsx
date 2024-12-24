@@ -1,23 +1,34 @@
 import styled from "@emotion/styled";
-import { CSSProperties } from "react";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { ElementClassName } from "@/types/element";
+import { CSSStyleProperties } from "@/types/styles";
 
 type FlexContainerStyleProps = Pick<
-  CSSProperties,
-  "flexDirection" | "justifyContent" | "alignItems"
+  CSSStyleProperties,
+  | "flexDirection"
+  | "justifyContent"
+  | "alignItems"
+  | "flex"
+  | "position"
+  | "gap"
 >;
 
 const FlexContainerStyle = styled.div<FlexContainerStyleProps>(
   ({
+    position = "static",
+    flex = "auto",
     flexDirection = "row",
     justifyContent = "center",
     alignItems = "center",
+    gap,
   }) => ({
     display: "flex",
+    position,
+    flex,
     flexDirection,
     justifyContent,
     alignItems,
+    gap,
   })
 );
 

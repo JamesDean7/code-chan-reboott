@@ -1,6 +1,6 @@
 import FlexContainer, {
   FlexContainerProps,
-} from "@/components/container/flex/base/FlexContainer";
+} from "@/components/container/flex/FlexContainer";
 import { OmitByKey } from "@/types/utils";
 
 type FlexRowContainerProps = OmitByKey<FlexContainerProps, "flexDirection">;
