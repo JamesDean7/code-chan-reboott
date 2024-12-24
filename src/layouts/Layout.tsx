@@ -1,9 +1,10 @@
 import { Outlet } from "react-router";
-import { ReactNodeChildren } from "../types/lib-react";
+import LayoutHead from "@/layouts/LayoutHead";
 
 const Layout = () => {
   return (
     <div>
+      <LayoutHead />
       <Outlet />
     </div>
   );
