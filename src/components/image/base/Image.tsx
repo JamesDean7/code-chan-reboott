@@ -36,6 +36,7 @@ const ImageStyle = styled("img")<ImageStyleProps>(
       height: resHeight.sm,
       objectFit,
       objectPosition,
+      userSelect: "none",
       [MEDIA_MIN_WIDTH.md]: {
         width: resWidth.md,
         height: resHeight.md,
@@ -52,7 +53,7 @@ const ImageStyle = styled("img")<ImageStyleProps>(
   }
 );
 
-type ImageProps = Pick<ImageElementAttribute, "src" | "alt"> & {
+export type ImageProps = Pick<ImageElementAttribute, "src" | "alt"> & {
   height: ImageHeightType;
   width: ImageWidthType;
 } & OmitByKey<ImageStyleProps, "imgHeight" | "imgWidth">;
