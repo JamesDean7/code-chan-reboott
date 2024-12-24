@@ -1,8 +1,10 @@
 import { memo, ReactHTML } from "react";
 import styled from "@emotion/styled";
 import {
+  AppThemeBreakpointsKeys,
   AppThemeTypographySizeKeys,
   AppThemeTypographyWeightKeys,
+  PartialStyleByBreakpoints,
 } from "@/theme/types";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { ExtractByKey } from "@/types/utils";
@@ -11,10 +13,12 @@ import {
   getThemeTypographyWeight,
 } from "@/utils/theme";
 import { CSSStyleProperties } from "@/types/styles";
+import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
+import { getStyleByBreakpoints } from "@/utils/style";
 
 type TypographyComponentProps = {
-  size?: AppThemeTypographySizeKeys;
-  weight?: AppThemeTypographyWeightKeys;
+  fontSize: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
+  fontWeight?: AppThemeTypographyWeightKeys;
 } & Pick<CSSStyleProperties, "color" | "lineHeight">;
 
 type TypographyComponentOptions = ExtractByKey<
@@ -31,13 +35,29 @@ const Typography = ({ children, component, ...props }: Props) => {
   const TypographyComponent = styled(
     component ?? "p"
   )<TypographyComponentProps>(
-    ({ size = "body1", weight = "normal", color = "#000000", lineHeight }) => ({
-      fontSize: getThemeTypographySize(size),
-      fontWeight: getThemeTypographyWeight(weight),
-      color,
-      lineHeight,
-    })
+    ({ fontSize, fontWeight = "normal", color = "#000000", lineHeight }) => {
+      const resFontSize = getStyleByBreakpoints<AppThemeTypographySizeKeys>({
+        style: fontSize,
+        defaultVal: "body1",
+      });
+      return {
+        fontSize: getThemeTypographySize(resFontSize.sm),
+        fontWeight: getThemeTypographyWeight(fontWeight),
+        color,
+        lineHeight,
+        [MEDIA_MIN_WIDTH.md]: {
+          fontSize: getThemeTypographySize(resFontSize.md),
+        },
+        [MEDIA_MIN_WIDTH.lg]: {
+          fontSize: getThemeTypographySize(resFontSize.lg),
+        },
+        [MEDIA_MIN_WIDTH.xl]: {
+          fontSize: getThemeTypographySize(resFontSize.xl),
+        },
+      };
+    }
   );
+
   return <TypographyComponent {...props}>{children}</TypographyComponent>;
 };
 

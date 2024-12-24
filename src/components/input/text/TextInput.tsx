@@ -1,6 +1,14 @@
 import styled from "@emotion/styled";
 import { CSSStyleProperties } from "@/types/styles";
 import useThemePalette from "@/hooks/theme/useThemePalette";
+import {
+  AppThemeTypographySizeKeys,
+  AppThemeTypographyWeightKeys,
+  PartialStyleByBreakpoints,
+} from "@/theme/types";
+import { getStyleByBreakpoints } from "@/utils/style";
+import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
+import { getThemeTypographySize } from "@/utils/theme";
 
 type TextInpputStyleProps = Pick<
   CSSStyleProperties,
@@ -12,10 +20,11 @@ type TextInpputStyleProps = Pick<
   | "borderWidth"
   | "borderStyle"
   | "borderColor"
-  | "fontSize"
-  | "fontWeight"
   | "color"
->;
+> & {
+  fontSize: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
+  fontWeight?: AppThemeTypographyWeightKeys;
+};
 
 const TextInputStyle = styled.input<TextInpputStyleProps>(
   ({
@@ -30,19 +39,34 @@ const TextInputStyle = styled.input<TextInpputStyleProps>(
     fontSize,
     fontWeight,
     color,
-  }) => ({
-    width,
-    height,
-    outline,
-    padding,
-    borderRadius,
-    borderWidth,
-    borderStyle,
-    borderColor,
-    fontSize,
-    fontWeight,
-    color,
-  })
+  }) => {
+    const resFontSize = getStyleByBreakpoints<AppThemeTypographySizeKeys>({
+      style: fontSize,
+      defaultVal: "body1",
+    });
+    return {
+      width,
+      height,
+      outline,
+      padding,
+      borderRadius,
+      borderWidth,
+      borderStyle,
+      borderColor,
+      fontSize: getThemeTypographySize(resFontSize.sm),
+      fontWeight,
+      color,
+      [MEDIA_MIN_WIDTH.md]: {
+        fontSize: getThemeTypographySize(resFontSize.md),
+      },
+      [MEDIA_MIN_WIDTH.lg]: {
+        fontSize: getThemeTypographySize(resFontSize.lg),
+      },
+      [MEDIA_MIN_WIDTH.xl]: {
+        fontSize: getThemeTypographySize(resFontSize.xl),
+      },
+    };
+  }
 );
 
 type TextInputProps = TextInpputStyleProps &

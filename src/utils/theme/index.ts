@@ -1,7 +1,7 @@
 import { THEME } from "@/theme";
 import {
-  ThemeTypographySizeKeys,
-  ThemeTypographyWeightKeys,
+  AppThemeTypographySizeKeys,
+  AppThemeTypographyWeightKeys,
 } from "@/theme/types";
 
 export const multiplyByThemeSpacing = (value: number) => {
@@ -9,13 +9,13 @@ export const multiplyByThemeSpacing = (value: number) => {
 };
 
 export const getThemeTypographySize = (
-  typographySize: ThemeTypographySizeKeys
+  typographySize: AppThemeTypographySizeKeys
 ) => {
   return THEME.typography.size[typographySize];
 };
 
 export const getThemeTypographyWeight = (
-  typographyWeight: ThemeTypographyWeightKeys
+  typographyWeight: AppThemeTypographyWeightKeys
 ) => {
   return THEME.typography.weight[typographyWeight];
 };

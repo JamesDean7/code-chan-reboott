@@ -14,7 +14,12 @@ const Home = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Image src="/test.jpg" alt="main image" width="100%" height="400px" />
+      <Image
+        src="/test.jpg"
+        alt="main image"
+        width={{ sm: "100%" }}
+        height={{ sm: "300px", md: "400px" }}
+      />
       <FlexColumnContainer
         position="absolute"
         justifyContent="center"
@@ -22,16 +27,16 @@ const Home = () => {
       >
         <Typography
           component="h1"
-          size="h1"
-          weight="bold"
+          fontSize={{ sm: "h5", md: "h3", lg: "h1" }}
+          fontWeight="bold"
           color={themePaletteCommon.white}
         >
           Unsplash
         </Typography>
         <Typography
           component="p"
-          size="body1"
-          weight="normal"
+          fontSize={{ sm: "body3", md: "body2", lg: "body1" }}
+          fontWeight="normal"
           color={themePaletteCommon.white}
           lineHeight="1.6"
         >
@@ -40,6 +45,7 @@ const Home = () => {
         </Typography>
         <TextInput
           placeholder="고해상도 이미지 검색"
+          fontSize={{ sm: "body3", md: "body2", lg: "body1" }}
           width="50vw"
           onChange={(e) => {}}
         />
