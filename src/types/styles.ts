@@ -14,7 +14,9 @@ export type CSSFlexAlignItems = CSSProperties["alignItems"];
 
 export type ResponsiveStylePropsCollection = {
   width: PartialStyleByBreakpoints<string>;
+  maxWidth: PartialStyleByBreakpoints<string>;
   height: PartialStyleByBreakpoints<string>;
+  maxHeight: PartialStyleByBreakpoints<string>;
   compWidth: PartialStyleByBreakpoints<string>;
   compHeight: PartialStyleByBreakpoints<string>;
   gridTemplateColumns: PartialStyleByBreakpoints<string>;

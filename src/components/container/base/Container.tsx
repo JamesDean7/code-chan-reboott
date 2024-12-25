@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { CSSStyleProperties } from "@/types/styles";
 import { ReactNodeChildren } from "@/types/lib-react";
+import { ElementOnClick, ElementMouseEvent } from "@/types/event";
 
 type ContainerStyleProps = Pick<
   CSSStyleProperties,
@@ -18,9 +19,9 @@ const ContainerStyle = styled.div<ContainerStyleProps>(
 );
 
 type ContainerProps = ContainerStyleProps &
-  ReactNodeChildren & {
-    onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  };
+  ReactNodeChildren &
+  ElementOnClick &
+  Pick<ElementMouseEvent, "onMouseEnter" | "onMouseLeave">;
 
 const Container = ({ children, ...props }: ContainerProps) => {
   return <ContainerStyle {...props}>{children}</ContainerStyle>;
