@@ -7,7 +7,6 @@ import { ReactNodeChildren } from "@/types/lib-react";
 import { ElementOnClick, ElementMouseEvent } from "@/types/event";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type ContainerStyleProps = Pick<
   CSSStyleProperties,

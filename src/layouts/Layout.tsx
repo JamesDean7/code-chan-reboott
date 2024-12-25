@@ -1,12 +1,14 @@
 import { Outlet } from "react-router";
 import LayoutHead from "@/layouts/LayoutHead";
+import LayoutFoot from "@/layouts/LayoutFoot";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <LayoutHead />
       <Outlet />
-    </div>
+      <LayoutFoot />
+    </>
   );
 };
 
