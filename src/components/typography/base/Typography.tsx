@@ -25,12 +25,12 @@ type TypographyComponentOptions = ExtractByKey<
   "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "div"
 >;
 
-type Props = ReactNodeChildren &
+type TypographyProps = ReactNodeChildren &
   TypographyComponentProps & {
     component?: TypographyComponentOptions;
   };
 
-const Typography = ({ children, component, ...props }: Props) => {
+const Typography = ({ children, component, ...props }: TypographyProps) => {
   const TypographyComponent = styled(
     component ?? "p"
   )<TypographyComponentProps>(

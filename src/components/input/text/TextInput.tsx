@@ -22,7 +22,7 @@ type TextInpputStyleProps = Pick<
   | "borderColor"
   | "color"
 > & {
-  fontSize: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
+  fontSize?: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
   fontWeight?: AppThemeTypographyWeightKeys;
 };
 
@@ -36,7 +36,7 @@ const TextInputStyle = styled.input<TextInpputStyleProps>(
     borderWidth = "1px",
     borderStyle = "solid",
     borderColor = "transparent",
-    fontSize,
+    fontSize = { sm: "body3" },
     fontWeight,
     color,
   }) => {
@@ -69,7 +69,7 @@ const TextInputStyle = styled.input<TextInpputStyleProps>(
   }
 );
 
-type TextInputProps = TextInpputStyleProps &
+export type TextInputProps = TextInpputStyleProps &
   JSX.IntrinsicElements["input"] & {
     error?: boolean;
   };

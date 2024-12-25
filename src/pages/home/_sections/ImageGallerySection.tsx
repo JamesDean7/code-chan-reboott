@@ -4,7 +4,7 @@ import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import useOnOffState from "@/hooks/data/useOnOffState";
 
-const ImageGallery = () => {
+const ImageGallerySection = () => {
   const { isOn, handleUpdateToOn, handleUpdateToOff } = useOnOffState();
 
   const handleImageClick = (src: string) => () => {
@@ -63,4 +63,4 @@ const ImageGallery = () => {
   );
 };
 
-export default ImageGallery;
+export default ImageGallerySection;
