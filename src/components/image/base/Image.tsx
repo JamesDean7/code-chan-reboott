@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import { ImageElementAttribute } from "@/types/element";
 import { PartialStyleByBreakpoints } from "@/theme/types";
-import { getStyleByBreakpoints } from "@/utils/style";
+import {
+  createStyledCompStyleByBreakpoint,
+  getStyleByBreakpoints,
+} from "@/utils/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { OmitByKey } from "@/types/utils";
 
@@ -23,31 +26,25 @@ const ImageStyle = styled("img")<ImageStyleProps>(
     objectFit = "cover",
     objectPosition = "50% 50%",
   }) => {
-    const resWidth = getStyleByBreakpoints<string>({
-      style: imgWidth,
-      defaultVal: "100%",
+    const styleByBreakpoint = createStyledCompStyleByBreakpoint({
+      height: imgHeight,
+      width: imgWidth,
     });
-    const resHeight = getStyleByBreakpoints<string>({
-      style: imgHeight,
-      defaultVal: "300px",
-    });
+
     return {
-      width: resWidth.sm,
-      height: resHeight.sm,
+      border: undefined,
       objectFit,
       objectPosition,
       userSelect: "none",
+      ...styleByBreakpoint.sm,
       [MEDIA_MIN_WIDTH.md]: {
-        width: resWidth.md,
-        height: resHeight.md,
+        ...styleByBreakpoint.md,
       },
       [MEDIA_MIN_WIDTH.lg]: {
-        width: resWidth.lg,
-        height: resHeight.lg,
+        ...styleByBreakpoint.lg,
       },
       [MEDIA_MIN_WIDTH.xl]: {
-        width: resWidth.xl,
-        height: resHeight.xl,
+        ...styleByBreakpoint.xl,
       },
     };
   }

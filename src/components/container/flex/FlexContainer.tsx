@@ -5,7 +5,7 @@ import {
   CSSStyleProperties,
   StylePropsByBreakpointsCollection,
 } from "@/types/styles";
-import { getStyleByBreakpoints } from "@/utils/style";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 
 type FlexContainerStyleProps = Pick<
@@ -37,22 +37,13 @@ const FlexContainerStyle = styled.div<FlexContainerStyleProps>(
     width,
     height,
   }) => {
-    const resWidth = getStyleByBreakpoints<string>({
-      style: width ?? {},
-      defaultVal: "auto",
+    const styleByBreakpoint = createStyledCompStyleByBreakpoint({
+      height,
+      width,
+      rowGap,
+      columnGap,
     });
-    const resHeight = getStyleByBreakpoints<string>({
-      style: height ?? {},
-      defaultVal: "auto",
-    });
-    const resRowGap = getStyleByBreakpoints<string>({
-      style: rowGap ?? {},
-      defaultVal: "0",
-    });
-    const resColumnGap = getStyleByBreakpoints<string>({
-      style: columnGap ?? {},
-      defaultVal: "0",
-    });
+
     return {
       display: "flex",
       position,
@@ -61,27 +52,15 @@ const FlexContainerStyle = styled.div<FlexContainerStyleProps>(
       flexWrap,
       justifyContent,
       alignItems,
-      rowGap: resRowGap.sm,
-      columnGap: resColumnGap.sm,
-      width: resWidth.sm,
-      height: resHeight.sm,
+      ...styleByBreakpoint.sm,
       [MEDIA_MIN_WIDTH.md]: {
-        width: resWidth.md,
-        height: resHeight.md,
-        rowGap: resRowGap.md,
-        columnGap: resColumnGap.md,
+        ...styleByBreakpoint.md,
       },
       [MEDIA_MIN_WIDTH.lg]: {
-        width: resWidth.lg,
-        height: resHeight.lg,
-        rowGap: resRowGap.lg,
-        columnGap: resColumnGap.lg,
+        ...styleByBreakpoint.lg,
       },
       [MEDIA_MIN_WIDTH.xl]: {
-        width: resWidth.xl,
-        height: resHeight.xl,
-        rowGap: resRowGap.xl,
-        columnGap: resColumnGap.xl,
+        ...styleByBreakpoint.xl,
       },
     };
   }

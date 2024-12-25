@@ -51,7 +51,7 @@ const prepareResponsiveValueByStyleProps = (
       style: isObjectType(props[propertyKey])
         ? props[propertyKey]
         : changeToSmBreakpointObj(props[propertyKey]),
-      defaultVal: "auto",
+      defaultVal: undefined,
     });
     return acc;
   }, {} as ExcludeFromType<PartialStylePropsByBreakpointsCollection, string>);

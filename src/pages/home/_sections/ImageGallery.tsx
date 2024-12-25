@@ -20,8 +20,8 @@ const ImageGallery = () => {
         margin={{ sm: "0", xl: "0 auto" }}
         maxWidth={{ sm: "none", xl: "1200px" }}
         padding={{ sm: "0 20px" }}
-        columnGap={{ sm: "20px" }}
-        rowGap={{ sm: "20px" }}
+        columnGap={{ sm: "10px", md: "20px", lg: "30px" }}
+        rowGap={{ sm: "10px", md: "20px", lg: "30px" }}
         gridTemplateColumns={{
           sm: "repeat(1, 1fr)",
           md: "repeat(2, 1fr)",
@@ -49,10 +49,10 @@ const ImageGallery = () => {
           onLikeClick={handleLikeClick}
         />
       </GridContainer>
-      <BookmarkModal
+      {/* <BookmarkModal
         width={{ sm: "30%", md: "40%", lg: "50%" }}
         height={{ sm: "300px", md: "450px", lg: "650px" }}
-      />
+      /> */}
     </>
   );
 };

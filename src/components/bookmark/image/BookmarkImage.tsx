@@ -36,7 +36,7 @@ const BookmarkImage = ({
         {isMouseEnter && (
           <HoverContainer
             position="absolute"
-            margin="10px"
+            margin={{ sm: "10px" }}
             onClick={onLikeClick(src)}
           >
             <IconHeart fill="#ffffff" />
