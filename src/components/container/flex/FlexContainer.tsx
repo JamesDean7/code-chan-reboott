@@ -3,7 +3,7 @@ import { ReactNodeChildren } from "@/types/lib-react";
 import { ElementClassName } from "@/types/element";
 import {
   CSSStyleProperties,
-  ResponsiveStylePropsCollection,
+  StylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import { getStyleByBreakpoints } from "@/utils/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
@@ -19,7 +19,7 @@ type FlexContainerStyleProps = Pick<
 > &
   Partial<
     Pick<
-      ResponsiveStylePropsCollection,
+      StylePropsByBreakpointsCollection,
       "width" | "height" | "rowGap" | "columnGap"
     >
   >;

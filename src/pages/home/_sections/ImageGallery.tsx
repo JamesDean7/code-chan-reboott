@@ -50,8 +50,8 @@ const ImageGallery = () => {
         />
       </GridContainer>
       <BookmarkModal
-        width={{ sm: "30%", lg: "50%" }}
-        height={{ sm: "300px", lg: "650px" }}
+        width={{ sm: "30%", md: "40%", lg: "50%" }}
+        height={{ sm: "300px", md: "450px", lg: "650px" }}
       />
     </>
   );

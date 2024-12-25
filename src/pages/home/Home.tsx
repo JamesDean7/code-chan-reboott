@@ -1,4 +1,3 @@
-import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import Image from "@/components/image/base/Image";
@@ -6,9 +5,17 @@ import TextInput from "@/components/input/text/TextInput";
 import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 import ImageGallery from "@/pages/home/_sections/ImageGallery";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style";
 
 const Home = () => {
   const themePaletteCommon = useThemePalette({ usePallete: "common" });
+
+  const test = createStyledCompStyleByBreakpoint({
+    width: { sm: "100px", md: "200px", lg: "300px" },
+    height: { sm: "200px", md: "300px", lg: "400px" },
+  });
+
+  console.log({ test });
 
   return (
     <FlexColumnContainer alignItems="stretch" rowGap={{ sm: "20px" }}>

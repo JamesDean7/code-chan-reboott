@@ -5,6 +5,10 @@ export const THEME_BREAKPOINTS = {
   xl: 1536,
 } as const;
 
+export const THEME_BREAKPOINTS_KEYS = Object.keys(THEME_BREAKPOINTS) as Array<
+  keyof typeof THEME_BREAKPOINTS
+>;
+
 export const MEDIA_MIN_WIDTH = {
   sm: `@media (min-width:${THEME_BREAKPOINTS.sm}px)`,
   md: `@media (min-width:${THEME_BREAKPOINTS.md}px)`,

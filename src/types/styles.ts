@@ -12,7 +12,7 @@ export type CSSFlexDirection = CSSProperties["flexDirection"];
 
 export type CSSFlexAlignItems = CSSProperties["alignItems"];
 
-export type ResponsiveStylePropsCollection = {
+export type StylePropsByBreakpointsCollection = {
   width: PartialStyleByBreakpoints<string>;
   maxWidth: PartialStyleByBreakpoints<string>;
   height: PartialStyleByBreakpoints<string>;
@@ -25,3 +25,6 @@ export type ResponsiveStylePropsCollection = {
   padding: PartialStyleByBreakpoints<string>;
   margin: PartialStyleByBreakpoints<string>;
 };
+
+export type PartialStylePropsByBreakpointsCollection =
+  Partial<StylePropsByBreakpointsCollection>;

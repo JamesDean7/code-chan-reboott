@@ -6,3 +6,7 @@ export type SelectiveRequired<T, TargetKey extends keyof T> = Partial<
   Omit<T, TargetKey>
 > &
   Required<Pick<T, TargetKey>>;
+
+export type ExcludeFromType<T, E> = {
+  [K in keyof T]: Exclude<T[K], E>;
+};

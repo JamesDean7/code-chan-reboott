@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { ReactNodeChildren } from "@/types/lib-react";
-import { ResponsiveStylePropsCollection } from "@/types/styles";
+import { StylePropsByBreakpointsCollection } from "@/types/styles";
 import { getStyleByBreakpoints } from "@/utils/style";
 
 type GridContainerStyleProps = Partial<
   Pick<
-    ResponsiveStylePropsCollection,
+    StylePropsByBreakpointsCollection,
     | "width"
     | "maxWidth"
     | "height"
