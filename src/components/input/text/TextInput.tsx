@@ -6,9 +6,9 @@ import {
   AppThemeTypographyWeightKeys,
   PartialStyleByBreakpoints,
 } from "@/theme/types";
-import { getStyleByBreakpoints } from "@/utils/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { getThemeTypographySize } from "@/utils/theme";
+import { getThemeTypographySize } from "@/utils/theme/theme";
+import { getStyleByBreakpoints } from "@/utils/style/style";
 
 type TextInpputStyleProps = Pick<
   CSSStyleProperties,

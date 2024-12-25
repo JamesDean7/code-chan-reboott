@@ -1,23 +1,22 @@
 import { memo, ReactHTML } from "react";
 import styled from "@emotion/styled";
 import {
-  AppThemeBreakpointsKeys,
   AppThemeTypographySizeKeys,
   AppThemeTypographyWeightKeys,
   PartialStyleByBreakpoints,
 } from "@/theme/types";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { ExtractByKey } from "@/types/utils";
+import { CSSStyleProperties } from "@/types/styles";
+import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
+import { getStyleByBreakpoints } from "@/utils/style/style";
 import {
   getThemeTypographySize,
   getThemeTypographyWeight,
-} from "@/utils/theme";
-import { CSSStyleProperties } from "@/types/styles";
-import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { getStyleByBreakpoints } from "@/utils/style";
+} from "@/utils/theme/theme";
 
 type TypographyComponentProps = {
-  fontSize: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
+  fontSize?: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
   fontWeight?: AppThemeTypographyWeightKeys;
 } & Pick<CSSStyleProperties, "color" | "lineHeight">;
 
@@ -37,7 +36,7 @@ const Typography = ({ children, component, ...props }: Props) => {
   )<TypographyComponentProps>(
     ({ fontSize, fontWeight = "normal", color = "#000000", lineHeight }) => {
       const resFontSize = getStyleByBreakpoints<AppThemeTypographySizeKeys>({
-        style: fontSize,
+        style: fontSize ?? { sm: "body1" },
         defaultVal: "body1",
       });
       return {

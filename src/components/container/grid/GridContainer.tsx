@@ -2,10 +2,8 @@ import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { StylePropsByBreakpointsCollection } from "@/types/styles";
-import {
-  createStyledCompStyleByBreakpoint,
-  getStyleByBreakpoints,
-} from "@/utils/style";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type GridContainerStyleProps = Partial<
   Pick<
@@ -21,7 +19,10 @@ type GridContainerStyleProps = Partial<
   >
 >;
 
-const GridContainerStyle = styled.div<GridContainerStyleProps>(
+const GridContainerStyle = styled(
+  "div",
+  {}
+)<GridContainerStyleProps>(
   ({
     width,
     height,

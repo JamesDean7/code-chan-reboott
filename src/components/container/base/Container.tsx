@@ -1,28 +1,63 @@
 import styled from "@emotion/styled";
 import {
   CSSStyleProperties,
-  StylePropsByBreakpointsCollection,
+  PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { ElementOnClick, ElementMouseEvent } from "@/types/event";
-import { createStyledCompStyleByBreakpoint } from "@/utils/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
-type ContainerStyleProps = Pick<CSSStyleProperties, "position" | "display"> &
-  Partial<
-    Pick<StylePropsByBreakpointsCollection, "width" | "height" | "margin">
+type ContainerStyleProps = Pick<
+  CSSStyleProperties,
+  | "position"
+  | "display"
+  | "top"
+  | "left"
+  | "right"
+  | "bottom"
+  | "transform"
+  | "backgroundColor"
+  | "borderRadius"
+> &
+  Pick<
+    PartialStylePropsByBreakpointsCollection,
+    "width" | "height" | "margin" | "padding"
   >;
 
-const ContainerStyle = styled.div<ContainerStyleProps>(
-  ({ position, display, width, height, margin }) => {
+const ContainerStyle = styled("div")<ContainerStyleProps>(
+  ({
+    position,
+    display,
+    width,
+    height,
+    margin,
+    padding,
+    top,
+    left,
+    right,
+    bottom,
+    transform,
+    backgroundColor,
+    borderRadius,
+  }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
       height,
       width,
       margin,
+      padding,
     });
     return {
       position,
       display,
+      top,
+      left,
+      right,
+      bottom,
+      transform,
+      backgroundColor,
+      borderRadius,
       ...styleByBreakpoint.sm,
       [MEDIA_MIN_WIDTH.md]: {
         ...styleByBreakpoint.md,

@@ -2,9 +2,9 @@ import { THEME_BREAKPOINTS_KEYS } from "@/theme/breakpoints";
 import { AppThemeBreakpointsKeys } from "@/theme/types";
 import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { ExcludeFromType } from "@/types/utils";
-import { addSizeUnit } from "@/utils/format";
-import { multiplyByThemeSpacing } from "@/utils/theme";
-import { isObjectType } from "@/utils/verify";
+import { addSizeUnit } from "@/utils/format/format";
+import { multiplyByThemeSpacing } from "@/utils/theme/theme";
+import { isObjectType } from "@/utils/verify/verify";
 
 export const getPxSpacing = (value: number) => {
   const spacing = multiplyByThemeSpacing(value);

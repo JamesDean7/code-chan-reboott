@@ -5,8 +5,9 @@ import {
   CSSStyleProperties,
   StylePropsByBreakpointsCollection,
 } from "@/types/styles";
-import { createStyledCompStyleByBreakpoint } from "@/utils/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import isPropValid from "@emotion/is-prop-valid";
 
 type FlexContainerStyleProps = Pick<
   CSSStyleProperties,
@@ -20,14 +21,14 @@ type FlexContainerStyleProps = Pick<
   Partial<
     Pick<
       StylePropsByBreakpointsCollection,
-      "width" | "height" | "rowGap" | "columnGap"
+      "width" | "height" | "rowGap" | "columnGap" | "padding"
     >
   >;
 
-const FlexContainerStyle = styled.div<FlexContainerStyleProps>(
+const FlexContainerStyle = styled("div")<FlexContainerStyleProps>(
   ({
     position = "static",
-    flex = "auto",
+    flex = "initial",
     flexDirection = "row",
     flexWrap = "wrap",
     justifyContent = "center",
@@ -36,12 +37,14 @@ const FlexContainerStyle = styled.div<FlexContainerStyleProps>(
     columnGap,
     width,
     height,
+    padding,
   }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
       height,
       width,
       rowGap,
       columnGap,
+      padding,
     });
 
     return {

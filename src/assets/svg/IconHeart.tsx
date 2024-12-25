@@ -1,8 +1,6 @@
-type IconHeartProps = {
-  width?: string;
-  height?: string;
-  fill?: string;
-};
+import { PartialSvgCommonProps } from "@/assets/svg/types";
+
+type IconHeartProps = Pick<PartialSvgCommonProps, "width" | "height" | "fill">;
 
 const IconHeart = ({
   width = "40px",

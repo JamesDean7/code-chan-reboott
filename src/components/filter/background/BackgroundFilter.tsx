@@ -1,24 +1,26 @@
 import styled from "@emotion/styled";
 import { ReactNodeChildren } from "@/types/lib-react";
-import { ZINDEX } from "@/const/style";
+import { ZINDEX } from "@/const/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type BackgroundFilterStyleProps = {
   opacity: number;
   zIndex?: number;
 };
 
-const BackgroundFilterStyle = styled.div<BackgroundFilterStyleProps>(
-  ({ opacity, zIndex }) => ({
-    position: "fixed",
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    background: "#000000",
-    opacity: opacity,
-    zIndex,
-  })
-);
+const BackgroundFilterStyle = styled("div", {
+  shouldForwardProp: (propName) =>
+    customShouldForwardProp({ preventTarget: "backgroundFilter", propName }),
+})<BackgroundFilterStyleProps>(({ opacity, zIndex }) => ({
+  position: "fixed",
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  background: "#000000",
+  opacity: opacity,
+  zIndex,
+}));
 
 type BackgroundFilterProps = ReactNodeChildren &
   Pick<BackgroundFilterStyleProps, "zIndex"> & {

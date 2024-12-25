@@ -5,15 +5,12 @@ import TextInput from "@/components/input/text/TextInput";
 import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 import ImageGallery from "@/pages/home/_sections/ImageGallery";
-import { createStyledCompStyleByBreakpoint } from "@/utils/style";
+import isPropValid from "@emotion/is-prop-valid";
 
 const Home = () => {
   const themePaletteCommon = useThemePalette({ usePallete: "common" });
 
-  const test = createStyledCompStyleByBreakpoint({
-    width: { sm: "100px", md: "200px", lg: "300px" },
-    height: { sm: "200px", md: "300px", lg: "400px" },
-  });
+  const test = isPropValid("width");
 
   console.log({ test });
 
@@ -58,7 +55,6 @@ const Home = () => {
             placeholder="고해상도 이미지 검색"
             fontSize={{ sm: "body3", md: "body2", lg: "body1" }}
             width="50vw"
-            onChange={(e) => {}}
           />
         </FlexColumnContainer>
       </FlexRowContainer>

@@ -2,10 +2,14 @@ import React from "react";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
+import useOnOffState from "@/hooks/data/useOnOffState";
 
 const ImageGallery = () => {
+  const { isOn, handleUpdateToOn, handleUpdateToOff } = useOnOffState();
+
   const handleImageClick = (src: string) => () => {
     console.log(" ::: image click ::: ");
+    handleUpdateToOn();
   };
 
   const handleLikeClick =
@@ -49,10 +53,12 @@ const ImageGallery = () => {
           onLikeClick={handleLikeClick}
         />
       </GridContainer>
-      {/* <BookmarkModal
-        width={{ sm: "30%", md: "40%", lg: "50%" }}
-        height={{ sm: "300px", md: "450px", lg: "650px" }}
-      /> */}
+      {isOn && (
+        <BookmarkModal
+          width={{ sm: "80%", lg: "50%" }}
+          onClose={handleUpdateToOff}
+        />
+      )}
     </>
   );
 };
