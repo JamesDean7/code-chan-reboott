@@ -1,6 +1,7 @@
 import { PREVENT_FOWARD_PROP } from "@/const/constraint/constraint";
 import { PreventForwardPropKeys } from "@/const/constraint/types";
 import { removeWhiteSpace } from "@/utils/format/format";
+import { IsFalsyValueFnOptions } from "@/utils/verify/types";
 
 export const isNullType = (checkVal: any): checkVal is null =>
   checkVal === null;
@@ -31,6 +32,23 @@ export const isEmptyString = (checkVal: string) => {
     return false;
   }
   return true;
+};
+
+export const isFalsyValue = (
+  value: any,
+  { exclude }: IsFalsyValueFnOptions = {}
+) => {
+  if (value === undefined && !exclude?.undefinedVal) return true;
+
+  if (value === null && !exclude?.nullVal) return true;
+
+  if (isEmptyString(value) && !exclude?.emptyString) return true;
+
+  if (value === 0 && !exclude?.zero) return true;
+
+  if (value === false && !exclude?.booleanVal) return true;
+
+  return false;
 };
 
 export const customShouldForwardProp = ({

@@ -1,6 +1,6 @@
+import axios from "axios";
 import { StandardError } from "@/class/error/StandardError";
 import { createStandardError } from "@/utils/error/error";
-import axios from "axios";
 
 export const axiosClient = axios.create({
   baseURL: `http://localhost:4000`,

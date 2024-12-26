@@ -28,7 +28,7 @@ const Bookmark = () => {
         alignItems="center"
       >
         <Typography fontSize={{ sm: "h1" }} fontWeight="bold">
-          BookMark
+          북마크
         </Typography>
         <HorizontalDivider />
       </FlexColumnContainer>

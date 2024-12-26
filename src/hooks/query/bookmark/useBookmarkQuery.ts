@@ -5,14 +5,10 @@ import { UseBaseSuspenseQueryBasedFnParams } from "@/hooks/query/base/types";
 import { useBaseSuspenseQuery } from "@/hooks/query/base/useBaseSuspenseQuery";
 import { createQueryKey } from "@/utils/format/format";
 
-type ApiPayload = {
-  id: string;
-};
-
-const useSusQueryGallery = ({
+const useBookmarkQuery = ({
   apiPayload,
   ...rest
-}: UseBaseSuspenseQueryBasedFnParams<GalleryItem[], ApiPayload> = {}) => {
+}: UseBaseSuspenseQueryBasedFnParams<GalleryItem[]> = {}) => {
   return useBaseSuspenseQuery({
     queryKey: createQueryKey({
       queryKey: [QUERY_KEY.bookmark.root, QUERY_KEY.gallery.list],
@@ -23,4 +19,4 @@ const useSusQueryGallery = ({
   });
 };
 
-export default useSusQueryGallery;
+export default useBookmarkQuery;

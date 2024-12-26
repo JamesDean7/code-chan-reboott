@@ -1,34 +1,23 @@
 import React from "react";
+import { useErrorBoundary } from "react-error-boundary";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import useOnOffState from "@/hooks/data/useOnOffState";
 import useSusQueryGallery from "@/hooks/query/gallery/useSusQueryGallery";
 import { PAGE_HOME_STYLE } from "@/pages/home/_const/style";
-import { StandardError } from "@/class/error/StandardError";
-import { useErrorBoundary } from "react-error-boundary";
+import useBookmarkQuery from "@/hooks/query/bookmark/useBookmarkQuery";
 
-const testArry = [1, 2, 3, 4, 5, 6];
+const testArry = [{ id: "1" }, { id: "2" }, { id: "3" }];
 
 const ImageGallerySection = () => {
-  console.log(" ::: ImageGallerySection ::: ");
-
   const { showBoundary } = useErrorBoundary();
-
-  // setTimeout(() => {
-  //   showBoundary(
-  //     new StandardError({
-  //       message: "aa",
-  //       original: "ff",
-  //       type: "client",
-  //       code: "cc",
-  //     })
-  //   );
-  // }, 2000);
 
   const { isOn, handleUpdateToOn, handleUpdateToOff } = useOnOffState();
 
-  const { data, error } = useSusQueryGallery();
+  const { data: imageList } = useSusQueryGallery();
+
+  const { data: bookmarkList } = useBookmarkQuery();
 
   const handleImageClick = (src: string) => () => {
     console.log(" ::: image click ::: ");
@@ -41,7 +30,7 @@ const ImageGallerySection = () => {
       console.log(" ::: like click ::: ");
     };
 
-  console.log(" ::: ImageGallerySection RENDER ::: ");
+  console.log({ imageList, bookmarkList });
   return (
     <>
       <GridContainer
@@ -56,6 +45,7 @@ const ImageGallerySection = () => {
       >
         {testArry.map((image) => (
           <BookmarkImage
+            key={image.id}
             width={PAGE_HOME_STYLE.gallery.image.width}
             height={PAGE_HOME_STYLE.gallery.image.height}
             onImageClick={handleImageClick}
