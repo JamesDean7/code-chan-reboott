@@ -3,9 +3,32 @@ import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import useOnOffState from "@/hooks/data/useOnOffState";
+import useSusQueryGallery from "@/hooks/query/gallery/useSusQueryGallery";
+import { PAGE_HOME_STYLE } from "@/pages/home/_const/style";
+import { StandardError } from "@/class/error/StandardError";
+import { useErrorBoundary } from "react-error-boundary";
+
+const testArry = [1, 2, 3, 4, 5, 6];
 
 const ImageGallerySection = () => {
+  console.log(" ::: ImageGallerySection ::: ");
+
+  const { showBoundary } = useErrorBoundary();
+
+  // setTimeout(() => {
+  //   showBoundary(
+  //     new StandardError({
+  //       message: "aa",
+  //       original: "ff",
+  //       type: "client",
+  //       code: "cc",
+  //     })
+  //   );
+  // }, 2000);
+
   const { isOn, handleUpdateToOn, handleUpdateToOff } = useOnOffState();
+
+  const { data, error } = useSusQueryGallery();
 
   const handleImageClick = (src: string) => () => {
     console.log(" ::: image click ::: ");
@@ -18,40 +41,27 @@ const ImageGallerySection = () => {
       console.log(" ::: like click ::: ");
     };
 
+  console.log(" ::: ImageGallerySection RENDER ::: ");
   return (
     <>
       <GridContainer
-        margin={{ sm: "0", xl: "0 auto" }}
-        maxWidth={{ sm: "none", xl: "1200px" }}
-        padding={{ sm: "0 20px" }}
-        columnGap={{ sm: "10px", md: "20px", lg: "30px" }}
-        rowGap={{ sm: "10px", md: "20px", lg: "30px" }}
-        gridTemplateColumns={{
-          sm: "repeat(1, 1fr)",
-          md: "repeat(2, 1fr)",
-          lg: "repeat(3, 1fr)",
-        }}
+        margin={PAGE_HOME_STYLE.gallery.container.margin}
+        maxWidth={PAGE_HOME_STYLE.gallery.container.maxWidth}
+        padding={PAGE_HOME_STYLE.gallery.container.padding}
+        columnGap={PAGE_HOME_STYLE.gallery.container.columnGap}
+        rowGap={PAGE_HOME_STYLE.gallery.container.rowGap}
+        gridTemplateColumns={
+          PAGE_HOME_STYLE.gallery.container.gridTemplateColumns
+        }
       >
-        <BookmarkImage
-          onImageClick={handleImageClick}
-          onLikeClick={handleLikeClick}
-        />
-        <BookmarkImage
-          onImageClick={handleImageClick}
-          onLikeClick={handleLikeClick}
-        />
-        <BookmarkImage
-          onImageClick={handleImageClick}
-          onLikeClick={handleLikeClick}
-        />
-        <BookmarkImage
-          onImageClick={handleImageClick}
-          onLikeClick={handleLikeClick}
-        />
-        <BookmarkImage
-          onImageClick={handleImageClick}
-          onLikeClick={handleLikeClick}
-        />
+        {testArry.map((image) => (
+          <BookmarkImage
+            width={PAGE_HOME_STYLE.gallery.image.width}
+            height={PAGE_HOME_STYLE.gallery.image.height}
+            onImageClick={handleImageClick}
+            onLikeClick={handleLikeClick}
+          />
+        ))}
       </GridContainer>
       {isOn && (
         <BookmarkModal

@@ -2,12 +2,14 @@ import { memo, ReactHTML } from "react";
 import styled from "@emotion/styled";
 import {
   AppThemeTypographySizeKeys,
-  AppThemeTypographyWeightKeys,
-  PartialStyleByBreakpoints,
+  PartialAppThemeCollection,
 } from "@/theme/types";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { ExtractByKey } from "@/types/utils";
-import { CSSStyleProperties } from "@/types/styles";
+import {
+  CSSStyleProperties,
+  PartialStylePropsByBreakpointsCollection,
+} from "@/types/styles";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getStyleByBreakpoints } from "@/utils/style/style";
 import {
@@ -15,17 +17,19 @@ import {
   getThemeTypographyWeight,
 } from "@/utils/theme/theme";
 
-type TypographyComponentProps = {
-  fontSize?: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
-  fontWeight?: AppThemeTypographyWeightKeys;
-} & Pick<CSSStyleProperties, "color" | "lineHeight">;
+type TypographyComponentProps = Pick<
+  CSSStyleProperties,
+  "color" | "lineHeight"
+> &
+  Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
+  Pick<PartialAppThemeCollection, "fontWeight">;
 
 type TypographyComponentOptions = ExtractByKey<
   keyof ReactHTML,
   "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "div"
 >;
 
-type TypographyProps = ReactNodeChildren &
+export type TypographyProps = ReactNodeChildren &
   TypographyComponentProps & {
     component?: TypographyComponentOptions;
   };

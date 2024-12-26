@@ -20,7 +20,7 @@ const ImageSearchSection = () => {
     });
   };
 
-  console.log(" ::: search section ::: ");
+  // console.log(" ::: search section ::: ");
 
   return (
     <FlexRowContainer

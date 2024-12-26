@@ -1,22 +1,19 @@
 import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { ReactNodeChildren } from "@/types/lib-react";
-import { StylePropsByBreakpointsCollection } from "@/types/styles";
+import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-import { customShouldForwardProp } from "@/utils/verify/verify";
 
-type GridContainerStyleProps = Partial<
-  Pick<
-    StylePropsByBreakpointsCollection,
-    | "width"
-    | "maxWidth"
-    | "height"
-    | "rowGap"
-    | "columnGap"
-    | "gridTemplateColumns"
-    | "padding"
-    | "margin"
-  >
+type GridContainerStyleProps = Pick<
+  PartialStylePropsByBreakpointsCollection,
+  | "width"
+  | "maxWidth"
+  | "height"
+  | "rowGap"
+  | "columnGap"
+  | "gridTemplateColumns"
+  | "padding"
+  | "margin"
 >;
 
 const GridContainerStyle = styled(

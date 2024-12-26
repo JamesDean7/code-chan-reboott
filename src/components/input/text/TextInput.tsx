@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
-import { CSSStyleProperties } from "@/types/styles";
+import {
+  CSSStyleProperties,
+  PartialStylePropsByBreakpointsCollection,
+} from "@/types/styles";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 import {
   AppThemeTypographySizeKeys,
-  AppThemeTypographyWeightKeys,
-  PartialStyleByBreakpoints,
+  PartialAppThemeCollection,
 } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getThemeTypographySize } from "@/utils/theme/theme";
@@ -21,10 +23,9 @@ type TextInpputStyleProps = Pick<
   | "borderStyle"
   | "borderColor"
   | "color"
-> & {
-  fontSize?: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
-  fontWeight?: AppThemeTypographyWeightKeys;
-};
+> &
+  Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
+  Pick<PartialAppThemeCollection, "fontWeight">;
 
 const TextInputStyle = styled.input<TextInpputStyleProps>(
   ({

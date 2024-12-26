@@ -7,6 +7,7 @@ import { ReactNodeChildren } from "@/types/lib-react";
 import { ElementOnClick, ElementMouseEvent } from "@/types/event";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type ContainerStyleProps = Pick<
   CSSStyleProperties,
@@ -22,15 +23,19 @@ type ContainerStyleProps = Pick<
 > &
   Pick<
     PartialStylePropsByBreakpointsCollection,
-    "width" | "height" | "margin" | "padding"
+    "width" | "height" | "margin" | "padding" | "minHeight"
   >;
 
-const ContainerStyle = styled("div")<ContainerStyleProps>(
+const ContainerStyle = styled("div", {
+  shouldForwardProp: (propName) =>
+    customShouldForwardProp({ preventTarget: "container", propName }),
+})<ContainerStyleProps>(
   ({
     position,
     display,
     width,
     height,
+    minHeight,
     margin,
     padding,
     top,
@@ -46,6 +51,7 @@ const ContainerStyle = styled("div")<ContainerStyleProps>(
       width,
       margin,
       padding,
+      minHeight,
     });
     return {
       position,

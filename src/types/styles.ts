@@ -1,4 +1,7 @@
-import { PartialStyleByBreakpoints } from "@/theme/types";
+import {
+  AppThemeTypographySizeKeys,
+  PartialStyleByBreakpoints,
+} from "@/theme/types";
 import { CSSProperties } from "react";
 
 export type CSSStyleProperties = CSSProperties;
@@ -12,10 +15,11 @@ export type CSSFlexDirection = CSSProperties["flexDirection"];
 
 export type CSSFlexAlignItems = CSSProperties["alignItems"];
 
-export type StylePropsByBreakpointsCollection = {
+type StylePropsByBreakpointsCollection = {
   width: PartialStyleByBreakpoints<string>;
   maxWidth: PartialStyleByBreakpoints<string>;
   height: PartialStyleByBreakpoints<string>;
+  minHeight: PartialStyleByBreakpoints<string>;
   maxHeight: PartialStyleByBreakpoints<string>;
   compWidth: PartialStyleByBreakpoints<string>;
   compHeight: PartialStyleByBreakpoints<string>;
@@ -24,7 +28,17 @@ export type StylePropsByBreakpointsCollection = {
   columnGap: PartialStyleByBreakpoints<string>;
   padding: PartialStyleByBreakpoints<string>;
   margin: PartialStyleByBreakpoints<string>;
+  fontSize: PartialStyleByBreakpoints<AppThemeTypographySizeKeys>;
 };
 
 export type PartialStylePropsByBreakpointsCollection =
   Partial<StylePropsByBreakpointsCollection>;
+
+type HoverStyleOptionsCollection = {
+  hoverColor: string;
+  hoverBgColor: string;
+  hoverBorderColor: string;
+};
+
+export type PartialHoverStyleOptionsCollection =
+  Partial<HoverStyleOptionsCollection>;

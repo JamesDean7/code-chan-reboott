@@ -10,3 +10,7 @@ export type SelectiveRequired<T, TargetKey extends keyof T> = Partial<
 export type ExcludeFromType<T, E> = {
   [K in keyof T]: Exclude<T[K], E>;
 };
+
+export type MatchPropAndValueFromKeys<T extends string> = {
+  [Prop in T]: `${string & Prop}`;
+};

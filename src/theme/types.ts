@@ -21,3 +21,9 @@ export type StyleByBreakpoints<T extends string> = Record<
 export type PartialStyleByBreakpoints<T extends string> = Partial<
   StyleByBreakpoints<T>
 >;
+
+export type AppThemeCollection = {
+  fontWeight?: AppThemeTypographyWeightKeys;
+};
+
+export type PartialAppThemeCollection = Partial<AppThemeCollection>;

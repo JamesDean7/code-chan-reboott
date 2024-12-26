@@ -4,7 +4,7 @@ import HoverContainer from "@/components/container/hover/HoverContainer";
 import Image, { ImageProps } from "@/components/image/base/Image";
 import useMouseEnter from "@/hooks/event/useMouseEnter";
 
-type BookmarkImageProps = Partial<ImageProps> & {
+export type BookmarkImageProps = Partial<ImageProps> & {
   onImageClick: (src: string) => () => void;
   onLikeClick: (
     src: string
@@ -14,7 +14,7 @@ type BookmarkImageProps = Partial<ImageProps> & {
 const BookmarkImage = ({
   height = { sm: "400px", md: "500px" },
   width = { sm: "100%" },
-  alt = "test image",
+  alt = "gallery image",
   src = "/test.jpg",
   onImageClick,
   onLikeClick,

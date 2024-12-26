@@ -3,11 +3,10 @@ import { ReactNodeChildren } from "@/types/lib-react";
 import { ElementClassName } from "@/types/element";
 import {
   CSSStyleProperties,
-  StylePropsByBreakpointsCollection,
+  PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-import isPropValid from "@emotion/is-prop-valid";
 
 type FlexContainerStyleProps = Pick<
   CSSStyleProperties,
@@ -18,14 +17,15 @@ type FlexContainerStyleProps = Pick<
   | "flex"
   | "position"
 > &
-  Partial<
-    Pick<
-      StylePropsByBreakpointsCollection,
-      "width" | "height" | "rowGap" | "columnGap" | "padding"
-    >
+  Pick<
+    PartialStylePropsByBreakpointsCollection,
+    "width" | "height" | "rowGap" | "columnGap" | "padding" | "minHeight"
   >;
 
-const FlexContainerStyle = styled("div")<FlexContainerStyleProps>(
+const FlexContainerStyle = styled(
+  "div",
+  {}
+)<FlexContainerStyleProps>(
   ({
     position = "static",
     flex = "initial",
@@ -37,6 +37,7 @@ const FlexContainerStyle = styled("div")<FlexContainerStyleProps>(
     columnGap,
     width,
     height,
+    minHeight,
     padding,
   }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
@@ -45,6 +46,7 @@ const FlexContainerStyle = styled("div")<FlexContainerStyleProps>(
       rowGap,
       columnGap,
       padding,
+      minHeight,
     });
 
     return {
