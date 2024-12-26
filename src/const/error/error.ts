@@ -1,6 +1,6 @@
-import { ErrorInfo } from "@/const/error/types";
+import { SystemError } from "@/const/error/types";
 
-export const ERRORINFO = {
+export const ERROR_SYSTEM = {
   client: {
     unknown: {
       message: "unknown error occured",
@@ -17,4 +17,4 @@ export const ERRORINFO = {
       code: "axiosTempError",
     },
   },
-} satisfies ErrorInfo;
+} satisfies SystemError;

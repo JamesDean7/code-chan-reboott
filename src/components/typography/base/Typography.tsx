@@ -19,7 +19,7 @@ import {
 
 type TypographyComponentProps = Pick<
   CSSStyleProperties,
-  "color" | "lineHeight"
+  "color" | "lineHeight" | "position" | "top" | "left" | "bottom" | "right"
 > &
   Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
   Pick<PartialAppThemeCollection, "fontWeight">;
@@ -38,7 +38,17 @@ const Typography = ({ children, component, ...props }: TypographyProps) => {
   const TypographyComponent = styled(
     component ?? "p"
   )<TypographyComponentProps>(
-    ({ fontSize, fontWeight = "normal", color = "#000000", lineHeight }) => {
+    ({
+      fontSize,
+      fontWeight = "normal",
+      color = "#000000",
+      lineHeight,
+      position,
+      top,
+      left,
+      right,
+      bottom,
+    }) => {
       const resFontSize = getStyleByBreakpoints<AppThemeTypographySizeKeys>({
         style: fontSize ?? { sm: "body1" },
         defaultVal: "body1",
@@ -48,6 +58,11 @@ const Typography = ({ children, component, ...props }: TypographyProps) => {
         fontWeight: getThemeTypographyWeight(fontWeight),
         color,
         lineHeight,
+        position,
+        top,
+        left,
+        right,
+        bottom,
         [MEDIA_MIN_WIDTH.md]: {
           fontSize: getThemeTypographySize(resFontSize.md),
         },

@@ -1,4 +1,4 @@
-export type ErrorInfo = {
+export type SystemError = {
   [x: string]: {
     [x: string]: {
       message: string;

@@ -4,23 +4,41 @@ import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import Image from "@/components/image/base/Image";
 import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
-import TextControlInput from "@/components/input/hookform/TextControlInput";
+import TextControlInput from "@/components/input/hookform/text/TextControlInput";
+import { isEmptyString } from "@/utils/verify/verify";
+import { PAGE_HOME_ERROR } from "@/pages/home/_const/error";
+import { HookFormCommonCollection } from "@/components/input/hookform/types";
 
 type SearchForm = {
   search: string;
 };
 
 const ImageSearchSection = () => {
-  const { control } = useForm<SearchForm>();
+  const {
+    control,
+    trigger,
+    formState: { errors },
+    clearErrors,
+  } = useForm<SearchForm>();
   const themePaletteCommon = useThemePalette({ usePallete: "common" });
 
   const handleSearchData = (search: string) => {
-    console.log({
-      search,
-    });
+    if (isEmptyString(search) && errors?.search) {
+      clearErrors();
+      return;
+    }
+
+    if (!isEmptyString(search)) {
+      trigger("search");
+    }
   };
 
-  // console.log(" ::: search section ::: ");
+  const validateSearchInput: HookFormCommonCollection<SearchForm>["customValidateFn"] =
+    (inputValue) => {
+      if (inputValue.length < 2) {
+        return PAGE_HOME_ERROR.validate.search.minLength;
+      }
+    };
 
   return (
     <FlexRowContainer
@@ -59,12 +77,14 @@ const ImageSearchSection = () => {
           모든 지역에 있는 크리에이터의 지원을 받습니다.
         </Typography>
         <TextControlInput
+          displayError
           control={control}
           inputName="search"
           placeholder="고해상도 이미지 검색"
           fontSize={{ sm: "body3", md: "body2", lg: "body1" }}
           width="50vw"
           onChange={handleSearchData}
+          customValidateFn={validateSearchInput}
         />
       </FlexColumnContainer>
     </FlexRowContainer>

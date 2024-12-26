@@ -1,5 +1,6 @@
 import { PREVENT_FOWARD_PROP } from "@/const/constraint/constraint";
 import { PreventForwardPropKeys } from "@/const/constraint/types";
+import { removeWhiteSpace } from "@/utils/format/format";
 
 export const isNullType = (checkVal: any): checkVal is null =>
   checkVal === null;
@@ -24,6 +25,13 @@ export const isObjectType = (checkVal: any): checkVal is object =>
 
 export const isArrayType = <T = any>(checkVal: any): checkVal is Array<T> =>
   Array.isArray(checkVal);
+
+export const isEmptyString = (checkVal: string) => {
+  if (removeWhiteSpace(String(checkVal)) !== "") {
+    return false;
+  }
+  return true;
+};
 
 export const customShouldForwardProp = ({
   preventTarget,

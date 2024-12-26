@@ -1,4 +1,4 @@
-import { ERRORINFO } from "@/const/error/error";
+import { ERROR_SYSTEM } from "@/const/error/error";
 import { isAxiosError } from "axios";
 import { CreateAxiosErrorFn, CreateStandardErrorFn } from "@/utils/error/types";
 
@@ -8,16 +8,16 @@ export const createAxiosError: CreateAxiosErrorFn = (axiosErr) => {
   if (!data) {
     return {
       type: "api",
-      message: ERRORINFO.axios.unknown.message,
-      code: ERRORINFO.axios.unknown.code,
+      message: ERROR_SYSTEM.axios.unknown.message,
+      code: ERROR_SYSTEM.axios.unknown.code,
       original: axiosErr,
     };
   }
 
   return {
     type: "api",
-    message: ERRORINFO.axios.temp.message,
-    code: ERRORINFO.axios.temp.code,
+    message: ERROR_SYSTEM.axios.temp.message,
+    code: ERROR_SYSTEM.axios.temp.code,
     original: axiosErr,
   };
 };
@@ -35,8 +35,8 @@ export const createStandardError: CreateStandardErrorFn = (err: unknown) => {
 
   return {
     type: "unknown",
-    message: ERRORINFO.client.unknown.message,
-    code: ERRORINFO.client.unknown.code,
+    message: ERROR_SYSTEM.client.unknown.message,
+    code: ERROR_SYSTEM.client.unknown.code,
     original: err,
   };
 };
