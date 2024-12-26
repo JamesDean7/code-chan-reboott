@@ -1,4 +1,5 @@
 import "./reset.css";
+import "./font.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
