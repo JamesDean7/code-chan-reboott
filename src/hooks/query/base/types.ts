@@ -1,24 +1,33 @@
 import { OmitByKey } from "@/types/utils";
 import { StandardErrorFormat } from "@/utils/error/types";
 import {
+  InfiniteData,
   InvalidateQueryFilters,
+  QueryKey,
   UseMutationOptions,
   UseMutationResult,
+  UseSuspenseInfiniteQueryOptions,
+  UseSuspenseInfiniteQueryResult,
   UseSuspenseQueryOptions,
   UseSuspenseQueryResult,
 } from "@tanstack/react-query";
 
-export type UseBaseSuspenseQueryProps<DataType = unknown> =
+type QueryApiLPayload<T> = {
+  apiPayload: T;
+};
+
+/* ::: UseBaseSuspenseQuery ::: */
+
+export type UseBaseSuspenseQueryOptions<DataType = unknown> =
   UseSuspenseQueryOptions<DataType, StandardErrorFormat>;
 
 type UseBaseSuspenseQueryBasedFnParams<
   DataType = unknown,
   ApiPayload = undefined
 > = ApiPayload extends undefined
-  ? OmitByKey<UseBaseSuspenseQueryProps<DataType>, "queryKey" | "queryFn">
-  : OmitByKey<UseBaseSuspenseQueryProps<DataType>, "queryKey" | "queryFn"> & {
-      apiPayload?: ApiPayload;
-    };
+  ? OmitByKey<UseBaseSuspenseQueryOptions<DataType>, "queryKey" | "queryFn">
+  : OmitByKey<UseBaseSuspenseQueryOptions<DataType>, "queryKey" | "queryFn"> &
+      Partial<QueryApiLPayload<ApiPayload>>;
 
 export type UseBaseSuspenseQueryBasedFn<
   DataType = unknown,
@@ -26,6 +35,45 @@ export type UseBaseSuspenseQueryBasedFn<
 > = (
   params?: UseBaseSuspenseQueryBasedFnParams<DataType, ApiPayload>
 ) => UseSuspenseQueryResult<DataType, StandardErrorFormat>;
+
+/* ::: UseBaseInfiniteQuery ::: */
+
+export type UseBaseSuspenseInfiniteQueryOptions<
+  DataType = unknown,
+  PageParam = number
+> = UseSuspenseInfiniteQueryOptions<
+  DataType,
+  StandardErrorFormat,
+  InfiniteData<DataType, PageParam>
+>;
+
+type UseBaseInfiniteQueryBasedFnParams<
+  DataType = unknown,
+  PageParam = number,
+  ApiPayload = undefined
+> = ApiPayload extends undefined
+  ? OmitByKey<
+      UseBaseSuspenseInfiniteQueryOptions<DataType, PageParam>,
+      "queryKey" | "queryFn" | "initialPageParam" | "getNextPageParam"
+    >
+  : OmitByKey<
+      UseBaseSuspenseInfiniteQueryOptions<DataType, PageParam>,
+      "queryKey" | "queryFn" | "initialPageParam" | "getNextPageParam"
+    > &
+      Partial<QueryApiLPayload<ApiPayload>>;
+
+export type UseBaseInfiniteQueryBasedFn<
+  DataType = unknown,
+  PageParam = number,
+  ApiPayload = undefined
+> = (
+  params?: UseBaseInfiniteQueryBasedFnParams<DataType, PageParam, ApiPayload>
+) => UseSuspenseInfiniteQueryResult<
+  InfiniteData<DataType, PageParam>,
+  StandardErrorFormat
+>;
+
+/* ::: UseBaseMutation ::: */
 
 export type UseBaseMutationProps<DataType, ApiPayload> = UseMutationOptions<
   DataType,

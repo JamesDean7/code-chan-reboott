@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
@@ -14,25 +14,36 @@ import { createQueryKey } from "@/utils/format/format";
 import { QUERY_KEY } from "@/const/constraint/constraint";
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { getGalleryImageList } from "@/api/gallery/gallery";
-import { useSusGalleryList } from "@/hooks/query/gallery/useGallerySusQuery";
+import useScrollBottomDetect from "@/hooks/event/useScrollBottomDetect";
+import ImageGellerySkeleton from "@/pages/home/_fallbacks/ImageGellerySkeleton";
+import {
+  useSusGalleryList,
+  useSusInfiniteGalleryList,
+} from "@/hooks/query/gallery/useGallerySusQuery";
+import BookmarkImagSkeleton from "@/components/bookmark/image/BookmarkImagSkeleton";
+import { useBaseSuspenseInfiniteQuery } from "@/hooks/query/base/useBaseInfiniteQuery";
+import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 
 const ImageGallerySection = () => {
-  const { isOn, handleUpdateToOn, handleUpdateToOff } = useOnOffState();
+  const {
+    isOn: isModalOn,
+    handleUpdateToOn: handleModalOpen,
+    handleUpdateToOff: handleModalClose,
+  } = useOnOffState();
 
-  const { data: imageList } = useSusGalleryList();
+  const { isScrollBottomReached, removeWindowScrollEvent } =
+    useScrollBottomDetect({
+      detectBuffer: 200,
+    });
 
   const { data: bookmarkList } = useSusBookmarkList();
 
-  const { data, error, fetchNextPage, hasNextPage } = useSuspenseInfiniteQuery({
-    queryKey: ["testKey"],
-    queryFn: async ({ pageParam }) => {
-      console.log({ pageParam });
-      return await getGalleryImageList();
-    },
-    initialPageParam: 0,
-    getNextPageParam: (fetchedData, allFetchedData, currentPageCursor) =>
-      currentPageCursor + 1,
-  });
+  const {
+    isFetchingNextPage,
+    data: imageList,
+    fetchNextPage,
+    hasNextPage,
+  } = useSusInfiniteGalleryList();
 
   const { mutateAsync: asyncAddBookmark } = useBookmarkAddition({
     baseInvalidateQueries: {
@@ -50,10 +61,16 @@ const ImageGallerySection = () => {
     },
   });
 
+  useHomePageEffects({
+    hasNextPage,
+    isFetchingNextPage,
+    isScrollBottomReached,
+    fetchNextPage,
+    removeWindowScrollEvent,
+  });
+
   const handleImageClick = (imageInfo: GalleryImage) => () => {
-    console.log(" ::: image click ::: ");
-    console.log({ imageInfo });
-    handleUpdateToOn();
+    handleModalOpen();
   };
 
   const handleLikeClick =
@@ -72,19 +89,27 @@ const ImageGallerySection = () => {
     return acc;
   }, {} as { [x: string]: string });
 
-  console.log({ data, hasNextPage });
+  const imageFlatList = imageList.pages.flat();
+
+  console.log({ isScrollBottomReached, imageList, hasNextPage });
 
   return (
     <>
       <button
         onClick={() => {
-          fetchNextPage();
+          if (isModalOn) {
+            handleModalClose();
+          } else {
+            handleModalOpen();
+          }
+          // removeWindowScrollEvent();
         }}
       >
-        Fetch more
+        TEST
       </button>
       <GridContainer
         margin={PAGE_HOME_STYLE.gallery.container.margin}
+        width={PAGE_HOME_STYLE.gallery.container.width}
         maxWidth={PAGE_HOME_STYLE.gallery.container.maxWidth}
         padding={PAGE_HOME_STYLE.gallery.container.padding}
         columnGap={PAGE_HOME_STYLE.gallery.container.columnGap}
@@ -93,7 +118,7 @@ const ImageGallerySection = () => {
           PAGE_HOME_STYLE.gallery.container.gridTemplateColumns
         }
       >
-        {imageList.map((image) => (
+        {imageFlatList.map((image) => (
           <BookmarkImage
             key={image.id}
             imageInfo={image}
@@ -105,10 +130,12 @@ const ImageGallerySection = () => {
           />
         ))}
       </GridContainer>
-      {isOn && (
+      {isFetchingNextPage && <ImageGellerySkeleton skeletonNumber={2} />}
+
+      {isModalOn && (
         <BookmarkModal
           width={{ sm: "80%", lg: "50%" }}
-          onClose={handleUpdateToOff}
+          onClose={handleModalClose}
         />
       )}
     </>

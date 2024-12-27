@@ -7,25 +7,16 @@ export const useBaseMutation = <DataType, ApiPayload>({
   ...rest
 }: UseBaseMutationProps<DataType, ApiPayload> = {}) => {
   const queryClient = useQueryClient();
-  const baseMutationQuery = useMutation<
-    DataType,
-    StandardErrorFormat,
-    ApiPayload
-  >({
-    onSuccess: () => {
-      console.log(" ::: base success ::: ");
-      const test = { ...baseInvalidateQueries };
-      console.log({ test });
-      if (baseInvalidateQueries) {
-        queryClient.invalidateQueries({
-          ...baseInvalidateQueries,
-        });
-      }
-    },
+  return useMutation<DataType, StandardErrorFormat, ApiPayload>({
+    onSuccess: baseInvalidateQueries
+      ? () => {
+          queryClient.invalidateQueries({
+            ...baseInvalidateQueries,
+          });
+        }
+      : undefined,
     ...rest,
   });
-
-  return baseMutationQuery;
 };
 
 export default useBaseMutation;

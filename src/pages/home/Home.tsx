@@ -11,7 +11,7 @@ const Home = () => {
     <FlexColumnContainer alignItems="stretch" rowGap={{ sm: "20px" }}>
       <ImageSearchSection />
       <ErrorBoundary FallbackComponent={ImageGallertyErrorFallback}>
-        <Suspense fallback={<ImageGellerySkeleton />}>
+        <Suspense fallback={<ImageGellerySkeleton skeletonNumber={3} />}>
           <ImageGallerySection />
         </Suspense>
       </ErrorBoundary>

@@ -28,6 +28,7 @@ const COMMON_QUERY_KEY: MatchPropAndValueFromKeys<QueryCommonKeys> = {
 export const QUERY_KEY = {
   gallery: {
     root: "gallery",
+    infiniteList: "infiniteList",
     ...COMMON_QUERY_KEY,
   },
   bookmark: {

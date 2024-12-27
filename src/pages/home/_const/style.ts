@@ -2,6 +2,7 @@ export const PAGE_HOME_STYLE = {
   gallery: {
     container: {
       margin: { sm: "0", xl: "0 auto" },
+      width: { sm: "100%" },
       maxWidth: { sm: "none", xl: "1200px" },
       padding: { sm: "0 20px" },
       columnGap: { sm: "10px", md: "20px", lg: "30px" },

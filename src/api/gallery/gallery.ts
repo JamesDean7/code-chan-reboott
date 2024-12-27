@@ -1,5 +1,6 @@
 import type { AsyncApiRequestFn } from "@/api/types";
 import { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
+import { axiosClient } from "@/api/axiosClient";
 
 export const DEMO_IMAGE_LIST: GalleryImage[] = [
   { id: "1", uri: "/test.jpg" },
@@ -13,11 +14,11 @@ export const DEMO_IMAGE_LIST: GalleryImage[] = [
 export const getGalleryImageList: AsyncApiRequestFn<
   GalleryImage[]
 > = async () => {
-  return DEMO_IMAGE_LIST;
-  // const result = await axiosClient.get<GalleryImage[]>(
-  //   "http://localhost:4000/orders"
-  // );
+  const result = await axiosClient.get<GalleryImage[]>(
+    "http://localhost:4000/orders"
+  );
   // return result.data;
+  return DEMO_IMAGE_LIST;
 };
 
 let DEMO_BOOKMARK_LIST: GalleryImage[] = [
