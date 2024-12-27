@@ -20,6 +20,7 @@ const ImageSearchSection = () => {
     formState: { errors },
     clearErrors,
   } = useForm<SearchForm>();
+
   const themePaletteCommon = useThemePalette({ usePallete: "common" });
 
   const handleSearchData = (search: string) => {

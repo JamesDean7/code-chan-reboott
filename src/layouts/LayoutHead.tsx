@@ -1,7 +1,6 @@
 import { NavLink } from "react-router";
 import IconLogo from "@/assets/svg/IconLogo";
 import { ROUTE_PATH } from "@/const/route/route";
-import Typography from "@/components/typography/base/Typography";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import IconHeart from "@/assets/svg/IconHeart";
 

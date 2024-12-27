@@ -1,9 +1,9 @@
 import { Outlet } from "react-router";
+import { ErrorBoundary } from "react-error-boundary";
+import { QueryErrorResetBoundary } from "@tanstack/react-query";
 import LayoutHead from "@/layouts/LayoutHead";
 import LayoutFoot from "@/layouts/LayoutFoot";
-import { ErrorBoundary } from "react-error-boundary";
 import LayoutBodyErrorFallback from "@/layouts/_fallbacks/LayoutBodyErrorFallback";
-import { QueryErrorResetBoundary } from "@tanstack/react-query";
 
 const Layout = () => {
   return (

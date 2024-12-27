@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import useOnOffState from "@/hooks/data/useOnOffState";
-import { PAGE_HOME_STYLE } from "@/pages/home/_const/style";
+import {
+  PAGE_HOME_STYLE_GALLERY_CONTAINER,
+  PAGE_HOME_STYLE_GALLERY_IMAGE,
+} from "@/pages/home/_const/style";
 import { useSusBookmarkList } from "@/hooks/query/bookmark/useBookmarkSusQuery";
 import {
   useBookmarkAddition,
@@ -62,20 +65,25 @@ const ImageGallerySection = () => {
     removeWindowScrollEvent,
   });
 
-  const handleImageClick = (imageInfo: GalleryImage) => () => {
-    handleModalOpen();
-  };
+  const handleImageClick = useCallback(
+    (imageInfo: GalleryImage) => () => {
+      handleModalOpen();
+    },
+    []
+  );
 
-  const handleLikeClick =
+  const handleLikeClick = useCallback(
     (imageInfo: GalleryImage, isBookmarked: boolean) =>
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      e.stopPropagation();
-      if (isBookmarked) {
-        asyncRemoveBookmark(imageInfo.id);
-        return;
-      }
-      asyncAddBookmark(imageInfo);
-    };
+      (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.stopPropagation();
+        if (isBookmarked) {
+          asyncRemoveBookmark(imageInfo.id);
+          return;
+        }
+        asyncAddBookmark(imageInfo);
+      },
+    []
+  );
 
   const bookmarkObjById = bookmarkList.reduce((acc, bookmark) => {
     acc[bookmark.id] = bookmark.uri;
@@ -84,31 +92,17 @@ const ImageGallerySection = () => {
 
   const imageFlatList = imageList.pages.flat();
 
-  console.log({ isScrollBottomReached, imageList, hasNextPage });
-
   return (
     <>
-      <button
-        onClick={() => {
-          if (isModalOn) {
-            handleModalClose();
-          } else {
-            handleModalOpen();
-          }
-          // removeWindowScrollEvent();
-        }}
-      >
-        TEST
-      </button>
       <GridContainer
-        margin={PAGE_HOME_STYLE.gallery.container.margin}
-        width={PAGE_HOME_STYLE.gallery.container.width}
-        maxWidth={PAGE_HOME_STYLE.gallery.container.maxWidth}
-        padding={PAGE_HOME_STYLE.gallery.container.padding}
-        columnGap={PAGE_HOME_STYLE.gallery.container.columnGap}
-        rowGap={PAGE_HOME_STYLE.gallery.container.rowGap}
+        margin={PAGE_HOME_STYLE_GALLERY_CONTAINER.margin}
+        width={PAGE_HOME_STYLE_GALLERY_CONTAINER.width}
+        maxWidth={PAGE_HOME_STYLE_GALLERY_CONTAINER.maxWidth}
+        padding={PAGE_HOME_STYLE_GALLERY_CONTAINER.padding}
+        columnGap={PAGE_HOME_STYLE_GALLERY_CONTAINER.columnGap}
+        rowGap={PAGE_HOME_STYLE_GALLERY_CONTAINER.rowGap}
         gridTemplateColumns={
-          PAGE_HOME_STYLE.gallery.container.gridTemplateColumns
+          PAGE_HOME_STYLE_GALLERY_CONTAINER.gridTemplateColumns
         }
       >
         {imageFlatList.map((image) => (
@@ -116,15 +110,14 @@ const ImageGallerySection = () => {
             key={image.id}
             imageInfo={image}
             isBookmarked={bookmarkObjById[image.id] ? true : false}
-            width={PAGE_HOME_STYLE.gallery.image.width}
-            height={PAGE_HOME_STYLE.gallery.image.height}
+            width={PAGE_HOME_STYLE_GALLERY_IMAGE.width}
+            height={PAGE_HOME_STYLE_GALLERY_IMAGE.height}
             onImageClick={handleImageClick}
             onLikeClick={handleLikeClick}
           />
         ))}
       </GridContainer>
       {isFetchingNextPage && <ImageGellerySkeleton skeletonNumber={2} />}
-
       {isModalOn && (
         <BookmarkModal
           width={{ sm: "80%", lg: "50%" }}

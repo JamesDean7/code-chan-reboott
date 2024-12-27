@@ -1,17 +1,19 @@
-import { GalleryImage } from "@/api/gallery/types";
+import { memo } from "react";
+import { useTheme } from "@emotion/react";
 import IconHeart from "@/assets/svg/IconHeart";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import HoverContainer from "@/components/container/hover/HoverContainer";
 import Image, { ImageProps } from "@/components/image/base/Image";
 import useMouseEnter from "@/hooks/event/useMouseEnter";
-import { useTheme } from "@emotion/react";
+
+type BookmarkImageInfo = { id: string; uri: string };
 
 export type BookmarkImageProps = {
-  imageInfo: GalleryImage;
+  imageInfo: { id: string; uri: string };
   isBookmarked: boolean;
-  onImageClick: (imageInfo: GalleryImage) => () => void;
+  onImageClick: (imageInfo: BookmarkImageInfo) => () => void;
   onLikeClick: (
-    imageInfo: GalleryImage,
+    imageInfo: BookmarkImageInfo,
     isBookmarked: boolean
   ) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 } & Pick<ImageProps, "width" | "height">;
@@ -29,8 +31,8 @@ const BookmarkImage = ({
   const heartColor = isBookmarked
     ? theme.palette.red.main
     : theme.palette.common.white;
+  const { uri } = imageInfo ?? {};
 
-  const { uri, id } = imageInfo ?? {};
   return (
     <HoverContainer
       cursor="zoom-in"
@@ -58,4 +60,4 @@ const BookmarkImage = ({
   );
 };
 
-export default BookmarkImage;
+export default memo(BookmarkImage);

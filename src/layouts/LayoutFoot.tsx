@@ -5,10 +5,10 @@ import Typography from "@/components/typography/base/Typography";
 const LayoutFoot = () => {
   return (
     <FlexColumnContainer
+      padding={{ sm: "70px 20px" }}
       rowGap={{ sm: "16px" }}
       justifyContent="center"
       alignItems="center"
-      padding={{ sm: "70px 20px" }}
     >
       <IconLogo />
       <Typography>Make something awesome</Typography>
