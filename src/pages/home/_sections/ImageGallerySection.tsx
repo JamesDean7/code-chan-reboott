@@ -1,38 +1,88 @@
-import React from "react";
-import { useErrorBoundary } from "react-error-boundary";
+import React, { useState } from "react";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import useOnOffState from "@/hooks/data/useOnOffState";
-import useSusQueryGallery from "@/hooks/query/gallery/useSusQueryGallery";
 import { PAGE_HOME_STYLE } from "@/pages/home/_const/style";
-import useBookmarkQuery from "@/hooks/query/bookmark/useBookmarkQuery";
-
-const testArry = [{ id: "1" }, { id: "2" }, { id: "3" }];
+import { useSusBookmarkList } from "@/hooks/query/bookmark/useBookmarkSusQuery";
+import {
+  useBookmarkAddition,
+  useBookmarkDeletion,
+} from "@/hooks/query/bookmark/useBookmarkMutation";
+import { GalleryImage } from "@/api/gallery/types";
+import { createQueryKey } from "@/utils/format/format";
+import { QUERY_KEY } from "@/const/constraint/constraint";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { getGalleryImageList } from "@/api/gallery/gallery";
+import { useSusGalleryList } from "@/hooks/query/gallery/useGallerySusQuery";
 
 const ImageGallerySection = () => {
-  const { showBoundary } = useErrorBoundary();
-
   const { isOn, handleUpdateToOn, handleUpdateToOff } = useOnOffState();
 
-  const { data: imageList } = useSusQueryGallery();
+  const { data: imageList } = useSusGalleryList();
 
-  const { data: bookmarkList } = useBookmarkQuery();
+  const { data: bookmarkList } = useSusBookmarkList();
 
-  const handleImageClick = (src: string) => () => {
+  const { data, error, fetchNextPage, hasNextPage } = useSuspenseInfiniteQuery({
+    queryKey: ["testKey"],
+    queryFn: async ({ pageParam }) => {
+      console.log({ pageParam });
+      return await getGalleryImageList();
+    },
+    initialPageParam: 0,
+    getNextPageParam: (fetchedData, allFetchedData, currentPageCursor) =>
+      currentPageCursor + 1,
+  });
+
+  const { mutateAsync: asyncAddBookmark } = useBookmarkAddition({
+    baseInvalidateQueries: {
+      queryKey: createQueryKey({
+        queryKey: [QUERY_KEY.bookmark.root, QUERY_KEY.bookmark.list],
+      }),
+    },
+  });
+
+  const { mutateAsync: asyncRemoveBookmark } = useBookmarkDeletion({
+    baseInvalidateQueries: {
+      queryKey: createQueryKey({
+        queryKey: [QUERY_KEY.bookmark.root, QUERY_KEY.bookmark.list],
+      }),
+    },
+  });
+
+  const handleImageClick = (imageInfo: GalleryImage) => () => {
     console.log(" ::: image click ::: ");
+    console.log({ imageInfo });
     handleUpdateToOn();
   };
 
   const handleLikeClick =
-    (src: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    (imageInfo: GalleryImage, isBookmarked: boolean) =>
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       e.stopPropagation();
-      console.log(" ::: like click ::: ");
+      if (isBookmarked) {
+        asyncRemoveBookmark(imageInfo.id);
+        return;
+      }
+      asyncAddBookmark(imageInfo);
     };
 
-  console.log({ imageList, bookmarkList });
+  const bookmarkObjById = bookmarkList.reduce((acc, bookmark) => {
+    acc[bookmark.id] = bookmark.uri;
+    return acc;
+  }, {} as { [x: string]: string });
+
+  console.log({ data, hasNextPage });
+
   return (
     <>
+      <button
+        onClick={() => {
+          fetchNextPage();
+        }}
+      >
+        Fetch more
+      </button>
       <GridContainer
         margin={PAGE_HOME_STYLE.gallery.container.margin}
         maxWidth={PAGE_HOME_STYLE.gallery.container.maxWidth}
@@ -43,9 +93,11 @@ const ImageGallerySection = () => {
           PAGE_HOME_STYLE.gallery.container.gridTemplateColumns
         }
       >
-        {testArry.map((image) => (
+        {imageList.map((image) => (
           <BookmarkImage
             key={image.id}
+            imageInfo={image}
+            isBookmarked={bookmarkObjById[image.id] ? true : false}
             width={PAGE_HOME_STYLE.gallery.image.width}
             height={PAGE_HOME_STYLE.gallery.image.height}
             onImageClick={handleImageClick}

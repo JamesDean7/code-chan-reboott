@@ -1,3 +1,3 @@
-import { StandardErrorFormat } from "@/utils/error/types";
-
-export type AsyncApiRequestFn<R, P = unknown> = (params?: P) => Promise<R>;
+export type AsyncApiRequestFn<R, P = undefined> = P extends undefined
+  ? () => Promise<R>
+  : (props: P) => Promise<R>;

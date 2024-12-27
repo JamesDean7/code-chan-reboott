@@ -1,28 +1,49 @@
 import type { AsyncApiRequestFn } from "@/api/types";
-import { axiosClient } from "@/api/axiosClient";
-import { GalleryItem } from "@/api/gallery/types";
+import { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
+
+export const DEMO_IMAGE_LIST: GalleryImage[] = [
+  { id: "1", uri: "/test.jpg" },
+  { id: "2", uri: "/test.jpg" },
+  { id: "3", uri: "/test.jpg" },
+  { id: "4", uri: "/test.jpg" },
+  { id: "5", uri: "/test.jpg" },
+  { id: "6", uri: "/test.jpg" },
+] as const;
 
 export const getGalleryImageList: AsyncApiRequestFn<
-  GalleryItem[]
+  GalleryImage[]
 > = async () => {
-  const result = await axiosClient.get<GalleryItem[]>(
-    "http://localhost:4000/orders"
-  );
-  return result.data;
+  return DEMO_IMAGE_LIST;
+  // const result = await axiosClient.get<GalleryImage[]>(
+  //   "http://localhost:4000/orders"
+  // );
+  // return result.data;
 };
 
-let DEMO_BOOKMARK_LIST = [{ id: "1" }, { id: "2" }];
+let DEMO_BOOKMARK_LIST: GalleryImage[] = [
+  { id: "1", uri: "/test.jpg" },
+  { id: "3", uri: "/test.jpg" },
+  { id: "6", uri: "/test.jpg" },
+];
 
-export const getMyBookmarkList = () => {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
-};
-
-export const addToBookmark = (id: string) => {
-  DEMO_BOOKMARK_LIST.push({ id });
+export const getMyBookmarkList: AsyncApiRequestFn<
+  GalleryImage[]
+> = async () => {
   return DEMO_BOOKMARK_LIST;
 };
 
-export const removeFromBookmark = (id: string) => {
+export const addToBookmark: AsyncApiRequestFn<
+  GalleryImage[],
+  AddToBookmarkFnParams
+> = async ({ id, uri }) => {
+  DEMO_BOOKMARK_LIST.push({ id, uri });
+  return DEMO_BOOKMARK_LIST;
+};
+
+export const removeFromBookmark: AsyncApiRequestFn<
+  GalleryImage[],
+  string
+> = async (id: string) => {
   const newBookMark = DEMO_BOOKMARK_LIST.filter(
     (bookmark) => bookmark.id !== id
   );

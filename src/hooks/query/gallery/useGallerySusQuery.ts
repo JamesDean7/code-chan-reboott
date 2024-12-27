@@ -1,7 +1,7 @@
 import { getGalleryImageList } from "@/api/gallery/gallery";
-import { GalleryItem } from "@/api/gallery/types";
+import { GalleryImage } from "@/api/gallery/types";
 import { QUERY_KEY } from "@/const/constraint/constraint";
-import { UseBaseSuspenseQueryBasedFnParams } from "@/hooks/query/base/types";
+import { UseBaseSuspenseQueryBasedFn } from "@/hooks/query/base/types";
 import { useBaseSuspenseQuery } from "@/hooks/query/base/useBaseSuspenseQuery";
 import { createQueryKey } from "@/utils/format/format";
 
@@ -9,18 +9,16 @@ type ApiPayload = {
   id: string;
 };
 
-const useSusQueryGallery = ({
-  apiPayload,
-  ...rest
-}: UseBaseSuspenseQueryBasedFnParams<GalleryItem[], ApiPayload> = {}) => {
+export const useSusGalleryList: UseBaseSuspenseQueryBasedFn<
+  GalleryImage[],
+  ApiPayload
+> = ({ apiPayload, ...rest } = {}) => {
   return useBaseSuspenseQuery({
     queryKey: createQueryKey({
-      queryKey: [QUERY_KEY.bookmark.root, QUERY_KEY.gallery.list],
+      queryKey: [QUERY_KEY.gallery.root, QUERY_KEY.gallery.list],
       apiPayload,
     }),
     queryFn: async () => await getGalleryImageList(),
     ...rest,
   });
 };
-
-export default useSusQueryGallery;

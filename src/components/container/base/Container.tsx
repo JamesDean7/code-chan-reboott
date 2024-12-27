@@ -79,8 +79,8 @@ const ContainerStyle = styled("div", {
 
 type ContainerProps = ContainerStyleProps &
   ReactNodeChildren &
-  ElementOnClick &
-  Pick<ElementMouseEvent, "onMouseEnter" | "onMouseLeave">;
+  ElementOnClick<"div"> &
+  Pick<ElementMouseEvent<"div">, "onMouseEnter" | "onMouseLeave">;
 
 const Container = ({ children, ...props }: ContainerProps) => {
   return <ContainerStyle {...props}>{children}</ContainerStyle>;
