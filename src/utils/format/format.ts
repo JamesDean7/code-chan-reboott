@@ -1,5 +1,6 @@
-import { CreateQueryKeyFn } from "@/utils/format/types";
+import type { CreateQueryKeyParams } from "@/utils/format/types";
 import { isArrayType, isFalsyValue, isObjectType } from "@/utils/verify/verify";
+import { QueryKey } from "@tanstack/react-query";
 
 export const addSizeUnit = (value: unknown, unit: "px" | "%") => {
   return `${value}${unit}`;
@@ -12,7 +13,10 @@ export const removeWhiteSpace = (value: any) => {
   return value.replace(/\s/g, "");
 };
 
-export const createQueryKey: CreateQueryKeyFn = ({ queryKey, apiPayload }) => {
+export const createQueryKey = ({
+  queryKey,
+  apiPayload,
+}: CreateQueryKeyParams): QueryKey => {
   if (isFalsyValue(apiPayload, { exclude: { zero: true } })) {
     return queryKey;
   }

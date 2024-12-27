@@ -1,8 +1,10 @@
 import isPropValid from "@emotion/is-prop-valid";
 import { PREVENT_FOWARD_PROP } from "@/const/constraint/constraint";
-import { PreventForwardPropKeys } from "@/const/constraint/types";
 import { removeWhiteSpace } from "@/utils/format/format";
-import { IsFalsyValueFnOptions } from "@/utils/verify/types";
+import type {
+  CustomShouldForwardPropParams,
+  IsFalsyValueFnOptions,
+} from "@/utils/verify/types";
 
 export const isNullType = (checkVal: any): checkVal is null =>
   checkVal === null;
@@ -55,10 +57,7 @@ export const isFalsyValue = (
 export const customShouldForwardProp = ({
   preventTarget,
   propName,
-}: {
-  propName: string;
-  preventTarget: PreventForwardPropKeys;
-}) => {
+}: CustomShouldForwardPropParams) => {
   const propKey =
     propName as keyof (typeof PREVENT_FOWARD_PROP)[typeof preventTarget];
 
@@ -69,9 +68,6 @@ export const customShouldForwardProp = ({
   if (PREVENT_FOWARD_PROP[preventTarget]?.[propKey]) {
     return false;
   }
-
-  console.log(" ::: pass ::: ");
-  console.log({ propName, preventTarget });
 
   return true;
 };

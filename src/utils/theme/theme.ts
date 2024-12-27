@@ -1,5 +1,5 @@
 import { THEME } from "@/theme";
-import {
+import type {
   AppThemeTypographySizeKeys,
   AppThemeTypographyWeightKeys,
 } from "@/theme/types";

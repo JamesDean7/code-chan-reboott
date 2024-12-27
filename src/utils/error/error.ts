@@ -1,8 +1,8 @@
 import { ERROR_SYSTEM } from "@/const/error/error";
-import { isAxiosError } from "axios";
-import { CreateAxiosErrorFn, CreateStandardErrorFn } from "@/utils/error/types";
+import { AxiosError, isAxiosError } from "axios";
+import type { StandardErrorFormat } from "@/utils/error/types";
 
-export const createAxiosError: CreateAxiosErrorFn = (axiosErr) => {
+export const createAxiosError = (axiosErr: AxiosError): StandardErrorFormat => {
   const { data } = axiosErr?.response ?? {};
 
   if (!data) {
@@ -22,7 +22,7 @@ export const createAxiosError: CreateAxiosErrorFn = (axiosErr) => {
   };
 };
 
-export const createStandardError: CreateStandardErrorFn = (err: unknown) => {
+export const createStandardError = (err: unknown): StandardErrorFormat => {
   const axiosError = isAxiosError(err);
 
   if (axiosError) {

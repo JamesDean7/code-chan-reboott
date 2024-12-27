@@ -1,9 +1,18 @@
+import { PreventForwardPropKeys } from "@/const/constraint/types";
+
+type FalseValueOptions = {
+  emptyString: boolean;
+  zero: boolean;
+  undefinedVal: boolean;
+  nullVal: boolean;
+  booleanVal: boolean;
+};
+
 export type IsFalsyValueFnOptions = {
-  exclude?: {
-    emptyString?: boolean;
-    zero?: boolean;
-    undefinedVal?: boolean;
-    nullVal?: boolean;
-    booleanVal?: boolean;
-  };
+  exclude?: Partial<FalseValueOptions>;
+};
+
+export type CustomShouldForwardPropParams = {
+  propName: string;
+  preventTarget: PreventForwardPropKeys;
 };

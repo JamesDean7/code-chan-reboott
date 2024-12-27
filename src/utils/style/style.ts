@@ -1,35 +1,34 @@
-import { THEME_BREAKPOINTS_KEYS } from "@/theme/breakpoints";
-import {
+import type {
   AppThemeBreakpointsKeys,
   AppThemeTypographySizeKeys,
 } from "@/theme/types";
+import type {
+  ChangeThemeValueToStyleValueParams,
+  GetStyleValueByBreakpointsParam,
+  PrepareResponsiveValueByStylePropsParamsReturn,
+  PrepareStylePropsByBreakpointParams,
+  StylePropsByBreakpoints,
+  StylePropsTypeToStringType,
+} from "@/utils/style/types";
+import { THEME_BREAKPOINTS_KEYS } from "@/theme/breakpoints";
 import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { ExcludeFromType } from "@/types/utils";
 import { addSizeUnit } from "@/utils/format/format";
 import {
-  StylePropsByBreakpoints,
-  StylePropsTypeToStringType,
-} from "@/utils/style/types";
-import {
   getThemeTypographySize,
   multiplyByThemeSpacing,
 } from "@/utils/theme/theme";
-import { isObjectType } from "@/utils/verify/verify";
+import { isFalsyValue, isObjectType } from "@/utils/verify/verify";
 
 export const getPxSpacing = (value: number) => {
   const spacing = multiplyByThemeSpacing(value);
   return addSizeUnit(spacing, "px");
 };
 
-type GetStyleByBreakpointsFnParam<T> = {
-  style: Partial<Record<AppThemeBreakpointsKeys, T>>;
-  defaultVal: T;
-};
-
-export const getStyleByBreakpoints = <T>({
+export const getStyleValueByBreakpoints = <T>({
   style,
   defaultVal,
-}: GetStyleByBreakpointsFnParam<T>): Record<AppThemeBreakpointsKeys, T> => {
+}: GetStyleValueByBreakpointsParam<T>): Record<AppThemeBreakpointsKeys, T> => {
   const smOrDefaultValue = style?.sm ?? defaultVal;
   return {
     sm: smOrDefaultValue,
@@ -42,10 +41,10 @@ export const getStyleByBreakpoints = <T>({
 export const changeThemeValueToStyleValue = ({
   propertyKey,
   value,
-}: {
-  propertyKey: keyof PartialStylePropsByBreakpointsCollection;
-  value: string | undefined;
-}) => {
+}: ChangeThemeValueToStyleValueParams) => {
+  if (isFalsyValue(value)) {
+    return value;
+  }
   if (propertyKey === "fontSize") {
     return getThemeTypographySize(value as AppThemeTypographySizeKeys);
   }
@@ -54,32 +53,29 @@ export const changeThemeValueToStyleValue = ({
 
 const prepareResponsiveValueByStyleProps = (
   props: PartialStylePropsByBreakpointsCollection
-) => {
+): PrepareResponsiveValueByStylePropsParamsReturn => {
   const stylePropList = Object.keys(props) as Array<keyof typeof props>;
-  const styleByBreakpoint = stylePropList.reduce((acc, propertyKey) => {
-    acc[propertyKey] = getStyleByBreakpoints({
-      style: isObjectType(props[propertyKey])
-        ? props[propertyKey]
-        : { sm: props[propertyKey] },
-      defaultVal: undefined,
-    });
-    return acc;
-  }, {} as ExcludeFromType<PartialStylePropsByBreakpointsCollection, string>);
+  const responsiveValueByStyleProps = stylePropList.reduce(
+    (acc, propertyKey) => {
+      acc[propertyKey] = getStyleValueByBreakpoints({
+        style: isObjectType(props[propertyKey])
+          ? props[propertyKey]
+          : { sm: props[propertyKey] },
+        defaultVal: undefined,
+      }) as any;
+      return acc;
+    },
+    {} as PartialStylePropsByBreakpointsCollection
+  );
 
-  return styleByBreakpoint;
+  return responsiveValueByStyleProps;
 };
 
 const prepareStylePropsByBreakpoint = ({
   styleProps,
   responsiveValueByStyleProps,
   breakpoint,
-}: {
-  styleProps: PartialStylePropsByBreakpointsCollection;
-  responsiveValueByStyleProps: ReturnType<
-    typeof prepareResponsiveValueByStyleProps
-  >;
-  breakpoint: AppThemeBreakpointsKeys;
-}) => {
+}: PrepareStylePropsByBreakpointParams) => {
   const stylePropList = Object.keys(styleProps) as Array<
     keyof typeof styleProps
   >;
