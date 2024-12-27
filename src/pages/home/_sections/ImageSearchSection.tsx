@@ -60,7 +60,7 @@ const ImageSearchSection = () => {
         rowGap={{ sm: "12px" }}
       >
         <Typography
-          component="h1"
+          element="h1"
           fontSize={{ sm: "h5", md: "h3", lg: "h1" }}
           fontWeight="bold"
           color={themePaletteCommon.white}
@@ -68,7 +68,6 @@ const ImageSearchSection = () => {
           Unsplash
         </Typography>
         <Typography
-          component="p"
           fontSize={{ sm: "body3", md: "body2", lg: "body1" }}
           fontWeight="normal"
           color={themePaletteCommon.white}

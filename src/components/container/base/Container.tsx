@@ -28,7 +28,7 @@ type ContainerStyleProps = Pick<
 
 const ContainerStyle = styled("div", {
   shouldForwardProp: (propName) =>
-    customShouldForwardProp({ preventTarget: "container", propName }),
+    customShouldForwardProp({ preventTarget: "common", propName }),
 })<ContainerStyleProps>(
   ({
     position,

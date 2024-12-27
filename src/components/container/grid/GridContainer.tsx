@@ -3,6 +3,7 @@ import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type GridContainerStyleProps = Pick<
   PartialStylePropsByBreakpointsCollection,
@@ -16,10 +17,10 @@ type GridContainerStyleProps = Pick<
   | "margin"
 >;
 
-const GridContainerStyle = styled(
-  "div",
-  {}
-)<GridContainerStyleProps>(
+const GridContainerStyle = styled("div", {
+  shouldForwardProp: (propName) =>
+    customShouldForwardProp({ preventTarget: "common", propName }),
+})<GridContainerStyleProps>(
   ({
     width,
     height,

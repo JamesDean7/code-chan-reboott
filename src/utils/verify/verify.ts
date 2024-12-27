@@ -1,3 +1,4 @@
+import isPropValid from "@emotion/is-prop-valid";
 import { PREVENT_FOWARD_PROP } from "@/const/constraint/constraint";
 import { PreventForwardPropKeys } from "@/const/constraint/types";
 import { removeWhiteSpace } from "@/utils/format/format";
@@ -61,9 +62,16 @@ export const customShouldForwardProp = ({
   const propKey =
     propName as keyof (typeof PREVENT_FOWARD_PROP)[typeof preventTarget];
 
+  if (!isPropValid(propName)) {
+    return false;
+  }
+
   if (PREVENT_FOWARD_PROP[preventTarget]?.[propKey]) {
     return false;
   }
+
+  console.log(" ::: pass ::: ");
+  console.log({ propName, preventTarget });
 
   return true;
 };

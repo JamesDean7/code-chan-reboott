@@ -8,6 +8,7 @@ import { PartialAppThemeCollection } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type TextInpputStyleProps = Pick<
   CSSStyleProperties,
@@ -24,7 +25,10 @@ type TextInpputStyleProps = Pick<
   Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
   Pick<PartialAppThemeCollection, "fontWeight">;
 
-const TextInputStyle = styled.input<TextInpputStyleProps>(
+const TextInputStyle = styled("input", {
+  shouldForwardProp: (propName) =>
+    customShouldForwardProp({ preventTarget: "common", propName }),
+})<TextInpputStyleProps>(
   ({
     width,
     height,

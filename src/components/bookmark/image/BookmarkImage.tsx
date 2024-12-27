@@ -6,7 +6,7 @@ import HoverContainer from "@/components/container/hover/HoverContainer";
 import Image, { ImageProps } from "@/components/image/base/Image";
 import useMouseEnter from "@/hooks/event/useMouseEnter";
 
-type BookmarkImageInfo = { id: string; uri: string };
+export type BookmarkImageInfo = { id: string; uri: string };
 
 export type BookmarkImageProps = {
   imageInfo: { id: string; uri: string };
@@ -16,7 +16,7 @@ export type BookmarkImageProps = {
     imageInfo: BookmarkImageInfo,
     isBookmarked: boolean
   ) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-} & Pick<ImageProps, "width" | "height">;
+} & Partial<Pick<ImageProps, "width" | "height">>;
 
 const BookmarkImage = ({
   isBookmarked,

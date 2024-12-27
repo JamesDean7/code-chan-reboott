@@ -12,7 +12,6 @@ const LayoutHead = () => {
       </NavLink>
       <NavLink to={ROUTE_PATH.bookmark}>
         <IconHeart />
-        {/* <Typography>BookMark</Typography> */}
       </NavLink>
     </FlexRowContainer>
   );

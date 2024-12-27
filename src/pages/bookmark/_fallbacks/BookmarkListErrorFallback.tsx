@@ -1,12 +1,9 @@
-import { FallbackProps, useErrorBoundary } from "react-error-boundary";
-import Button from "@/components/button/base/Button";
+import { FallbackProps } from "react-error-boundary";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
-import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
-import Typography from "@/components/typography/base/Typography";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import SimpleErrorScreen from "@/components/error/simple/SimpleErrorScreen";
 
-const ImageGallertyErrorFallback = ({
+const BookmarkListErrorFallback = ({
   error,
   resetErrorBoundary,
 }: FallbackProps) => {
@@ -30,4 +27,4 @@ const ImageGallertyErrorFallback = ({
   );
 };
 
-export default ImageGallertyErrorFallback;
+export default BookmarkListErrorFallback;

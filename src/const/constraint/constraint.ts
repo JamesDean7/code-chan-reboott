@@ -1,23 +1,20 @@
 import { QueryCommonKeys, QueryKeyProps } from "@/const/constraint/types";
 import { MatchPropAndValueFromKeys } from "@/types/utils";
 
+const PREVENT_FOWARD_PROP_COMMON = {
+  width: true,
+  height: true,
+  minHeight: true,
+  maxHeight: true,
+  zIndex: true,
+  opacity: true,
+  fontSize: true,
+  fontWeight: true,
+  color: true,
+};
+
 export const PREVENT_FOWARD_PROP = {
-  container: {
-    width: true,
-    height: true,
-    minHeight: true,
-  },
-  modalContainer: {
-    width: true,
-  },
-  flexContainer: {
-    width: true,
-    height: true,
-  },
-  backgroundFilter: {
-    zIndex: true,
-    opacity: true,
-  },
+  common: PREVENT_FOWARD_PROP_COMMON,
 };
 
 const COMMON_QUERY_KEY: MatchPropAndValueFromKeys<QueryCommonKeys> = {

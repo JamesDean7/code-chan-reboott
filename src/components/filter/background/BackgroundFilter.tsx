@@ -10,7 +10,7 @@ type BackgroundFilterStyleProps = {
 
 const BackgroundFilterStyle = styled("div", {
   shouldForwardProp: (propName) =>
-    customShouldForwardProp({ preventTarget: "backgroundFilter", propName }),
+    customShouldForwardProp({ preventTarget: "common", propName }),
 })<BackgroundFilterStyleProps>(({ opacity, zIndex }) => ({
   position: "fixed",
   top: 0,

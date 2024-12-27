@@ -9,10 +9,8 @@ import { ReactNodeChildren } from "@/types/lib-react";
 import FlexContainer, {
   FlexContainerProps,
 } from "@/components/container/flex/FlexContainer";
-import { PREVENT_FOWARD_PROP } from "@/const/constraint/constraint";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import isPropValid from "@emotion/is-prop-valid";
 
 type BookmarkModalStyleProps = Pick<
   CSSStyleProperties,
@@ -23,9 +21,13 @@ type BookmarkModalStyleProps = Pick<
     "width" | "maxWidth" | "height" | "maxHeight"
   >;
 
+export type ModalContainerProps = ReactNodeChildren &
+  FlexContainerProps &
+  BookmarkModalStyleProps;
+
 const ModalContainerStyle = styled(FlexContainer, {
   shouldForwardProp: (propName) =>
-    customShouldForwardProp({ preventTarget: "modalContainer", propName }),
+    customShouldForwardProp({ preventTarget: "common", propName }),
 })<BookmarkModalStyleProps>(
   ({
     height,
@@ -68,12 +70,7 @@ const ModalContainerStyle = styled(FlexContainer, {
   }
 );
 
-export type ModalContainerProps = ReactNodeChildren &
-  FlexContainerProps &
-  BookmarkModalStyleProps;
-
 const ModalContainer = ({ children, ...props }: ModalContainerProps) => {
-  console.log({ ModalContainerStyle });
   return <ModalContainerStyle {...props}>{children}</ModalContainerStyle>;
 };
 

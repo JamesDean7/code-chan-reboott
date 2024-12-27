@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import Home from "./pages/home/Home";
-import Bookmark from "./pages/Bookmark";
+import Bookmark from "./pages/bookmark/Bookmark";
 import Layout from "./layouts/Layout";
 
 function App() {
