@@ -11,7 +11,13 @@ import App from "./App.tsx";
 import { TIME_IN_MS } from "@/const/unit/unit.ts";
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: TIME_IN_MS.halfHour, retry: 0 } },
+  defaultOptions: {
+    queries: {
+      staleTime: TIME_IN_MS.halfHour,
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 
 createRoot(document.getElementById("root")!).render(

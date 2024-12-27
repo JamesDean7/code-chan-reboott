@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
@@ -12,16 +12,9 @@ import {
 import { GalleryImage } from "@/api/gallery/types";
 import { createQueryKey } from "@/utils/format/format";
 import { QUERY_KEY } from "@/const/constraint/constraint";
-import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
-import { getGalleryImageList } from "@/api/gallery/gallery";
 import useScrollBottomDetect from "@/hooks/event/useScrollBottomDetect";
 import ImageGellerySkeleton from "@/pages/home/_fallbacks/ImageGellerySkeleton";
-import {
-  useSusGalleryList,
-  useSusInfiniteGalleryList,
-} from "@/hooks/query/gallery/useGallerySusQuery";
-import BookmarkImagSkeleton from "@/components/bookmark/image/BookmarkImagSkeleton";
-import { useBaseSuspenseInfiniteQuery } from "@/hooks/query/base/useBaseInfiniteQuery";
+import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQuery";
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 
 const ImageGallerySection = () => {

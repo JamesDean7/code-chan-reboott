@@ -1,9 +1,6 @@
 import { memo, ReactHTML } from "react";
 import styled from "@emotion/styled";
-import {
-  AppThemeTypographySizeKeys,
-  PartialAppThemeCollection,
-} from "@/theme/types";
+import { PartialAppThemeCollection } from "@/theme/types";
 import { ReactNodeChildren } from "@/types/lib-react";
 import { ExtractByKey } from "@/types/utils";
 import {
@@ -11,11 +8,8 @@ import {
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { getStyleByBreakpoints } from "@/utils/style/style";
-import {
-  getThemeTypographySize,
-  getThemeTypographyWeight,
-} from "@/utils/theme/theme";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { getThemeTypographyWeight } from "@/utils/theme/theme";
 
 type TypographyComponentProps = Pick<
   CSSStyleProperties,
@@ -49,12 +43,11 @@ const Typography = ({ children, component, ...props }: TypographyProps) => {
       right,
       bottom,
     }) => {
-      const resFontSize = getStyleByBreakpoints<AppThemeTypographySizeKeys>({
-        style: fontSize ?? { sm: "body1" },
-        defaultVal: "body1",
+      const styleByBreakpoint = createStyledCompStyleByBreakpoint({
+        fontSize,
       });
+
       return {
-        fontSize: getThemeTypographySize(resFontSize.sm),
         fontWeight: getThemeTypographyWeight(fontWeight),
         color,
         lineHeight,
@@ -63,14 +56,15 @@ const Typography = ({ children, component, ...props }: TypographyProps) => {
         left,
         right,
         bottom,
+        ...styleByBreakpoint.sm,
         [MEDIA_MIN_WIDTH.md]: {
-          fontSize: getThemeTypographySize(resFontSize.md),
+          ...styleByBreakpoint.md,
         },
         [MEDIA_MIN_WIDTH.lg]: {
-          fontSize: getThemeTypographySize(resFontSize.lg),
+          ...styleByBreakpoint.lg,
         },
         [MEDIA_MIN_WIDTH.xl]: {
-          fontSize: getThemeTypographySize(resFontSize.xl),
+          ...styleByBreakpoint.xl,
         },
       };
     }

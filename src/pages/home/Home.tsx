@@ -5,6 +5,7 @@ import ImageGallerySection from "@/pages/home/_sections/ImageGallerySection";
 import ImageSearchSection from "@/pages/home/_sections/ImageSearchSection";
 import ImageGellerySkeleton from "@/pages/home/_fallbacks/ImageGellerySkeleton";
 import ImageGallertyErrorFallback from "@/pages/home/_fallbacks/ImageGallertyErrorFallback";
+import Typography from "@/components/typography/base/Typography";
 
 const Home = () => {
   return (

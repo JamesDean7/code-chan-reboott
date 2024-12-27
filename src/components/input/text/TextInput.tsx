@@ -4,13 +4,10 @@ import {
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import useThemePalette from "@/hooks/theme/useThemePalette";
-import {
-  AppThemeTypographySizeKeys,
-  PartialAppThemeCollection,
-} from "@/theme/types";
+import { PartialAppThemeCollection } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { getThemeTypographySize } from "@/utils/theme/theme";
-import { getStyleByBreakpoints } from "@/utils/style/style";
+import { getThemeTypographyWeight } from "@/utils/theme/theme";
+import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 
 type TextInpputStyleProps = Pick<
   CSSStyleProperties,
@@ -38,12 +35,11 @@ const TextInputStyle = styled.input<TextInpputStyleProps>(
     borderStyle = "solid",
     borderColor = "transparent",
     fontSize = { sm: "body3" },
-    fontWeight,
+    fontWeight = "normal",
     color,
   }) => {
-    const resFontSize = getStyleByBreakpoints<AppThemeTypographySizeKeys>({
-      style: fontSize,
-      defaultVal: "body1",
+    const styleByBreakpoint = createStyledCompStyleByBreakpoint({
+      fontSize,
     });
     return {
       width,
@@ -54,17 +50,17 @@ const TextInputStyle = styled.input<TextInpputStyleProps>(
       borderWidth,
       borderStyle,
       borderColor,
-      fontSize: getThemeTypographySize(resFontSize.sm),
-      fontWeight,
+      fontWeight: getThemeTypographyWeight(fontWeight),
       color,
+      ...styleByBreakpoint.sm,
       [MEDIA_MIN_WIDTH.md]: {
-        fontSize: getThemeTypographySize(resFontSize.md),
+        ...styleByBreakpoint.md,
       },
       [MEDIA_MIN_WIDTH.lg]: {
-        fontSize: getThemeTypographySize(resFontSize.lg),
+        ...styleByBreakpoint.lg,
       },
       [MEDIA_MIN_WIDTH.xl]: {
-        fontSize: getThemeTypographySize(resFontSize.xl),
+        ...styleByBreakpoint.xl,
       },
     };
   }

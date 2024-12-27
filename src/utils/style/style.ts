@@ -1,5 +1,8 @@
 import { THEME_BREAKPOINTS_KEYS } from "@/theme/breakpoints";
-import { AppThemeBreakpointsKeys } from "@/theme/types";
+import {
+  AppThemeBreakpointsKeys,
+  AppThemeTypographySizeKeys,
+} from "@/theme/types";
 import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { ExcludeFromType } from "@/types/utils";
 import { addSizeUnit } from "@/utils/format/format";
@@ -7,7 +10,10 @@ import {
   StylePropsByBreakpoints,
   StylePropsTypeToStringType,
 } from "@/utils/style/types";
-import { multiplyByThemeSpacing } from "@/utils/theme/theme";
+import {
+  getThemeTypographySize,
+  multiplyByThemeSpacing,
+} from "@/utils/theme/theme";
 import { isObjectType } from "@/utils/verify/verify";
 
 export const getPxSpacing = (value: number) => {
@@ -33,8 +39,17 @@ export const getStyleByBreakpoints = <T>({
   };
 };
 
-const changeToSmBreakpointObj = <T>(value: T) => {
-  return { sm: value };
+export const changeThemeValueToStyleValue = ({
+  propertyKey,
+  value,
+}: {
+  propertyKey: keyof PartialStylePropsByBreakpointsCollection;
+  value: string | undefined;
+}) => {
+  if (propertyKey === "fontSize") {
+    return getThemeTypographySize(value as AppThemeTypographySizeKeys);
+  }
+  return value;
 };
 
 const prepareResponsiveValueByStyleProps = (
@@ -45,7 +60,7 @@ const prepareResponsiveValueByStyleProps = (
     acc[propertyKey] = getStyleByBreakpoints({
       style: isObjectType(props[propertyKey])
         ? props[propertyKey]
-        : changeToSmBreakpointObj(props[propertyKey]),
+        : { sm: props[propertyKey] },
       defaultVal: undefined,
     });
     return acc;
@@ -70,8 +85,10 @@ const prepareStylePropsByBreakpoint = ({
   >;
   const stylePropByBreakpointValue = stylePropList.reduce(
     (acc, propertyKey) => {
-      acc[propertyKey] =
-        responsiveValueByStyleProps?.[propertyKey]?.[breakpoint];
+      acc[propertyKey] = changeThemeValueToStyleValue({
+        value: responsiveValueByStyleProps?.[propertyKey]?.[breakpoint],
+        propertyKey: propertyKey,
+      });
       return acc;
     },
     {} as StylePropsTypeToStringType
