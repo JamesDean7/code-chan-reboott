@@ -10,7 +10,7 @@ const LayoutFoot = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <IconLogo />
+      <IconLogo width={{ sm: "32px" }} height={{ sm: "32px" }} />
       <Typography>Make something awesome</Typography>
     </FlexColumnContainer>
   );

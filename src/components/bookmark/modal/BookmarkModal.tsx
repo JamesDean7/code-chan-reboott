@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 import BookmarkModalDetails from "@/components/bookmark/modal/BookmarkModalDetails";
 import BookmarkModalHead, {
   type BookmarkModalHeadProps,
@@ -6,7 +7,6 @@ import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
 import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
 import type { ModalContainerProps } from "@/components/modal/base/ModalContainer";
 import ModalContainer from "@/components/modal/base/ModalContainer";
-import { useTheme } from "@emotion/react";
 
 type BookmarkModalProps = ModalContainerProps &
   BookmarkModalHeadProps & { isOpen: boolean };
@@ -26,9 +26,24 @@ const BookmarkModal = ({ isOpen, onClose, ...props }: BookmarkModalProps) => {
         boxShadow={theme.shadow.medium}
         {...props}
       >
-        <BookmarkModalHead onClose={onClose} />
-        <BookmarkModelBody />
-        <BookmarkModalDetails />
+        <BookmarkModalHead
+          profileSrc="/test.jpg"
+          name="James Memory"
+          onClose={onClose}
+        />
+        <BookmarkModelBody
+          imageName="test image"
+          imageSrc="/test.jpg"
+          imageHeight={300}
+          imageWidth={200}
+        />
+        <BookmarkModalDetails
+          imageWidth={300}
+          imageHeight={200}
+          downloads={100}
+          updateDate="2024-12-10"
+          tags={["test", "test2"]}
+        />
       </ModalContainer>
     </>
   );

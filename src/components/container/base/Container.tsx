@@ -26,6 +26,10 @@ type ContainerStyleProps = Pick<
     "width" | "height" | "margin" | "padding" | "minHeight"
   >;
 
+type ContainerProps = ContainerStyleProps &
+  ReactNodeChildren &
+  Pick<ElementMouseEvent<"div">, "onMouseEnter" | "onMouseLeave" | "onClick">;
+
 const ContainerStyle = styled("div", {
   shouldForwardProp: (propName) =>
     customShouldForwardProp({ preventTarget: "common", propName }),
@@ -76,10 +80,6 @@ const ContainerStyle = styled("div", {
     };
   }
 );
-
-type ContainerProps = ContainerStyleProps &
-  ReactNodeChildren &
-  Pick<ElementMouseEvent<"div">, "onMouseEnter" | "onMouseLeave" | "onClick">;
 
 const Container = ({ children, ...props }: ContainerProps) => {
   return <ContainerStyle {...props}>{children}</ContainerStyle>;

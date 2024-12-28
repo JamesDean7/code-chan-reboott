@@ -17,6 +17,8 @@ type GridContainerStyleProps = Pick<
   | "margin"
 >;
 
+type GridContainerProps = ReactNodeChildren & GridContainerStyleProps;
+
 const GridContainerStyle = styled("div", {
   shouldForwardProp: (propName) =>
     customShouldForwardProp({ preventTarget: "common", propName }),
@@ -57,8 +59,6 @@ const GridContainerStyle = styled("div", {
     };
   }
 );
-
-type GridContainerProps = ReactNodeChildren & GridContainerStyleProps;
 
 const GridContainer = ({ children, ...props }: GridContainerProps) => {
   return <GridContainerStyle {...props}>{children}</GridContainerStyle>;

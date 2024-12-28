@@ -6,6 +6,8 @@ type DividerStyleProps = Pick<
   "backgroundColor" | "width" | "height"
 >;
 
+export type DividerProps = DividerStyleProps;
+
 const DividerStyle = styled("div")<DividerStyleProps>(
   ({ theme, width, height, backgroundColor }) => {
     return {
@@ -15,8 +17,6 @@ const DividerStyle = styled("div")<DividerStyleProps>(
     };
   }
 );
-
-export type DividerProps = DividerStyleProps;
 
 const Divider = ({ ...props }: DividerProps) => {
   return <DividerStyle {...props} />;

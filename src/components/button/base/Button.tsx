@@ -10,6 +10,7 @@ import type {
 } from "@/types/styles";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import useMouseEnter from "@/hooks/event/useMouseEnter";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type ButtonStyleProps = Pick<
   CSSStyleProperties,
@@ -21,11 +22,20 @@ type ButtonStyleProps = Pick<
   | "borderRadius"
   | "transition"
 > &
-  Pick<PartialStylePropsByBreakpointsCollection, "padding">;
+  Pick<PartialStylePropsByBreakpointsCollection, "padding"> &
+  Pick<PartialHoverStyleOptionsCollection, "hoverBgColor" | "hoverColor">;
 
-const ButtonStyle = styled("button")<ButtonStyleProps>(
+type ButtonProps = ButtonStyleProps &
+  JSX.IntrinsicElements["button"] &
+  Pick<TypographyProps, "fontSize" | "color" | "fontWeight">;
+
+const ButtonStyle = styled("button", {
+  shouldForwardProp: (propName) =>
+    customShouldForwardProp({ preventTarget: "common", propName }),
+})<ButtonStyleProps>(
   ({
     padding = { sm: "4px 14px" },
+    color,
     backgroundColor,
     cursor = "pointer",
     borderColor = "#000000",
@@ -33,11 +43,14 @@ const ButtonStyle = styled("button")<ButtonStyleProps>(
     borderWidth = "2px",
     borderRadius = "4px",
     transition = "background-color 0.3s ease",
+    hoverBgColor,
+    hoverColor,
   }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
       padding,
     });
     return {
+      color,
       backgroundColor,
       cursor,
       borderColor,
@@ -55,14 +68,13 @@ const ButtonStyle = styled("button")<ButtonStyleProps>(
       [MEDIA_MIN_WIDTH.xl]: {
         ...styleByBreakpoint.xl,
       },
+      "&:hover": {
+        color: hoverColor,
+        backgroundColor: hoverBgColor,
+      },
     };
   }
 );
-
-type ButtonProps = ButtonStyleProps &
-  JSX.IntrinsicElements["button"] &
-  Pick<TypographyProps, "fontSize" | "color" | "fontWeight"> &
-  Pick<PartialHoverStyleOptionsCollection, "hoverBgColor" | "hoverColor">;
 
 const Button = ({
   children,
@@ -70,26 +82,23 @@ const Button = ({
   color,
   fontWeight,
   backgroundColor,
-  hoverBgColor = "#000000",
-  hoverColor = "#ffffff",
+  hoverBgColor,
+  hoverColor,
   ...rest
 }: ButtonProps) => {
   const { isMouseEnter, handleMouseEnter, handleMouseLeave } =
     useMouseEnter<"button">();
-  const currentColor = isMouseEnter ? hoverColor : color;
-  const currentBgColor = isMouseEnter ? hoverBgColor : backgroundColor;
   return (
     <ButtonStyle
-      backgroundColor={currentBgColor}
+      color={color}
+      backgroundColor={backgroundColor}
+      hoverBgColor={hoverBgColor ?? backgroundColor}
+      hoverColor={hoverColor ?? color}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...rest}
     >
-      <Typography
-        fontSize={fontSize}
-        color={currentColor}
-        fontWeight={fontWeight}
-      >
+      <Typography fontSize={fontSize} color="inherent" fontWeight={fontWeight}>
         {children}
       </Typography>
     </ButtonStyle>

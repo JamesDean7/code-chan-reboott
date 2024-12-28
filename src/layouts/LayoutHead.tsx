@@ -8,7 +8,7 @@ const LayoutHead = () => {
   return (
     <FlexRowContainer padding={{ sm: "14px 20px" }}>
       <NavLink to={ROUTE_PATH.home}>
-        <IconLogo />
+        <IconLogo width={{ sm: "32px" }} height={{ sm: "32px" }} />
       </NavLink>
       <NavLink to={ROUTE_PATH.bookmark}>
         <IconHeart />

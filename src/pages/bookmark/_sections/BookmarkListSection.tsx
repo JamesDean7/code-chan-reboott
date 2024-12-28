@@ -86,7 +86,7 @@ const BookmarkListSection = () => {
           alignItems="center"
           justifyContent="center"
         >
-          <IconHeart width="50px" height="50px" />
+          <IconHeart width={{ sm: "50px" }} height={{ sm: "50px" }} />
           <Typography fontSize={{ sm: "body1" }}>
             북마크가 비어 있습니다
           </Typography>
@@ -94,6 +94,7 @@ const BookmarkListSection = () => {
       )}
       {isModalOn && (
         <BookmarkModal
+          isOpen={isModalOn}
           width={{ sm: "80%", lg: "50%" }}
           onClose={handleModalClose}
         />

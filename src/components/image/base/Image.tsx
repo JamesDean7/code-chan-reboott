@@ -1,31 +1,41 @@
 import styled from "@emotion/styled";
 import type { ImageElementAttribute } from "@/types/element";
-import type { PartialStyleByBreakpoints } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import type { OmitByKey } from "@/types/utils";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import {
+  PartialStylePropsByBreakpointsCollection,
+  StyledComponentElementStyleCollection,
+} from "@/types/styles";
 
-type ImageWidthType = PartialStyleByBreakpoints<string>;
-type ImageHeightType = PartialStyleByBreakpoints<string>;
+type ImageStyleProps = Pick<
+  PartialStylePropsByBreakpointsCollection,
+  "maxWidth" | "maxHeight"
+> &
+  Pick<
+    NonNullable<ImageElementAttribute["style"]>,
+    "objectFit" | "objectPosition"
+  > &
+  Pick<StyledComponentElementStyleCollection, "elementWidth" | "elementHeight">;
 
-type ImageStyleProps = {
-  imgWidth: ImageWidthType;
-  imgHeight: ImageHeightType;
-} & Pick<
-  NonNullable<ImageElementAttribute["style"]>,
-  "objectFit" | "objectPosition"
->;
+export type ImageProps = Pick<ImageElementAttribute, "src" | "alt"> &
+  Pick<PartialStylePropsByBreakpointsCollection, "width" | "height"> &
+  OmitByKey<ImageStyleProps, "elementWidth" | "elementHeight">;
 
 const ImageStyle = styled("img")<ImageStyleProps>(
   ({
-    imgWidth,
-    imgHeight,
+    elementWidth,
+    elementHeight,
     objectFit = "cover",
     objectPosition = "50% 50%",
+    maxWidth,
+    maxHeight,
   }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
-      height: imgHeight,
-      width: imgWidth,
+      height: elementHeight,
+      width: elementWidth,
+      maxWidth,
+      maxHeight,
     });
 
     return {
@@ -47,18 +57,19 @@ const ImageStyle = styled("img")<ImageStyleProps>(
   }
 );
 
-export type ImageProps = Pick<ImageElementAttribute, "src" | "alt"> & {
-  height: ImageHeightType;
-  width: ImageWidthType;
-} & OmitByKey<ImageStyleProps, "imgHeight" | "imgWidth">;
-
-const Image = ({ src, alt = "image", height, width, ...props }: ImageProps) => {
+const Image = ({
+  src,
+  alt = "image",
+  height = { sm: "100px" },
+  width = { sm: "100px" },
+  ...props
+}: ImageProps) => {
   return (
     <ImageStyle
       src={src ?? ""}
       alt={alt ?? ""}
-      imgWidth={width}
-      imgHeight={height}
+      elementWidth={width}
+      elementHeight={height}
       {...props}
     />
   );

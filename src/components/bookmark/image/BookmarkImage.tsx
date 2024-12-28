@@ -52,7 +52,11 @@ const BookmarkImage = ({
             margin={{ sm: "10px" }}
             onClick={onLikeClick(imageInfo, isBookmarked)}
           >
-            <IconHeart fill={heartColor} />
+            <IconHeart
+              width={{ sm: "30px" }}
+              height={{ sm: "30px" }}
+              fill={heartColor}
+            />
           </HoverContainer>
         )}
       </FlexRowContainer>

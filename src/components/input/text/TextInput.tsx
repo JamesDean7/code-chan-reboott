@@ -9,6 +9,7 @@ import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
+import { InputElementAttribute } from "@/types/element";
 
 type TextInpputStyleProps = Pick<
   CSSStyleProperties,
@@ -24,6 +25,11 @@ type TextInpputStyleProps = Pick<
 > &
   Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
   Pick<PartialAppThemeCollection, "fontWeight">;
+
+export type TextInputProps = TextInpputStyleProps &
+  InputElementAttribute & {
+    error?: boolean;
+  };
 
 const TextInputStyle = styled("input", {
   shouldForwardProp: (propName) =>
@@ -69,11 +75,6 @@ const TextInputStyle = styled("input", {
     };
   }
 );
-
-export type TextInputProps = TextInpputStyleProps &
-  JSX.IntrinsicElements["input"] & {
-    error?: boolean;
-  };
 
 const TextInput = ({ error, borderColor, ...props }: TextInputProps) => {
   const themePaletteRed = useThemePalette({ usePallete: "red" });

@@ -8,6 +8,9 @@ type HoverContainerStyleProps = {
   cursor?: CSSStyleProperties["cursor"];
 };
 
+type HoverContainerProps = ReactNodeChildren &
+  ComponentProps<typeof HoverContainerStyle>;
+
 const HoverContainerStyle = styled(Container)<HoverContainerStyleProps>(
   ({ cursor = "pointer" }) => {
     return {
@@ -15,9 +18,6 @@ const HoverContainerStyle = styled(Container)<HoverContainerStyleProps>(
     };
   }
 );
-
-type HoverContainerProps = ReactNodeChildren &
-  ComponentProps<typeof HoverContainerStyle>;
 
 const HoverContainer = ({ children, ...props }: HoverContainerProps) => {
   return <HoverContainerStyle {...props}>{children}</HoverContainerStyle>;

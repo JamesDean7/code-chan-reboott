@@ -23,6 +23,10 @@ type FlexContainerStyleProps = Pick<
     "width" | "height" | "rowGap" | "columnGap" | "padding" | "minHeight"
   >;
 
+export type FlexContainerProps = ReactNodeChildren &
+  ElementClassName &
+  FlexContainerStyleProps;
+
 const FlexContainerStyle = styled("div", {
   shouldForwardProp: (propName) =>
     customShouldForwardProp({ preventTarget: "common", propName }),
@@ -71,10 +75,6 @@ const FlexContainerStyle = styled("div", {
     };
   }
 );
-
-export type FlexContainerProps = ReactNodeChildren &
-  ElementClassName &
-  FlexContainerStyleProps;
 
 const FlexContainer = ({ children, ...props }: FlexContainerProps) => {
   return <FlexContainerStyle {...props}>{children}</FlexContainerStyle>;

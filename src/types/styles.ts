@@ -1,10 +1,12 @@
+import type { CSSProperties } from "react";
 import type {
   AppThemeTypographySizeKeys,
   PartialStyleByBreakpoints,
 } from "@/theme/types";
-import type { CSSProperties } from "react";
 
 export type CSSStyleProperties = CSSProperties;
+
+export type RequiredCSSStyleProperties = Required<CSSStyleProperties>;
 
 export type CSSFlexStyleProps = Pick<
   CSSStyleProperties,
@@ -42,3 +44,9 @@ type HoverStyleOptionsCollection = {
 
 export type PartialHoverStyleOptionsCollection =
   Partial<HoverStyleOptionsCollection>;
+
+/* styled element props type conflict 피하기 위한 style props alias */
+export type StyledComponentElementStyleCollection = {
+  elementWidth: PartialStyleByBreakpoints<string>;
+  elementHeight: PartialStyleByBreakpoints<string>;
+};
