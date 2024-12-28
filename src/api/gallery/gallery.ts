@@ -1,5 +1,5 @@
 import type { AsyncApiRequestFn } from "@/api/types";
-import { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
+import type { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
 import { axiosClient } from "@/api/axiosClient";
 
 export const DEMO_IMAGE_LIST: GalleryImage[] = [

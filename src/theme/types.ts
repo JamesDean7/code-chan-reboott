@@ -1,4 +1,4 @@
-import { THEME } from "@/theme";
+import type { THEME } from "@/theme";
 
 export type AppTheme = typeof THEME;
 

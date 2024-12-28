@@ -1,4 +1,4 @@
-import { PreventForwardPropKeys } from "@/const/constraint/types";
+import type { PreventForwardPropKeys } from "@/const/constraint/types";
 
 type FalseValueOptions = {
   emptyString: boolean;

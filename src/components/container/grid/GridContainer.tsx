@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { ReactNodeChildren } from "@/types/lib-react";
-import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
 

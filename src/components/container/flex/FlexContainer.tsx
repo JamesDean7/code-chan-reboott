@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { ReactNodeChildren } from "@/types/lib-react";
-import { ElementClassName } from "@/types/element";
-import {
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type { ElementClassName } from "@/types/element";
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";

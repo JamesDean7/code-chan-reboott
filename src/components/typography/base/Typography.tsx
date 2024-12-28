@@ -1,9 +1,10 @@
-import { memo, ReactHTML } from "react";
+import type { ReactHTML } from "react";
+import { memo } from "react";
 import styled from "@emotion/styled";
-import { PartialAppThemeCollection } from "@/theme/types";
-import { ReactNodeChildren } from "@/types/lib-react";
-import { ExtractByKey } from "@/types/utils";
-import {
+import type { PartialAppThemeCollection } from "@/theme/types";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type { ExtractByKey } from "@/types/utils";
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";

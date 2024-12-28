@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { CSSStyleProperties } from "@/types/styles";
+import type { CSSStyleProperties } from "@/types/styles";
 
 type DividerStyleProps = Pick<
   CSSStyleProperties,

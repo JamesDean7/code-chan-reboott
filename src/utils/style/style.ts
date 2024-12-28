@@ -11,7 +11,7 @@ import type {
   StylePropsTypeToStringType,
 } from "@/utils/style/types";
 import { THEME_BREAKPOINTS_KEYS } from "@/theme/breakpoints";
-import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
+import type { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
 import { ExcludeFromType } from "@/types/utils";
 import { addSizeUnit } from "@/utils/format/format";
 import {

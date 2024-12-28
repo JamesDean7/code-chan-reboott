@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ReactNodeChildren } from "@/types/lib-react";
+import type { ReactNodeChildren } from "@/types/lib-react";
 import { ZINDEX } from "@/const/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
 

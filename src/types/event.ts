@@ -1,4 +1,4 @@
-import { JSXInstrinsicElementKeys } from "@/types/element";
+import type { JSXInstrinsicElementKeys } from "@/types/element";
 
 export type ElementOnClick<T extends JSXInstrinsicElementKeys> = Pick<
   JSX.IntrinsicElements[T],

@@ -1,15 +1,16 @@
-import { OmitByKey } from "@/types/utils";
-import { StandardErrorFormat } from "@/utils/error/types";
-import {
+import type { OmitByKey } from "@/types/utils";
+import type { StandardErrorFormat } from "@/utils/error/types";
+import type {
   InfiniteData,
   InvalidateQueryFilters,
-  QueryKey,
   UseMutationOptions,
   UseMutationResult,
   UseSuspenseInfiniteQueryOptions,
   UseSuspenseInfiniteQueryResult,
   UseSuspenseQueryOptions,
-  UseSuspenseQueryResult,
+  UseSuspenseQueryResult} from "@tanstack/react-query";
+import {
+  QueryKey
 } from "@tanstack/react-query";
 
 type QueryApiLPayload<T> = {

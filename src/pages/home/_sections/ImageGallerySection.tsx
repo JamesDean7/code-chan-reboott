@@ -12,7 +12,7 @@ import {
   useBookmarkAddition,
   useBookmarkDeletion,
 } from "@/hooks/query/bookmark/useBookmarkMutation";
-import { GalleryImage } from "@/api/gallery/types";
+import type { GalleryImage } from "@/api/gallery/types";
 import { createQueryKey } from "@/utils/format/format";
 import { QUERY_KEY } from "@/const/constraint/constraint";
 import useScrollBottomDetect from "@/hooks/event/useScrollBottomDetect";

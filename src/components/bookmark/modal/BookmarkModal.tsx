@@ -1,12 +1,13 @@
 import BookmarkModalDetails from "@/components/bookmark/modal/BookmarkModalDetails";
 import BookmarkModalHead, {
-  BookmarkModalHeadProps,
+  type BookmarkModalHeadProps,
 } from "@/components/bookmark/modal/BookmarkModalHead";
 import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
 import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
-import ModalContainer, {
+import type {
   ModalContainerProps,
 } from "@/components/modal/base/ModalContainer";
+import ModalContainer from "@/components/modal/base/ModalContainer";
 
 type BookmarkModalProps = ModalContainerProps & BookmarkModalHeadProps;
 

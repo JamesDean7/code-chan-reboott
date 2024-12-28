@@ -1,8 +1,8 @@
-import {
+import type {
   AppThemeTypographySizeKeys,
   PartialStyleByBreakpoints,
 } from "@/theme/types";
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 export type CSSStyleProperties = CSSProperties;
 

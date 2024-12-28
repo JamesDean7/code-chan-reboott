@@ -1,6 +1,6 @@
-import { AppThemeBreakpointsKeys } from "@/theme/types";
-import { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
-import { ExcludeFromType } from "@/types/utils";
+import type { AppThemeBreakpointsKeys } from "@/theme/types";
+import type { PartialStylePropsByBreakpointsCollection } from "@/types/styles";
+import type { ExcludeFromType } from "@/types/utils";
 
 export type StylePropsTypeToStringType = Partial<
   Record<keyof PartialStylePropsByBreakpointsCollection, string>

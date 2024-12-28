@@ -1,6 +1,6 @@
 import type { CreateQueryKeyParams } from "@/utils/format/types";
 import { isArrayType, isFalsyValue, isObjectType } from "@/utils/verify/verify";
-import { QueryKey } from "@tanstack/react-query";
+import type { QueryKey } from "@tanstack/react-query";
 
 export const addSizeUnit = (value: unknown, unit: "px" | "%") => {
   return `${value}${unit}`;

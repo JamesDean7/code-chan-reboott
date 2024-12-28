@@ -1,4 +1,4 @@
-import { FallbackProps } from "react-error-boundary";
+import type { FallbackProps } from "react-error-boundary";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import SimpleErrorScreen from "@/components/error/simple/SimpleErrorScreen";

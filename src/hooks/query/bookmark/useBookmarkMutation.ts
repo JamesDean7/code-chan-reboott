@@ -1,6 +1,6 @@
 import { addToBookmark, removeFromBookmark } from "@/api/gallery/gallery";
-import { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
-import { UseBaseMutationBasedFn } from "@/hooks/query/base/types";
+import type { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
+import type { UseBaseMutationBasedFn } from "@/hooks/query/base/types";
 import useBaseMutation from "@/hooks/query/base/useBaseMutation";
 
 export const useBookmarkAddition: UseBaseMutationBasedFn<

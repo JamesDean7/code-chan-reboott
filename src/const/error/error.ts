@@ -1,4 +1,4 @@
-import { SystemError } from "@/const/error/types";
+import type { SystemError } from "@/const/error/types";
 
 export const ERROR_SYSTEM = {
   client: {

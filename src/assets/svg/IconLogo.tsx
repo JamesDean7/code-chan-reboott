@@ -1,4 +1,4 @@
-import { PartialSvgCommonProps } from "@/assets/svg/types";
+import type { PartialSvgCommonProps } from "@/assets/svg/types";
 
 type IconLogoProps = Pick<PartialSvgCommonProps, "width" | "height">;
 

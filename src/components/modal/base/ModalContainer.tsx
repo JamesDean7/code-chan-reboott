@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
-import {
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import { ZINDEX } from "@/const/style/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { ReactNodeChildren } from "@/types/lib-react";
-import FlexContainer, {
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type {
   FlexContainerProps,
 } from "@/components/container/flex/FlexContainer";
+import FlexContainer from "@/components/container/flex/FlexContainer";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
 

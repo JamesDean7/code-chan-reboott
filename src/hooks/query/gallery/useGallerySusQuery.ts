@@ -1,7 +1,7 @@
 import { getGalleryImageList } from "@/api/gallery/gallery";
-import { GalleryImage } from "@/api/gallery/types";
+import type { GalleryImage } from "@/api/gallery/types";
 import { QUERY_KEY } from "@/const/constraint/constraint";
-import {
+import type {
   UseBaseInfiniteQueryBasedFn,
   UseBaseSuspenseQueryBasedFn,
 } from "@/hooks/query/base/types";

@@ -1,8 +1,8 @@
 import Container from "@/components/container/base/Container";
-import { ReactNodeChildren } from "@/types/lib-react";
-import { CSSStyleProperties } from "@/types/styles";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type { CSSStyleProperties } from "@/types/styles";
 import styled from "@emotion/styled";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 type HoverContainerStyleProps = {
   cursor?: CSSStyleProperties["cursor"];

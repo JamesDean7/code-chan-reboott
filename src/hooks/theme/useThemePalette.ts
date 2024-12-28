@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { AppThemePaletteKeys } from "@/theme/types";
+import type { AppThemePaletteKeys } from "@/theme/types";
 
 type UseThemePaletteProps<T extends AppThemePaletteKeys> = {
   usePallete: T;

@@ -3,7 +3,7 @@ import { useTheme } from "@emotion/react";
 import IconHeart from "@/assets/svg/IconHeart";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import HoverContainer from "@/components/container/hover/HoverContainer";
-import Image, { ImageProps } from "@/components/image/base/Image";
+import Image, { type ImageProps } from "@/components/image/base/Image";
 import useMouseEnter from "@/hooks/event/useMouseEnter";
 
 export type BookmarkImageInfo = { id: string; uri: string };

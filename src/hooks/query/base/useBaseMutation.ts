@@ -1,5 +1,5 @@
-import { UseBaseMutationProps } from "@/hooks/query/base/types";
-import { StandardErrorFormat } from "@/utils/error/types";
+import type { UseBaseMutationProps } from "@/hooks/query/base/types";
+import type { StandardErrorFormat } from "@/utils/error/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useBaseMutation = <DataType, ApiPayload>({

@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import {
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
-import { ReactNodeChildren } from "@/types/lib-react";
-import { ElementOnClick, ElementMouseEvent } from "@/types/event";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type { ElementOnClick, ElementMouseEvent } from "@/types/event";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";

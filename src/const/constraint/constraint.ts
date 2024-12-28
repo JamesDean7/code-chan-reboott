@@ -1,5 +1,5 @@
-import { QueryCommonKeys, QueryKeyProps } from "@/const/constraint/types";
-import { MatchPropAndValueFromKeys } from "@/types/utils";
+import type { QueryCommonKeys, QueryKeyProps } from "@/const/constraint/types";
+import type { MatchPropAndValueFromKeys } from "@/types/utils";
 
 const PREVENT_FOWARD_PROP_COMMON = {
   width: true,

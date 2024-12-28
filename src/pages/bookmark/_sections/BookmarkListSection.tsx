@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { GalleryImage } from "@/api/gallery/types";
+import type { GalleryImage } from "@/api/gallery/types";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import GridContainer from "@/components/container/grid/GridContainer";

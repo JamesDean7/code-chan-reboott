@@ -7,7 +7,7 @@ import useThemePalette from "@/hooks/theme/useThemePalette";
 import TextControlInput from "@/components/input/hookform/text/TextControlInput";
 import { isEmptyString } from "@/utils/verify/verify";
 import { PAGE_HOME_ERROR } from "@/pages/home/_const/error";
-import { HookFormCommonCollection } from "@/components/input/hookform/types";
+import type { HookFormCommonCollection } from "@/components/input/hookform/types";
 
 type SearchForm = {
   search: string;

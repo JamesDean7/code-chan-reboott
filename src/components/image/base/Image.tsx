@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { ImageElementAttribute } from "@/types/element";
-import { PartialStyleByBreakpoints } from "@/theme/types";
+import type { ImageElementAttribute } from "@/types/element";
+import type { PartialStyleByBreakpoints } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { OmitByKey } from "@/types/utils";
+import type { OmitByKey } from "@/types/utils";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 
 type ImageWidthType = PartialStyleByBreakpoints<string>;

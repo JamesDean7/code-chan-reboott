@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ElementMouseEvent } from "@/types/event";
-import { JSXInstrinsicElementKeys } from "@/types/element";
+import type { ElementMouseEvent } from "@/types/event";
+import type { JSXInstrinsicElementKeys } from "@/types/element";
 
 const useMouseEnter = <T extends JSXInstrinsicElementKeys = "div">() => {
   const [isMouseEnter, setIsMouseEnter] = useState(false);

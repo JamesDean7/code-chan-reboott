@@ -1,4 +1,7 @@
-import { ErrorTypeOptions, StandardErrorFormat } from "@/utils/error/types";
+import type {
+  ErrorTypeOptions,
+  StandardErrorFormat,
+} from "@/utils/error/types";
 
 export class StandardError extends Error {
   name: "StandardError";

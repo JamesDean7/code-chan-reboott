@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import Typography, {
-  TypographyProps,
+  type TypographyProps,
 } from "@/components/typography/base/Typography";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import {
+import type {
   CSSStyleProperties,
   PartialHoverStyleOptionsCollection,
   PartialStylePropsByBreakpointsCollection,

@@ -1,5 +1,5 @@
-import { UseBaseSuspenseQueryOptions } from "@/hooks/query/base/types";
-import { StandardErrorFormat } from "@/utils/error/types";
+import type { UseBaseSuspenseQueryOptions } from "@/hooks/query/base/types";
+import type { StandardErrorFormat } from "@/utils/error/types";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useBaseSuspenseQuery = <DataType>(

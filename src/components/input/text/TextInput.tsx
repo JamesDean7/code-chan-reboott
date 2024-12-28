@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import {
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import useThemePalette from "@/hooks/theme/useThemePalette";
-import { PartialAppThemeCollection } from "@/theme/types";
+import type { PartialAppThemeCollection } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
