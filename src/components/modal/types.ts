@@ -1,6 +1,6 @@
-import { FlexContainerProps } from "@/components/container/types";
-import { ReactNodeChildren } from "@/types/lib-react";
-import {
+import type { FlexContainerProps } from "@/components/container/types";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";

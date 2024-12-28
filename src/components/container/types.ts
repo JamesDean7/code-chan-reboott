@@ -1,5 +1,5 @@
 import type { ElementClassName } from "@/types/element";
-import { ElementMouseEventCollection } from "@/types/event";
+import type { ElementMouseEventCollection } from "@/types/event";
 import type { ReactNodeChildren } from "@/types/lib-react";
 import type {
   CSSStyleProperties,

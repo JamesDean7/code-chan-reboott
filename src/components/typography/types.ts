@@ -1,11 +1,11 @@
-import { PartialAppThemeCollection } from "@/theme/types";
-import { ReactNodeChildren } from "@/types/lib-react";
-import {
+import type { PartialAppThemeCollection } from "@/theme/types";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
-import { ExtractByKey } from "@/types/utils";
-import { ReactHTML } from "react";
+import type { ExtractByKey } from "@/types/utils";
+import type { ReactHTML } from "react";
 
 /* ::: Typography ::: */
 export type TypographyComponentProps = Pick<

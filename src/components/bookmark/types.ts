@@ -1,6 +1,6 @@
-import { GalleryImage } from "@/api/gallery/types";
+import type { GalleryImage } from "@/api/gallery/types";
 import type { ImageProps } from "@/components/image/types";
-import { ModalContainerProps } from "@/components/modal/types";
+import type { ModalContainerProps } from "@/components/modal/types";
 
 /* ::: BookmarkModal ::: */
 export type BookmarkModalSelectedImageInfoProp = {

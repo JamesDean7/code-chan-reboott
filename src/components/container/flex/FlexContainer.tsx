@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import {
+import type {
   FlexContainerProps,
   FlexContainerStyleProps,
 } from "@/components/container/types";

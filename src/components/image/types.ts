@@ -1,9 +1,9 @@
-import { ImageElementAttribute } from "@/types/element";
-import {
+import type { ImageElementAttribute } from "@/types/element";
+import type {
   PartialStylePropsByBreakpointsCollection,
   StyledComponentElementStyleCollection,
 } from "@/types/styles";
-import { OmitByKey } from "@/types/utils";
+import type { OmitByKey } from "@/types/utils";
 
 /* ::: Image ::: */
 export type ImageStyleProps = Pick<

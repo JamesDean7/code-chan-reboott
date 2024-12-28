@@ -1,4 +1,4 @@
-import {
+import type {
   AppThemeShadowCustomColorParams,
   AppThemeShadowOptions,
 } from "@/theme/types";

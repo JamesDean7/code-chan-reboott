@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { DividerProps, DividerStyleProps } from "@/components/divider/types";
+import type { DividerProps, DividerStyleProps } from "@/components/divider/types";
 
 const DividerStyle = styled("div")<DividerStyleProps>(
   ({ theme, width, height, backgroundColor }) => {

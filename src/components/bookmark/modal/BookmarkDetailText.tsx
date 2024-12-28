@@ -1,6 +1,6 @@
 import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
-import { ReactNodeChildren } from "@/types/lib-react";
+import type { ReactNodeChildren } from "@/types/lib-react";
 
 type BookmarkDetailTypographyProps = ReactNodeChildren;
 

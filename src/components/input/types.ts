@@ -1,6 +1,6 @@
-import { PartialAppThemeCollection } from "@/theme/types";
-import { InputElementAttribute } from "@/types/element";
-import {
+import type { PartialAppThemeCollection } from "@/theme/types";
+import type { InputElementAttribute } from "@/types/element";
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";

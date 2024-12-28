@@ -1,4 +1,4 @@
-import { CSSStyleProperties } from "@/types/styles";
+import type { CSSStyleProperties } from "@/types/styles";
 
 /* ::: Divider ::: */
 export type DividerStyleProps = Pick<

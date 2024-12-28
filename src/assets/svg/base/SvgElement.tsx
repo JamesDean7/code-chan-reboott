@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import { ReactNodeChildren } from "@/types/lib-react";
-import {
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
   StyledComponentElementStyleCollection,
 } from "@/types/styles";
-import { OmitByKey } from "@/types/utils";
+import type { OmitByKey } from "@/types/utils";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import { SvgElementAttribute } from "@/types/element";
+import type { SvgElementAttribute } from "@/types/element";
 
 type SvgElementStyleProps = Pick<CSSStyleProperties, "stroke" | "fill"> &
   Pick<StyledComponentElementStyleCollection, "elementWidth" | "elementHeight">;

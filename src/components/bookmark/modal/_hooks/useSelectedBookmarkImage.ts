@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BookmarkModalSelectedImageInfoProp } from "@/components/bookmark/types";
+import type { BookmarkModalSelectedImageInfoProp } from "@/components/bookmark/types";
 
 const useSelectedBookmarkImage = () => {
   const [selectedImageInfo, setSelectedImageInfo] = useState<

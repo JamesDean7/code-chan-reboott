@@ -1,5 +1,5 @@
 import FlexContainer from "@/components/container/flex/FlexContainer";
-import { FlexContainerProps } from "@/components/container/types";
+import type { FlexContainerProps } from "@/components/container/types";
 
 type PageContainerProps = FlexContainerProps;
 

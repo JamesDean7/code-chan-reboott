@@ -15,7 +15,7 @@ import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer
 import Typography from "@/components/typography/base/Typography";
 import IconHeart from "@/assets/svg/IconHeart";
 import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
-import { BookmarkImageProps } from "@/components/bookmark/types";
+import type { BookmarkImageProps } from "@/components/bookmark/types";
 
 const BookmarkListSection = () => {
   const { selectedImageInfo, handleSelectedImageInfoUpdate } =

@@ -19,7 +19,7 @@ import ImageGellerySkeleton from "@/pages/home/_fallbacks/ImageGellerySkeleton";
 import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQuery";
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
-import { BookmarkImageProps } from "@/components/bookmark/types";
+import type { BookmarkImageProps } from "@/components/bookmark/types";
 
 const ImageGallerySection = () => {
   const { selectedImageInfo, handleSelectedImageInfoUpdate } =

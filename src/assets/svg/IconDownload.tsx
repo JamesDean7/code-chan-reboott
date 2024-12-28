@@ -1,4 +1,5 @@
-import SvgElement, { SvgElementProps } from "@/assets/svg/base/SvgElement";
+import type { SvgElementProps } from "@/assets/svg/base/SvgElement";
+import SvgElement from "@/assets/svg/base/SvgElement";
 
 type IconDownloadProps = Pick<SvgElementProps, "width" | "height" | "fill">;
 

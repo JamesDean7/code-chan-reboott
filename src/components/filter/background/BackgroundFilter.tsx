@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import type { ReactNodeChildren } from "@/types/lib-react";
 import { ZINDEX } from "@/const/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import { ElementMouseEventCollection } from "@/types/event";
+import type { ElementMouseEventCollection } from "@/types/event";
 
 type BackgroundFilterStyleProps = {
   opacity: number;

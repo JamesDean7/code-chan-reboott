@@ -1,4 +1,5 @@
-import SvgElement, { SvgElementProps } from "@/assets/svg/base/SvgElement";
+import type { SvgElementProps } from "@/assets/svg/base/SvgElement";
+import SvgElement from "@/assets/svg/base/SvgElement";
 
 type IconCancelProps = Pick<SvgElementProps, "width" | "height" | "stroke">;
 

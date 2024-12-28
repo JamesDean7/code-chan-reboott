@@ -4,7 +4,7 @@ import BookmarkModalHead from "@/components/bookmark/modal/BookmarkModalHead";
 import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
 import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
 import ModalContainer from "@/components/modal/base/ModalContainer";
-import { BookmarkModalProps } from "@/components/bookmark/types";
+import type { BookmarkModalProps } from "@/components/bookmark/types";
 
 const BookmarkModal = ({
   selectedImageInfo,

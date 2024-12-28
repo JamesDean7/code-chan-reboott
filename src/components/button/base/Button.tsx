@@ -8,7 +8,7 @@ import type {
 } from "@/types/styles";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import { TypographyProps } from "@/components/typography/types";
+import type { TypographyProps } from "@/components/typography/types";
 
 type ButtonStyleProps = Pick<
   CSSStyleProperties,

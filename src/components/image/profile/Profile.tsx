@@ -1,6 +1,6 @@
 import Image from "@/components/image/base/Image";
 import styled from "@emotion/styled";
-import { CSSStyleProperties } from "@/types/styles";
+import type { CSSStyleProperties } from "@/types/styles";
 import type { ImageProps } from "@/components/image/types";
 
 type ProfileStyleProps = Pick<CSSStyleProperties, "borderRadius">;

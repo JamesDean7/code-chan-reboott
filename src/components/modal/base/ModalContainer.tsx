@@ -3,7 +3,7 @@ import { ZINDEX } from "@/const/style/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import FlexContainer from "@/components/container/flex/FlexContainer";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-import {
+import type {
   BookmarkModalStyleProps,
   ModalContainerProps,
 } from "@/components/modal/types";

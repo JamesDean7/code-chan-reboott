@@ -4,7 +4,7 @@ import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import {
+import type {
   TypographyComponentProps,
   TypographyProps,
 } from "@/components/typography/types";
