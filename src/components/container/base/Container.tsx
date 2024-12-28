@@ -4,7 +4,7 @@ import type {
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import type { ReactNodeChildren } from "@/types/lib-react";
-import type { ElementOnClick, ElementMouseEvent } from "@/types/event";
+import type { ElementMouseEvent } from "@/types/event";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
@@ -79,8 +79,7 @@ const ContainerStyle = styled("div", {
 
 type ContainerProps = ContainerStyleProps &
   ReactNodeChildren &
-  ElementOnClick<"div"> &
-  Pick<ElementMouseEvent<"div">, "onMouseEnter" | "onMouseLeave">;
+  Pick<ElementMouseEvent<"div">, "onMouseEnter" | "onMouseLeave" | "onClick">;
 
 const Container = ({ children, ...props }: ContainerProps) => {
   return <ContainerStyle {...props}>{children}</ContainerStyle>;

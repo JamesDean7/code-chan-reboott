@@ -6,16 +6,19 @@ import type {
 import { ZINDEX } from "@/const/style/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import type { ReactNodeChildren } from "@/types/lib-react";
-import type {
-  FlexContainerProps,
-} from "@/components/container/flex/FlexContainer";
+import type { FlexContainerProps } from "@/components/container/flex/FlexContainer";
 import FlexContainer from "@/components/container/flex/FlexContainer";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type BookmarkModalStyleProps = Pick<
   CSSStyleProperties,
-  "borderRadius" | "backgroundColor" | "zIndex" | "top" | "left" | "transform"
+  | "borderRadius"
+  | "backgroundColor"
+  | "zIndex"
+  | "top"
+  | "left"
+  | "transform"
+  | "boxShadow"
 > &
   Pick<
     PartialStylePropsByBreakpointsCollection,
@@ -26,10 +29,7 @@ export type ModalContainerProps = ReactNodeChildren &
   FlexContainerProps &
   BookmarkModalStyleProps;
 
-const ModalContainerStyle = styled(FlexContainer, {
-  shouldForwardProp: (propName) =>
-    customShouldForwardProp({ preventTarget: "common", propName }),
-})<BookmarkModalStyleProps>(
+const ModalContainerStyle = styled(FlexContainer)<BookmarkModalStyleProps>(
   ({
     height,
     maxHeight,
@@ -41,6 +41,7 @@ const ModalContainerStyle = styled(FlexContainer, {
     top = "50%",
     left = "50%",
     transform = "translate(-50%, -50%)",
+    boxShadow,
   }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
       height,
@@ -57,6 +58,7 @@ const ModalContainerStyle = styled(FlexContainer, {
       zIndex,
       borderRadius,
       backgroundColor,
+      boxShadow,
       ...styleByBreakpoint.sm,
       [MEDIA_MIN_WIDTH.md]: {
         ...styleByBreakpoint.md,

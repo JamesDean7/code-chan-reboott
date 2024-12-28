@@ -13,6 +13,18 @@ export type AppThemeTypographyWeightKeys =
 
 export type AppThemeBreakpointsKeys = keyof AppTheme["breakpoints"];
 
+type AppThemeShadowOptionsKeys = "thin" | "light" | "medium" | "bold";
+
+export type AppThemeShadowOptions = Record<
+  AppThemeShadowOptionsKeys,
+  (param?: string) => string
+>;
+
+export type AppThemeShadowCustomColorParams = {
+  type: AppThemeShadowOptionsKeys;
+  color: string;
+};
+
 export type StyleByBreakpoints<T extends string> = Record<
   AppThemeBreakpointsKeys,
   T

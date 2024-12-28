@@ -7,6 +7,7 @@ import type {
 } from "@/types/styles";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
+import { customShouldForwardProp } from "@/utils/verify/verify";
 
 type FlexContainerStyleProps = Pick<
   CSSStyleProperties,
@@ -22,10 +23,10 @@ type FlexContainerStyleProps = Pick<
     "width" | "height" | "rowGap" | "columnGap" | "padding" | "minHeight"
   >;
 
-const FlexContainerStyle = styled(
-  "div",
-  {}
-)<FlexContainerStyleProps>(
+const FlexContainerStyle = styled("div", {
+  shouldForwardProp: (propName) =>
+    customShouldForwardProp({ preventTarget: "common", propName }),
+})<FlexContainerStyleProps>(
   ({
     position = "static",
     flex = "initial",

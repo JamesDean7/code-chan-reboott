@@ -57,11 +57,12 @@ export const isFalsyValue = (
 export const customShouldForwardProp = ({
   preventTarget,
   propName,
+  applyIsPropValid = true,
 }: CustomShouldForwardPropParams) => {
   const propKey =
     propName as keyof (typeof PREVENT_FOWARD_PROP)[typeof preventTarget];
 
-  if (!isPropValid(propName)) {
+  if (applyIsPropValid && !isPropValid(propName)) {
     return false;
   }
 

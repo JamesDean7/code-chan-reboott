@@ -6,18 +6,24 @@ import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
 import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
 import type { ModalContainerProps } from "@/components/modal/base/ModalContainer";
 import ModalContainer from "@/components/modal/base/ModalContainer";
+import { useTheme } from "@emotion/react";
 
-type BookmarkModalProps = ModalContainerProps & BookmarkModalHeadProps;
+type BookmarkModalProps = ModalContainerProps &
+  BookmarkModalHeadProps & { isOpen: boolean };
 
-const BookmarkModal = ({ onClose, ...props }: BookmarkModalProps) => {
+const BookmarkModal = ({ isOpen, onClose, ...props }: BookmarkModalProps) => {
+  const theme = useTheme();
+  // if (!isOpen) return <></>;
+
   return (
     <>
-      <BackgroundFilter />
+      <BackgroundFilter onClick={onClose} />
       <ModalContainer
         flexDirection="column"
         alignItems="stretch"
         padding={{ sm: "20px" }}
         rowGap={{ sm: "20px" }}
+        boxShadow={theme.shadow.medium}
         {...props}
       >
         <BookmarkModalHead onClose={onClose} />

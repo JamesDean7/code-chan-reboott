@@ -15,4 +15,5 @@ export type IsFalsyValueFnOptions = {
 export type CustomShouldForwardPropParams = {
   propName: string;
   preventTarget: PreventForwardPropKeys;
+  applyIsPropValid?: boolean;
 };

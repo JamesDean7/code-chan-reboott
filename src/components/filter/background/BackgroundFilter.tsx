@@ -2,11 +2,18 @@ import styled from "@emotion/styled";
 import type { ReactNodeChildren } from "@/types/lib-react";
 import { ZINDEX } from "@/const/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
+import { ElementMouseEvent } from "@/types/event";
 
 type BackgroundFilterStyleProps = {
   opacity: number;
   zIndex?: number;
 };
+
+type BackgroundFilterProps = ReactNodeChildren &
+  Pick<ElementMouseEvent<"div">, "onClick"> &
+  Pick<BackgroundFilterStyleProps, "zIndex"> & {
+    mode?: "dark" | "transparent";
+  };
 
 const BackgroundFilterStyle = styled("div", {
   shouldForwardProp: (propName) =>
@@ -21,11 +28,6 @@ const BackgroundFilterStyle = styled("div", {
   opacity: opacity,
   zIndex,
 }));
-
-type BackgroundFilterProps = ReactNodeChildren &
-  Pick<BackgroundFilterStyleProps, "zIndex"> & {
-    mode?: "dark" | "transparent";
-  };
 
 const BackgroundFilter = ({
   mode = "dark",
