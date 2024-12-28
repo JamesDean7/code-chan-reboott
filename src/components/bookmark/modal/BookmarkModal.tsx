@@ -4,14 +4,12 @@ import BookmarkModalHead, {
 } from "@/components/bookmark/modal/BookmarkModalHead";
 import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
 import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
-import type {
-  ModalContainerProps,
-} from "@/components/modal/base/ModalContainer";
+import type { ModalContainerProps } from "@/components/modal/base/ModalContainer";
 import ModalContainer from "@/components/modal/base/ModalContainer";
 
 type BookmarkModalProps = ModalContainerProps & BookmarkModalHeadProps;
 
-const BookmarkModal = ({ children, onClose, ...props }: BookmarkModalProps) => {
+const BookmarkModal = ({ onClose, ...props }: BookmarkModalProps) => {
   return (
     <>
       <BackgroundFilter />

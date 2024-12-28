@@ -6,14 +6,8 @@ import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 import type { OmitByKey } from "@/types/utils";
 import { applyDebounce } from "@/utils/timer/timer";
-import type {
-  FieldValues} from "react-hook-form";
-import {
-  Control,
-  Path,
-  useController,
-  Validate,
-} from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
+import { useController } from "react-hook-form";
 
 type TextControlInputProps<T extends FieldValues> = {
   displayError?: boolean;

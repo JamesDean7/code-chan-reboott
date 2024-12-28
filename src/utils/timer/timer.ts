@@ -1,4 +1,4 @@
-export const applyDebounce = <Args extends unknown>(
+export const applyDebounce = <Args>(
   callback: (args: Args) => void,
   delay: number
 ) => {

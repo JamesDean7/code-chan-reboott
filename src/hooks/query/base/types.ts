@@ -8,9 +8,7 @@ import type {
   UseSuspenseInfiniteQueryOptions,
   UseSuspenseInfiniteQueryResult,
   UseSuspenseQueryOptions,
-  UseSuspenseQueryResult} from "@tanstack/react-query";
-import {
-  QueryKey
+  UseSuspenseQueryResult,
 } from "@tanstack/react-query";
 
 type QueryApiLPayload<T> = {
