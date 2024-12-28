@@ -4,9 +4,7 @@ import { ReactNodeChildren } from "@/types/lib-react";
 
 type BookmarkDetailTypographyProps = ReactNodeChildren;
 
-const BookmarkDetailTypography = ({
-  children,
-}: BookmarkDetailTypographyProps) => {
+const BookmarkDetailText = ({ children }: BookmarkDetailTypographyProps) => {
   const themeGrayColor = useThemePalette({ usePallete: "gray" });
   return (
     <Typography fontSize={{ sm: "body2" }} color={themeGrayColor.dark}>
@@ -15,4 +13,4 @@ const BookmarkDetailTypography = ({
   );
 };
 
-export default BookmarkDetailTypography;
+export default BookmarkDetailText;

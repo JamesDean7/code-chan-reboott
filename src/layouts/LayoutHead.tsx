@@ -11,7 +11,7 @@ const LayoutHead = () => {
         <IconLogo width={{ sm: "32px" }} height={{ sm: "32px" }} />
       </NavLink>
       <NavLink to={ROUTE_PATH.bookmark}>
-        <IconHeart />
+        <IconHeart width={{ sm: "32px" }} height={{ sm: "32px" }} />
       </NavLink>
     </FlexRowContainer>
   );

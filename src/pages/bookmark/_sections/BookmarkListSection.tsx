@@ -92,13 +92,11 @@ const BookmarkListSection = () => {
           </Typography>
         </FlexColumnContainer>
       )}
-      {isModalOn && (
-        <BookmarkModal
-          isOpen={isModalOn}
-          width={{ sm: "80%", lg: "50%" }}
-          onClose={handleModalClose}
-        />
-      )}
+      <BookmarkModal
+        isOpen={isModalOn}
+        width={{ sm: "80%", lg: "50%" }}
+        onClose={handleModalClose}
+      />
     </>
   );
 };

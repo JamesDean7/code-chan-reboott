@@ -32,14 +32,14 @@ const ImageGallerySection = () => {
       detectBuffer: 200,
     });
 
-  // const { data: bookmarkList } = useSusBookmarkList();
+  const { data: bookmarkList } = useSusBookmarkList();
 
-  // const {
-  //   isFetchingNextPage,
-  //   data: imageList,
-  //   fetchNextPage,
-  //   hasNextPage,
-  // } = useSusInfiniteGalleryList();
+  const {
+    isFetchingNextPage,
+    data: imageList,
+    fetchNextPage,
+    hasNextPage,
+  } = useSusInfiniteGalleryList();
 
   const { mutateAsync: asyncAddBookmark } = useBookmarkAddition({
     baseInvalidateQueries: {
@@ -57,13 +57,13 @@ const ImageGallerySection = () => {
     },
   });
 
-  // useHomePageEffects({
-  //   hasNextPage,
-  //   isFetchingNextPage,
-  //   isScrollBottomReached,
-  //   fetchNextPage,
-  //   removeWindowScrollEvent,
-  // });
+  useHomePageEffects({
+    hasNextPage,
+    isFetchingNextPage,
+    isScrollBottomReached,
+    fetchNextPage,
+    removeWindowScrollEvent,
+  });
 
   const handleImageClick = useCallback(
     (imageInfo: GalleryImage) => () => {
@@ -85,12 +85,12 @@ const ImageGallerySection = () => {
     []
   );
 
-  // const bookmarkObjById = bookmarkList.reduce((acc, bookmark) => {
-  //   acc[bookmark.id] = bookmark.uri;
-  //   return acc;
-  // }, {} as { [x: string]: string });
+  const bookmarkObjById = bookmarkList.reduce((acc, bookmark) => {
+    acc[bookmark.id] = bookmark.uri;
+    return acc;
+  }, {} as { [x: string]: string });
 
-  // const imageFlatList = imageList.pages.flat();
+  const imageFlatList = imageList.pages.flat();
 
   return (
     <>
@@ -105,7 +105,7 @@ const ImageGallerySection = () => {
           PAGE_HOME_STYLE_GALLERY_CONTAINER.gridTemplateColumns
         }
       >
-        {/* {imageFlatList.map((image) => (
+        {imageFlatList.map((image) => (
           <BookmarkImage
             key={image.id}
             imageInfo={image}
@@ -115,9 +115,9 @@ const ImageGallerySection = () => {
             onImageClick={handleImageClick}
             onLikeClick={handleLikeClick}
           />
-        ))} */}
+        ))}
       </GridContainer>
-      {/* {isFetchingNextPage && <ImageGellerySkeleton skeletonNumber={2} />} */}
+      {isFetchingNextPage && <ImageGellerySkeleton skeletonNumber={2} />}
       <BookmarkModal
         isOpen={isModalOpen}
         width={{ sm: "80%", lg: "50%" }}

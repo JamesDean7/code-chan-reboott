@@ -6,26 +6,26 @@ import Profile from "@/components/image/profile/Profile";
 import Typography from "@/components/typography/base/Typography";
 
 export type BookmarkModalHeadProps = {
-  profileSrc: string;
-  name: string;
+  userImage: string;
+  userName: string;
   onClose: () => void;
 };
 
 const BookmarkModalHead = ({
-  profileSrc,
-  name,
+  userImage,
+  userName,
   onClose,
 }: BookmarkModalHeadProps) => {
   return (
     <FlexRowContainer alignItems="center" justifyContent="space-between">
       <FlexRowContainer columnGap={{ sm: "12px" }}>
         <Profile
-          src={profileSrc}
-          alt={`profile-image-${name}`}
+          src={userImage}
+          alt={`profile-image-${userName}`}
           height={{ sm: "40px" }}
           width={{ sm: "40px" }}
         />
-        <Typography>{name}</Typography>
+        <Typography>{userName}</Typography>
       </FlexRowContainer>
       <FlexRowContainer columnGap={{ sm: "20px" }}>
         <HoverContainer>

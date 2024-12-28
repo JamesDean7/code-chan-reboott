@@ -53,8 +53,8 @@ const BookmarkImage = ({
             onClick={onLikeClick(imageInfo, isBookmarked)}
           >
             <IconHeart
-              width={{ sm: "30px" }}
-              height={{ sm: "30px" }}
+              width={{ sm: "36px" }}
+              height={{ sm: "36px" }}
               fill={heartColor}
             />
           </HoverContainer>

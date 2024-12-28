@@ -9,11 +9,12 @@ import type { ModalContainerProps } from "@/components/modal/base/ModalContainer
 import ModalContainer from "@/components/modal/base/ModalContainer";
 
 type BookmarkModalProps = ModalContainerProps &
-  BookmarkModalHeadProps & { isOpen: boolean };
+  Pick<BookmarkModalHeadProps, "onClose"> & { isOpen: boolean };
 
 const BookmarkModal = ({ isOpen, onClose, ...props }: BookmarkModalProps) => {
   const theme = useTheme();
-  // if (!isOpen) return <></>;
+
+  if (!isOpen) return <></>;
 
   return (
     <>
@@ -27,8 +28,8 @@ const BookmarkModal = ({ isOpen, onClose, ...props }: BookmarkModalProps) => {
         {...props}
       >
         <BookmarkModalHead
-          profileSrc="/test.jpg"
-          name="James Memory"
+          userImage="/test.jpg"
+          userName="James Memory"
           onClose={onClose}
         />
         <BookmarkModelBody
