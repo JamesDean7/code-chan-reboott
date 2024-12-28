@@ -1,33 +1,12 @@
 import styled from "@emotion/styled";
-import type {
-  CSSStyleProperties,
-  PartialStylePropsByBreakpointsCollection,
-} from "@/types/styles";
 import { ZINDEX } from "@/const/style/style";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import type { ReactNodeChildren } from "@/types/lib-react";
-import type { FlexContainerProps } from "@/components/container/flex/FlexContainer";
 import FlexContainer from "@/components/container/flex/FlexContainer";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-
-type BookmarkModalStyleProps = Pick<
-  CSSStyleProperties,
-  | "borderRadius"
-  | "backgroundColor"
-  | "zIndex"
-  | "top"
-  | "left"
-  | "transform"
-  | "boxShadow"
-> &
-  Pick<
-    PartialStylePropsByBreakpointsCollection,
-    "width" | "maxWidth" | "height" | "maxHeight"
-  >;
-
-export type ModalContainerProps = ReactNodeChildren &
-  FlexContainerProps &
-  BookmarkModalStyleProps;
+import {
+  BookmarkModalStyleProps,
+  ModalContainerProps,
+} from "@/components/modal/types";
 
 const ModalContainerStyle = styled(FlexContainer)<BookmarkModalStyleProps>(
   ({

@@ -1,6 +1,8 @@
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
-import type { HookFormCommonCollection } from "@/components/input/hookform/types";
-import type { TextInputProps } from "@/components/input/text/TextInput";
+import type {
+  HookFormCommonCollection,
+  TextInputProps,
+} from "@/components/input/types";
 import TextInput from "@/components/input/text/TextInput";
 import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";

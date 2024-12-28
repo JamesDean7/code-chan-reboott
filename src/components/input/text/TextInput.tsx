@@ -1,35 +1,10 @@
 import styled from "@emotion/styled";
-import type {
-  CSSStyleProperties,
-  PartialStylePropsByBreakpointsCollection,
-} from "@/types/styles";
 import useThemePalette from "@/hooks/theme/useThemePalette";
-import type { PartialAppThemeCollection } from "@/theme/types";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import { InputElementAttribute } from "@/types/element";
-
-type TextInpputStyleProps = Pick<
-  CSSStyleProperties,
-  | "width"
-  | "height"
-  | "outline"
-  | "padding"
-  | "borderRadius"
-  | "borderWidth"
-  | "borderStyle"
-  | "borderColor"
-  | "color"
-> &
-  Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
-  Pick<PartialAppThemeCollection, "fontWeight">;
-
-export type TextInputProps = TextInpputStyleProps &
-  InputElementAttribute & {
-    error?: boolean;
-  };
+import { TextInpputStyleProps, TextInputProps } from "@/components/input/types";
 
 const TextInputStyle = styled("input", {
   shouldForwardProp: (propName) =>

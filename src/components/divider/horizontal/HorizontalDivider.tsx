@@ -1,5 +1,5 @@
-import type { DividerProps } from "@/components/divider/base/Divider";
 import Divider from "@/components/divider/base/Divider";
+import { DividerProps } from "@/components/divider/types";
 import styled from "@emotion/styled";
 
 type HorizontalDiderProps = Pick<DividerProps, "backgroundColor">;

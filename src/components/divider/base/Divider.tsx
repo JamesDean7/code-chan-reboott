@@ -1,12 +1,5 @@
 import styled from "@emotion/styled";
-import type { CSSStyleProperties } from "@/types/styles";
-
-type DividerStyleProps = Pick<
-  CSSStyleProperties,
-  "backgroundColor" | "width" | "height"
->;
-
-export type DividerProps = DividerStyleProps;
+import { DividerProps, DividerStyleProps } from "@/components/divider/types";
 
 const DividerStyle = styled("div")<DividerStyleProps>(
   ({ theme, width, height, backgroundColor }) => {

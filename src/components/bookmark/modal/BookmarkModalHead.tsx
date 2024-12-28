@@ -1,21 +1,23 @@
+import { useTheme } from "@emotion/react";
 import IconCancel from "@/assets/svg/IconCancel";
 import IconHeart from "@/assets/svg/IconHeart";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import HoverContainer from "@/components/container/hover/HoverContainer";
 import Profile from "@/components/image/profile/Profile";
 import Typography from "@/components/typography/base/Typography";
-
-export type BookmarkModalHeadProps = {
-  userImage: string;
-  userName: string;
-  onClose: () => void;
-};
+import { BookmarkModalHeadProps } from "@/components/bookmark/types";
 
 const BookmarkModalHead = ({
-  userImage,
-  userName,
+  isBookmarked,
+  selectedImageInfo,
+  onLikeClick,
   onClose,
 }: BookmarkModalHeadProps) => {
+  const theme = useTheme();
+  const { userImage, userName } = selectedImageInfo;
+  const heartColor = isBookmarked
+    ? theme.palette.red.main
+    : theme.palette.common.white;
   return (
     <FlexRowContainer alignItems="center" justifyContent="space-between">
       <FlexRowContainer columnGap={{ sm: "12px" }}>
@@ -28,8 +30,12 @@ const BookmarkModalHead = ({
         <Typography>{userName}</Typography>
       </FlexRowContainer>
       <FlexRowContainer columnGap={{ sm: "20px" }}>
-        <HoverContainer>
-          <IconHeart width={{ sm: "30px" }} height={{ sm: "30px" }} />
+        <HoverContainer onClick={onLikeClick(selectedImageInfo, isBookmarked)}>
+          <IconHeart
+            fill={heartColor}
+            width={{ sm: "30px" }}
+            height={{ sm: "30px" }}
+          />
         </HoverContainer>
         <HoverContainer onClick={onClose}>
           <IconCancel width={{ sm: "30px" }} height={{ sm: "30px" }} />

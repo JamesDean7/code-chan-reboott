@@ -1,20 +1,18 @@
 import { useTheme } from "@emotion/react";
 import BookmarkModalDetails from "@/components/bookmark/modal/BookmarkModalDetails";
-import BookmarkModalHead, {
-  type BookmarkModalHeadProps,
-} from "@/components/bookmark/modal/BookmarkModalHead";
+import BookmarkModalHead from "@/components/bookmark/modal/BookmarkModalHead";
 import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
 import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
-import type { ModalContainerProps } from "@/components/modal/base/ModalContainer";
 import ModalContainer from "@/components/modal/base/ModalContainer";
+import { BookmarkModalProps } from "@/components/bookmark/types";
 
-type BookmarkModalProps = ModalContainerProps &
-  Pick<BookmarkModalHeadProps, "onClose"> & { isOpen: boolean };
-
-const BookmarkModal = ({ isOpen, onClose, ...props }: BookmarkModalProps) => {
+const BookmarkModal = ({
+  selectedImageInfo,
+  onClose,
+  onLikeClick,
+  ...props
+}: BookmarkModalProps) => {
   const theme = useTheme();
-
-  if (!isOpen) return <></>;
 
   return (
     <>
@@ -28,23 +26,13 @@ const BookmarkModal = ({ isOpen, onClose, ...props }: BookmarkModalProps) => {
         {...props}
       >
         <BookmarkModalHead
-          userImage="/test.jpg"
-          userName="James Memory"
+          isBookmarked={false}
+          selectedImageInfo={selectedImageInfo}
           onClose={onClose}
+          onLikeClick={onLikeClick}
         />
-        <BookmarkModelBody
-          imageName="test image"
-          imageSrc="/test.jpg"
-          imageHeight={300}
-          imageWidth={200}
-        />
-        <BookmarkModalDetails
-          imageWidth={300}
-          imageHeight={200}
-          downloads={100}
-          updateDate="2024-12-10"
-          tags={["test", "test2"]}
-        />
+        <BookmarkModelBody selectedImageInfo={selectedImageInfo} />
+        <BookmarkModalDetails selectedImageInfo={selectedImageInfo} />
       </ModalContainer>
     </>
   );

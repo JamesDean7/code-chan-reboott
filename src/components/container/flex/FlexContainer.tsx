@@ -1,31 +1,11 @@
 import styled from "@emotion/styled";
-import type { ReactNodeChildren } from "@/types/lib-react";
-import type { ElementClassName } from "@/types/element";
-import type {
-  CSSStyleProperties,
-  PartialStylePropsByBreakpointsCollection,
-} from "@/types/styles";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-
-type FlexContainerStyleProps = Pick<
-  CSSStyleProperties,
-  | "flexWrap"
-  | "flexDirection"
-  | "justifyContent"
-  | "alignItems"
-  | "flex"
-  | "position"
-> &
-  Pick<
-    PartialStylePropsByBreakpointsCollection,
-    "width" | "height" | "rowGap" | "columnGap" | "padding" | "minHeight"
-  >;
-
-export type FlexContainerProps = ReactNodeChildren &
-  ElementClassName &
-  FlexContainerStyleProps;
+import {
+  FlexContainerProps,
+  FlexContainerStyleProps,
+} from "@/components/container/types";
 
 const FlexContainerStyle = styled("div", {
   shouldForwardProp: (propName) =>

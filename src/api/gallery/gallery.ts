@@ -1,14 +1,48 @@
 import type { AsyncApiRequestFn } from "@/api/types";
-import type { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
+import type {
+  AddToBookmarkFnParams,
+  BookmarkedImage,
+  GalleryImage,
+} from "@/api/gallery/types";
 import { axiosClient } from "@/api/axiosClient";
 
 export const DEMO_IMAGE_LIST: GalleryImage[] = [
-  { id: "1", uri: "/test.jpg" },
-  { id: "2", uri: "/test.jpg" },
-  { id: "3", uri: "/test.jpg" },
-  { id: "4", uri: "/test.jpg" },
-  { id: "5", uri: "/test.jpg" },
-  { id: "6", uri: "/test.jpg" },
+  {
+    id: "1",
+    imageSrc: "/test.jpg",
+    downloads: 200,
+    imageHeight: 300,
+    imageWidth: 200,
+    tags: ["ad"],
+    updateDate: "2024-12-10",
+    userImage: "/test.jpg",
+    userName: "Jack Moa",
+    imageName: "test",
+  },
+  {
+    id: "2",
+    imageSrc: "/test.jpg",
+    downloads: 200,
+    imageHeight: 300,
+    imageWidth: 200,
+    tags: ["ad"],
+    updateDate: "2024-12-10",
+    userImage: "/test.jpg",
+    userName: "Jack Moa",
+    imageName: "test",
+  },
+  {
+    id: "3",
+    imageSrc: "/test.jpg",
+    downloads: 200,
+    imageHeight: 300,
+    imageWidth: 200,
+    tags: ["ad"],
+    updateDate: "2024-12-10",
+    userImage: "/test.jpg",
+    userName: "Jack Moa",
+    imageName: "test",
+  },
 ] as const;
 
 export const getGalleryImageList: AsyncApiRequestFn<
@@ -21,10 +55,19 @@ export const getGalleryImageList: AsyncApiRequestFn<
   return DEMO_IMAGE_LIST;
 };
 
-let DEMO_BOOKMARK_LIST: GalleryImage[] = [
-  { id: "1", uri: "/test.jpg" },
-  { id: "3", uri: "/test.jpg" },
-  { id: "6", uri: "/test.jpg" },
+let DEMO_BOOKMARK_LIST: BookmarkedImage[] = [
+  {
+    id: "1",
+    imageSrc: "/test.jpg",
+    downloads: 200,
+    imageHeight: 300,
+    imageWidth: 200,
+    tags: ["ad"],
+    updateDate: "2024-12-10",
+    userImage: "/test.jpg",
+    userName: "Jack Moa",
+    imageName: "test",
+  },
 ];
 
 export const getMyBookmarkList: AsyncApiRequestFn<
@@ -36,8 +79,8 @@ export const getMyBookmarkList: AsyncApiRequestFn<
 export const addToBookmark: AsyncApiRequestFn<
   GalleryImage[],
   AddToBookmarkFnParams
-> = async ({ id, uri }) => {
-  DEMO_BOOKMARK_LIST.push({ id, uri });
+> = async ({ ...rest }) => {
+  DEMO_BOOKMARK_LIST.push({ ...rest });
   return DEMO_BOOKMARK_LIST;
 };
 

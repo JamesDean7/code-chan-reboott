@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-import type { GalleryImage } from "@/api/gallery/types";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
 import GridContainer from "@/components/container/grid/GridContainer";
@@ -15,10 +14,15 @@ import { createQueryKey } from "@/utils/format/format";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import Typography from "@/components/typography/base/Typography";
 import IconHeart from "@/assets/svg/IconHeart";
+import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
+import { BookmarkImageProps } from "@/components/bookmark/types";
 
 const BookmarkListSection = () => {
+  const { selectedImageInfo, handleSelectedImageInfoUpdate } =
+    useSelectedBookmarkImage();
+
   const {
-    isOn: isModalOn,
+    isOn: isModalOpen,
     handleUpdateToOn: handleModalOpen,
     handleUpdateToOff: handleModalClose,
   } = useOnOffState();
@@ -33,19 +37,18 @@ const BookmarkListSection = () => {
     },
   });
 
-  const handleImageClick = useCallback(
-    (imageInfo: GalleryImage) => () => {
+  const handleImageClick: BookmarkImageProps["onImageClick"] = useCallback(
+    (imageInfo) => () => {
       handleModalOpen();
     },
     []
   );
 
-  const handleLikeClick = useCallback(
-    (imageInfo: GalleryImage) =>
-      (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        e.stopPropagation();
-        asyncRemoveBookmark(imageInfo.id);
-      },
+  const handleLikeClick: BookmarkImageProps["onLikeClick"] = useCallback(
+    (imageInfo) => (e) => {
+      e.stopPropagation();
+      asyncRemoveBookmark(imageInfo.id);
+    },
     []
   );
 
@@ -92,11 +95,15 @@ const BookmarkListSection = () => {
           </Typography>
         </FlexColumnContainer>
       )}
-      <BookmarkModal
-        isOpen={isModalOn}
-        width={{ sm: "80%", lg: "50%" }}
-        onClose={handleModalClose}
-      />
+
+      {isModalOpen && selectedImageInfo && (
+        <BookmarkModal
+          width={{ sm: "80%", lg: "50%" }}
+          selectedImageInfo={selectedImageInfo}
+          onClose={handleModalClose}
+          onLikeClick={handleImageClick}
+        />
+      )}
     </>
   );
 };

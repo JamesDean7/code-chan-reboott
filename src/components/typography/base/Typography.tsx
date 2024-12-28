@@ -1,34 +1,13 @@
-import type { ReactHTML } from "react";
 import { memo } from "react";
 import styled from "@emotion/styled";
-import type { PartialAppThemeCollection } from "@/theme/types";
-import type { ReactNodeChildren } from "@/types/lib-react";
-import type { ExtractByKey } from "@/types/utils";
-import type {
-  CSSStyleProperties,
-  PartialStylePropsByBreakpointsCollection,
-} from "@/types/styles";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-
-type TypographyComponentProps = Pick<
-  CSSStyleProperties,
-  "color" | "lineHeight" | "position" | "top" | "left" | "bottom" | "right"
-> &
-  Pick<PartialStylePropsByBreakpointsCollection, "fontSize"> &
-  Pick<PartialAppThemeCollection, "fontWeight">;
-
-type TypographyComponentOptions = ExtractByKey<
-  keyof ReactHTML,
-  "h1" | "h2" | "h3" | "h4" | "h5" | "p" | "span" | "div"
->;
-
-export type TypographyProps = ReactNodeChildren &
-  TypographyComponentProps & {
-    element?: TypographyComponentOptions;
-  };
+import {
+  TypographyComponentProps,
+  TypographyProps,
+} from "@/components/typography/types";
 
 const TypographyComponent = styled("p", {
   shouldForwardProp: (propName) =>

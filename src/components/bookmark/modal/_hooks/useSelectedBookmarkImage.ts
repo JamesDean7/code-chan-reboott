@@ -1,0 +1,25 @@
+import { useState } from "react";
+import { BookmarkModalSelectedImageInfoProp } from "@/components/bookmark/types";
+
+const useSelectedBookmarkImage = () => {
+  const [selectedImageInfo, setSelectedImageInfo] = useState<
+    BookmarkModalSelectedImageInfoProp["selectedImageInfo"] | null
+  >(null);
+
+  const handleSelectedImageInfoUpdate = (
+    imageInfo: BookmarkModalSelectedImageInfoProp["selectedImageInfo"]
+  ) => {
+    setSelectedImageInfo(imageInfo);
+  };
+
+  const handleSelectedImageInfoReset = () => {
+    setSelectedImageInfo(null);
+  };
+  return {
+    selectedImageInfo,
+    handleSelectedImageInfoReset,
+    handleSelectedImageInfoUpdate,
+  };
+};
+
+export default useSelectedBookmarkImage;

@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
-import Typography, {
-  type TypographyProps,
-} from "@/components/typography/base/Typography";
+import Typography from "@/components/typography/base/Typography";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import type {
   CSSStyleProperties,
@@ -9,8 +7,8 @@ import type {
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
-import useMouseEnter from "@/hooks/event/useMouseEnter";
 import { customShouldForwardProp } from "@/utils/verify/verify";
+import { TypographyProps } from "@/components/typography/types";
 
 type ButtonStyleProps = Pick<
   CSSStyleProperties,
@@ -86,16 +84,12 @@ const Button = ({
   hoverColor,
   ...rest
 }: ButtonProps) => {
-  const { isMouseEnter, handleMouseEnter, handleMouseLeave } =
-    useMouseEnter<"button">();
   return (
     <ButtonStyle
       color={color}
       backgroundColor={backgroundColor}
       hoverBgColor={hoverBgColor ?? backgroundColor}
       hoverColor={hoverColor ?? color}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       {...rest}
     >
       <Typography fontSize={fontSize} color="inherent" fontWeight={fontWeight}>

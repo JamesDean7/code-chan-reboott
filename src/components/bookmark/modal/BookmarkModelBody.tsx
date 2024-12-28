@@ -1,19 +1,12 @@
+import { BookmarkModalSelectedImageInfoProp } from "@/components/bookmark/types";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import Image from "@/components/image/base/Image";
 
-type BookmarkModelBodyProps = {
-  imageSrc: string;
-  imageName: string;
-  imageWidth: number;
-  imageHeight: number;
-};
+type BookmarkModelBodyProps = BookmarkModalSelectedImageInfoProp;
 
-const BookmarkModelBody = ({
-  imageName,
-  imageSrc,
-  imageWidth = 200,
-  imageHeight = 100,
-}: BookmarkModelBodyProps) => {
+const BookmarkModelBody = ({ selectedImageInfo }: BookmarkModelBodyProps) => {
+  const { imageName, imageSrc, imageHeight, imageWidth } = selectedImageInfo;
+
   const isHorizontalImage = imageWidth > imageHeight;
 
   return (

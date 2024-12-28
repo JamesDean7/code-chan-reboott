@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import type { ReactNodeChildren } from "@/types/lib-react";
 import { ZINDEX } from "@/const/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import { ElementMouseEvent } from "@/types/event";
+import { ElementMouseEventCollection } from "@/types/event";
 
 type BackgroundFilterStyleProps = {
   opacity: number;
@@ -10,7 +10,7 @@ type BackgroundFilterStyleProps = {
 };
 
 type BackgroundFilterProps = ReactNodeChildren &
-  Pick<ElementMouseEvent<"div">, "onClick"> &
+  Pick<ElementMouseEventCollection<"div">, "onClick"> &
   Pick<BackgroundFilterStyleProps, "zIndex"> & {
     mode?: "dark" | "transparent";
   };

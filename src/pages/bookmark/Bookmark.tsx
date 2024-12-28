@@ -6,10 +6,11 @@ import Typography from "@/components/typography/base/Typography";
 import BookmarkListErrorFallback from "@/pages/bookmark/_fallbacks/BookmarkListErrorFallback";
 import BookmarkListSkeleton from "@/pages/bookmark/_fallbacks/BookmarkListSkeleton";
 import BookmarkListSection from "@/pages/bookmark/_sections/BookmarkListSection";
+import PageContainer from "@/components/container/page/PageContainer";
 
 const Bookmark = () => {
   return (
-    <FlexColumnContainer rowGap={{ sm: "60px" }} alignItems="stretch">
+    <PageContainer rowGap={{ sm: "40px" }}>
       <FlexColumnContainer
         rowGap={{ sm: "20px" }}
         justifyContent="center"
@@ -25,7 +26,7 @@ const Bookmark = () => {
           <BookmarkListSection />
         </Suspense>
       </ErrorBoundary>
-    </FlexColumnContainer>
+    </PageContainer>
   );
 };
 

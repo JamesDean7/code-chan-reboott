@@ -12,15 +12,19 @@ import {
   useBookmarkAddition,
   useBookmarkDeletion,
 } from "@/hooks/query/bookmark/useBookmarkMutation";
-import type { GalleryImage } from "@/api/gallery/types";
 import { createQueryKey } from "@/utils/format/format";
 import { QUERY_KEY } from "@/const/constraint/constraint";
 import useScrollBottomDetect from "@/hooks/event/useScrollBottomDetect";
 import ImageGellerySkeleton from "@/pages/home/_fallbacks/ImageGellerySkeleton";
 import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQuery";
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
+import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
+import { BookmarkImageProps } from "@/components/bookmark/types";
 
 const ImageGallerySection = () => {
+  const { selectedImageInfo, handleSelectedImageInfoUpdate } =
+    useSelectedBookmarkImage();
+
   const {
     isOn: isModalOpen,
     handleUpdateToOn: handleModalOpen,
@@ -65,28 +69,27 @@ const ImageGallerySection = () => {
     removeWindowScrollEvent,
   });
 
-  const handleImageClick = useCallback(
-    (imageInfo: GalleryImage) => () => {
+  const handleImageClick: BookmarkImageProps["onImageClick"] = useCallback(
+    (imageInfo) => () => {
       handleModalOpen();
     },
     []
   );
 
-  const handleLikeClick = useCallback(
-    (imageInfo: GalleryImage, isBookmarked: boolean) =>
-      (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        e.stopPropagation();
-        if (isBookmarked) {
-          asyncRemoveBookmark(imageInfo.id);
-          return;
-        }
-        asyncAddBookmark(imageInfo);
-      },
+  const handleLikeClick: BookmarkImageProps["onLikeClick"] = useCallback(
+    (imageInfo, isBookmarked) => (e) => {
+      e.stopPropagation();
+      if (isBookmarked) {
+        asyncRemoveBookmark(imageInfo.id);
+        return;
+      }
+      asyncAddBookmark(imageInfo);
+    },
     []
   );
 
   const bookmarkObjById = bookmarkList.reduce((acc, bookmark) => {
-    acc[bookmark.id] = bookmark.uri;
+    acc[bookmark.id] = bookmark.imageSrc;
     return acc;
   }, {} as { [x: string]: string });
 
@@ -118,11 +121,14 @@ const ImageGallerySection = () => {
         ))}
       </GridContainer>
       {isFetchingNextPage && <ImageGellerySkeleton skeletonNumber={2} />}
-      <BookmarkModal
-        isOpen={isModalOpen}
-        width={{ sm: "80%", lg: "50%" }}
-        onClose={handleModalClose}
-      />
+      {isModalOpen && selectedImageInfo && (
+        <BookmarkModal
+          width={{ sm: "80%", lg: "50%" }}
+          selectedImageInfo={selectedImageInfo}
+          onClose={handleModalClose}
+          onLikeClick={handleImageClick}
+        />
+      )}
     </>
   );
 };
