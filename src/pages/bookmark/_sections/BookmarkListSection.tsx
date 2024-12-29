@@ -6,9 +6,7 @@ import BookmarkImageGallery from "@/features/bookmark/_components/gallery/Bookma
 
 const BookmarkListSection = () => {
   const { data: bookmarkedList } = useSusBookmarkedList();
-
   const isBookmarkEmpty = bookmarkedList.length === 0;
-
   return (
     <>
       <BookmarkImageGallery

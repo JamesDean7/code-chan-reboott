@@ -1,13 +1,36 @@
 import { ERROR_SYSTEM } from "@/const/error/error";
 import type { AxiosError } from "axios";
 import { isAxiosError } from "axios";
-import type { StandardErrorFormat } from "@/utils/error/types";
+import type {
+  StandardErrorFormat,
+  UnsplashApiError,
+} from "@/utils/error/types";
+import { isArrayType } from "@/utils/verify/verify";
+
+export const createUnsplashError = (
+  axiosErrorData: unknown,
+  axiosErr: AxiosError
+): StandardErrorFormat => {
+  const unsplashError = (axiosErrorData as UnsplashApiError)?.errors;
+  const isErrorArray = isArrayType(unsplashError);
+  if (!isErrorArray) {
+    return {
+      type: "api",
+      message: ERROR_SYSTEM.axios.unsplash.message,
+      code: ERROR_SYSTEM.axios.unsplash.code,
+      original: axiosErr,
+    };
+  }
+  return {
+    type: "api",
+    message: unsplashError.join(","),
+    code: ERROR_SYSTEM.axios.unsplash.code,
+    original: axiosErr,
+  };
+};
 
 export const createAxiosError = (axiosErr: AxiosError): StandardErrorFormat => {
   const { data } = axiosErr?.response ?? {};
-
-  console.log(" ::: createAxiosError ::: ");
-  console.log({ axiosErr });
 
   if (!data) {
     return {
@@ -18,12 +41,7 @@ export const createAxiosError = (axiosErr: AxiosError): StandardErrorFormat => {
     };
   }
 
-  return {
-    type: "api",
-    message: ERROR_SYSTEM.axios.temp.message,
-    code: ERROR_SYSTEM.axios.temp.code,
-    original: axiosErr,
-  };
+  return createUnsplashError(data, axiosErr);
 };
 
 export const createStandardError = (err: unknown): StandardErrorFormat => {

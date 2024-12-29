@@ -4,8 +4,13 @@ import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQu
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 import SimpleSpinner from "@/components/spinner/simple/SimpleSpinner";
 import BookmarkImageGallery from "@/features/bookmark/_components/gallery/BookmarkImageGallery";
+import { BookmarkImageInfo } from "@/features/bookmark/types";
 
-const ImageGallerySection = () => {
+type ImageGallerySectionProps = {
+  searchValue: string;
+};
+
+const ImageGallerySection = ({ searchValue }: ImageGallerySectionProps) => {
   const { isScrollBottomReached, removeWindowScrollEvent } =
     useScrollBottomDetect({
       detectBuffer: 200,
@@ -16,7 +21,7 @@ const ImageGallerySection = () => {
     data: imageList,
     fetchNextPage,
     hasNextPage,
-  } = useSusInfiniteGalleryList();
+  } = useSusInfiniteGalleryList({ apiPayload: { search: searchValue } });
 
   const { data: bookmarkedList } = useSusBookmarkedList();
 
@@ -28,7 +33,13 @@ const ImageGallerySection = () => {
     removeWindowScrollEvent,
   });
 
-  const imageFlatList = imageList.pages.flat();
+  const imageFlatList: BookmarkImageInfo[] = imageList.pages
+    .flat()
+    .map(({ id, alt_description, urls: { regular } }) => ({
+      id,
+      imageDesc: alt_description,
+      imageSrc: regular,
+    }));
 
   return (
     <>

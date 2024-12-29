@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import BookmarkImageGalleryContainer from "@/features/bookmark/_components/gallery/BookmarkImageGalleryContainer";
 import BookmarkImage from "@/features/bookmark/_components/image/BookmarkImage";
 import BookmarkModal from "@/features/bookmark/_components/modal/BookmarkModal";
@@ -91,13 +91,15 @@ const BookmarkImageGallery = ({
         ))}
       </BookmarkImageGalleryContainer>
       {isModalOpen && selectedImageInfo && (
-        <BookmarkModal
-          isBookmarked={bookmarkObjById[selectedImageInfo.id] ? true : false}
-          selectedImageInfo={selectedImageInfo}
-          width={{ sm: "80%", lg: "50%" }}
-          onClose={handleModalClose}
-          onLikeClick={handleLikeClick}
-        />
+        <Suspense>
+          <BookmarkModal
+            isBookmarked={bookmarkObjById[selectedImageInfo.id] ? true : false}
+            selectedImageInfo={selectedImageInfo}
+            width={{ sm: "80%", lg: "50%" }}
+            onClose={handleModalClose}
+            onLikeClick={handleLikeClick}
+          />
+        </Suspense>
       )}
     </>
   );

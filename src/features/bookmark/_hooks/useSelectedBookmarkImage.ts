@@ -9,7 +9,7 @@ const useSelectedBookmarkImage = () => {
   const handleSelectedImageInfoUpdate = (
     imageInfo: BookmarkModalSelectedImageInfoProp["selectedImageInfo"]
   ) => {
-    setSelectedImageInfo(imageInfo);
+    setSelectedImageInfo({ ...imageInfo });
   };
 
   const handleSelectedImageInfoReset = () => {

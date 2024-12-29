@@ -23,8 +23,8 @@ const COMMON_QUERY_KEY: MatchPropAndValueFromKeys<QueryCommonKeys> = {
 };
 
 export const QUERY_KEY = {
-  gallery: {
-    root: "gallery",
+  unsplash: {
+    root: "unsplash",
     infiniteList: "infiniteList",
     ...COMMON_QUERY_KEY,
   },

@@ -3,13 +3,19 @@ import type { ModalContainerProps } from "@/components/modal/types";
 
 export type BookmarkImageInfo = {
   id: string;
-  updateDate: string;
+  imageDesc: string;
+  imageSrc: string;
+};
+
+export type BookMarkDetailedInfo = {
+  id: string;
   downloads: number;
+  uploadDate: string;
   imageWidth: number;
   imageHeight: number;
   userImage: string;
   userName: string;
-  imageName: string;
+  imageDesc: string;
   imageSrc: string;
   tags: string[];
 };
@@ -21,11 +27,15 @@ export type BookmarkModalSelectedImageInfoProp = {
   selectedImageInfo: BookmarkImageInfo;
 };
 
-export type BookmarkModalHeadProps = BookmarkModalSelectedImageInfoProp & {
+export type BookmarkModalImageDetailInfoProp = {
+  imageDetailInfo: BookMarkDetailedInfo;
+};
+
+export type BookmarkModalHeadProps = BookmarkModalImageDetailInfoProp & {
   isBookmarked: boolean;
   onClose: () => void;
   onLikeClick: (
-    imageInfo: BookmarkModalSelectedImageInfoProp["selectedImageInfo"],
+    imageInfo: BookmarkModalImageDetailInfoProp["imageDetailInfo"],
     isBookmarked: boolean
   ) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };

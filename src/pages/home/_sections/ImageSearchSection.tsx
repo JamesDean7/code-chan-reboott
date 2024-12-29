@@ -14,24 +14,31 @@ type SearchForm = {
   search: string;
 };
 
-const ImageSearchSection = () => {
+type ImageSearchSectionProp = {
+  onSearchRequest: (searchValue: string) => void;
+};
+
+const ImageSearchSection = ({ onSearchRequest }: ImageSearchSectionProp) => {
   const {
     control,
-    trigger,
     formState: { errors },
+    trigger,
     clearErrors,
+    getValues,
   } = useForm<SearchForm>();
 
   const themePaletteCommon = useThemePalette({ usePallete: "common" });
 
-  const handleSearchData = (search: string) => {
+  const handleSearchData = async (search: string) => {
     if (isEmptyString(search) && errors?.search) {
       clearErrors();
       return;
     }
 
     if (!isEmptyString(search)) {
-      trigger("search");
+      const triggerResult = await trigger("search");
+      if (!triggerResult) return;
+      onSearchRequest(getValues("search"));
     }
   };
 
@@ -44,7 +51,6 @@ const ImageSearchSection = () => {
 
   return (
     <FilterContainer
-      flex={1}
       flexDirection="row"
       justifyContent="center"
       alignItems="center"

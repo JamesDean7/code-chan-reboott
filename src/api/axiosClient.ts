@@ -6,8 +6,8 @@ const tokenScheme = "Client-ID";
 const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
 export const axiosClient = axios.create({
-  // baseURL: `https://api.unsplash.com/`,
-  baseURL: `http://localhost:4000`,
+  baseURL: `https://api.unsplash.com/`,
+  // baseURL: `http://localhost:4000`,
   timeout: 10000,
 });
 

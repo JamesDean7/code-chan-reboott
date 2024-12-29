@@ -9,12 +9,12 @@ import type { BookmarkModalHeadProps } from "@/features/bookmark/types";
 
 const BookmarkModalHead = ({
   isBookmarked,
-  selectedImageInfo,
+  imageDetailInfo,
   onLikeClick,
   onClose,
 }: BookmarkModalHeadProps) => {
   const theme = useTheme();
-  const { userImage, userName } = selectedImageInfo;
+  const { userImage, userName } = imageDetailInfo;
   const heartColor = isBookmarked
     ? theme.palette.red.main
     : theme.palette.common.black;
@@ -30,7 +30,7 @@ const BookmarkModalHead = ({
         <Typography>{userName}</Typography>
       </FlexRowContainer>
       <FlexRowContainer columnGap={{ sm: "20px" }}>
-        <HoverContainer onClick={onLikeClick(selectedImageInfo, isBookmarked)}>
+        <HoverContainer onClick={onLikeClick(imageDetailInfo, isBookmarked)}>
           <IconHeart
             fill={heartColor}
             width={{ sm: "30px" }}

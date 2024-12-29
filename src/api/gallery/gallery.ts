@@ -4,75 +4,67 @@ import type {
   AddToBookmarkFnParams,
   BookmarkImageInfo,
 } from "@/features/bookmark/types";
+import {
+  UnsplashImageListInfo,
+  UpsplashImageDetailed,
+} from "@/api/gallery/types";
 
-export const DEMO_IMAGE_LIST: BookmarkImageInfo[] = [
-  {
-    id: "1",
-    imageSrc: "/test.jpg",
-    downloads: 200,
-    imageHeight: 300,
-    imageWidth: 200,
-    tags: ["ad"],
-    updateDate: "2024-12-10",
-    userImage: "/test.jpg",
-    userName: "Jack Moa",
-    imageName: "test",
-  },
-  {
-    id: "2",
-    imageSrc: "/test.jpg",
-    downloads: 200,
-    imageHeight: 300,
-    imageWidth: 200,
-    tags: ["ad"],
-    updateDate: "2024-12-10",
-    userImage: "/test.jpg",
-    userName: "Jack Moa",
-    imageName: "test",
-  },
-] as const;
+let BOOKMARKED_LIST: BookmarkImageInfo[] = [];
 
-export const getGalleryImageList: AsyncApiRequestFn<
-  BookmarkImageInfo[],
-  number
-> = async (page: number) => {
-  const result = await axiosClient.get<BookmarkImageInfo[]>(
-    "http://localhost:4000/orders"
-  );
-  // const result = await axiosClient.get<BookmarkImageInfo[]>(
-  //   "http://localhost:4000/orders"
-  // );
-  // return result.data;
-  return DEMO_IMAGE_LIST.map((item) => {
-    const { id, ...rest } = item;
-    const newId = page * 10 + id;
-    return { id: String(Number(newId) + page), ...rest };
+export const getUnsplashImageList: AsyncApiRequestFn<
+  UnsplashImageListInfo[],
+  { page: number; search: string }
+> = async ({ page, search }) => {
+  if (search) {
+    const result = await axiosClient.get<{ results: UnsplashImageListInfo[] }>(
+      `search/photos`,
+      {
+        params: {
+          page,
+          ...(search && { query: search }),
+        },
+      }
+    );
+    return result.data.results;
+  }
+  const result = await axiosClient.get<UnsplashImageListInfo[]>(`photos`, {
+    params: {
+      page,
+    },
   });
+  return result.data;
 };
 
-let DEMO_BOOKMARK_LIST: BookmarkImageInfo[] = [];
+export const getUnsplashImageDetailed: AsyncApiRequestFn<
+  UpsplashImageDetailed,
+  string
+> = async (id: string) => {
+  const result = await axiosClient.get<UpsplashImageDetailed>(`photos/${id}`);
+  console.log({ result });
+  return result.data;
+  // return MOCK_UNSPLASH_DETAILED;
+};
 
 export const getMyBookmarkedList: AsyncApiRequestFn<
   BookmarkImageInfo[]
 > = async () => {
-  return DEMO_BOOKMARK_LIST;
+  return BOOKMARKED_LIST;
 };
 
 export const addToBookmark: AsyncApiRequestFn<
   BookmarkImageInfo[],
   AddToBookmarkFnParams
 > = async ({ ...rest }) => {
-  DEMO_BOOKMARK_LIST.push({ ...rest });
-  return DEMO_BOOKMARK_LIST;
+  BOOKMARKED_LIST.push({ ...rest });
+  console.log({ rest, result: BOOKMARKED_LIST });
+  return BOOKMARKED_LIST;
 };
 
 export const removeFromBookmark: AsyncApiRequestFn<
   BookmarkImageInfo[],
   string
 > = async (id: string) => {
-  const newBookMark = DEMO_BOOKMARK_LIST.filter(
-    (bookmark) => bookmark.id !== id
-  );
-  DEMO_BOOKMARK_LIST = newBookMark;
-  return DEMO_BOOKMARK_LIST;
+  const newBookMark = BOOKMARKED_LIST.filter((bookmark) => bookmark.id !== id);
+  BOOKMARKED_LIST = newBookMark;
+  return BOOKMARKED_LIST;
 };

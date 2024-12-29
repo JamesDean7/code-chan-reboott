@@ -2,37 +2,35 @@ import IconCalendar from "@/assets/svg/IconCalendar";
 import IconDownload from "@/assets/svg/IconDownload";
 import IconScale from "@/assets/svg/IconScale";
 import BookmarkDetailText from "@/features/bookmark/_components/modal/BookmarkDetailText";
-import type { BookmarkModalSelectedImageInfoProp } from "@/features/bookmark/types";
+import type { BookmarkModalImageDetailInfoProp } from "@/features/bookmark/types";
 import Button from "@/components/button/base/Button";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 import { isNaNType } from "@/utils/verify/verify";
-import { differenceInDays } from "date-fns";
+import { differenceInDays, format } from "date-fns";
 
-type BookmarkModalDetailsProps = BookmarkModalSelectedImageInfoProp;
+type BookmarkModalDetailsProps = BookmarkModalImageDetailInfoProp;
 
 const BookmarkModalDetails = ({
-  selectedImageInfo,
+  imageDetailInfo,
 }: BookmarkModalDetailsProps) => {
   const themeGrayColor = useThemePalette({ usePallete: "gray" });
-  const { imageHeight, imageWidth, updateDate, downloads, tags } =
-    selectedImageInfo ?? {};
+  const { imageHeight, imageWidth, uploadDate, downloads, tags } =
+    imageDetailInfo ?? {};
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const pastDayCount = differenceInDays(
-    new Date("2024-12-19T15:00:00-00:00"),
-    today
-  );
+  const pastDayCount = differenceInDays(new Date(uploadDate), today);
 
-  const isPastDayCountValid =
-    !isNaNType(pastDayCount) && pastDayCount <= 30 && !isNaNType(pastDayCount);
+  const isPastDayCountValid = !isNaNType(pastDayCount);
+
+  const uploadDateFormat = format(new Date(uploadDate), "yyyy-MM-dd");
 
   const uploadDateInfo = isPastDayCountValid
-    ? `Upload Date : ${updateDate} (${Math.abs(pastDayCount)}일 전)`
-    : `Upload Date : ${updateDate}`;
+    ? `Upload Date : ${uploadDateFormat} (${Math.abs(pastDayCount)}일 전)`
+    : `Upload Date : Unknown`;
 
   return (
     <FlexColumnContainer rowGap={{ sm: "20px" }}>
@@ -65,9 +63,13 @@ const BookmarkModalDetails = ({
           <BookmarkDetailText>Downloads : {downloads}</BookmarkDetailText>
         </FlexRowContainer>
       </FlexColumnContainer>
-      {tags &&
-        tags.map((tag) => (
-          <FlexRowContainer columnGap={{ sm: "10px" }}>
+      {tags && (
+        <FlexRowContainer
+          justifyContent="flex-start"
+          rowGap={{ sm: "10px" }}
+          columnGap={{ sm: "10px" }}
+        >
+          {tags.map((tag) => (
             <Button
               borderColor="transparent"
               color={themeGrayColor.dark}
@@ -77,8 +79,9 @@ const BookmarkModalDetails = ({
             >
               {tag}
             </Button>
-          </FlexRowContainer>
-        ))}
+          ))}
+        </FlexRowContainer>
+      )}
     </FlexColumnContainer>
   );
 };

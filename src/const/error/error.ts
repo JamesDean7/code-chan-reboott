@@ -16,5 +16,9 @@ export const ERROR_SYSTEM = {
       message: "temporary error",
       code: "axiosTempError",
     },
+    unsplash: {
+      message: "unsplash api error",
+      code: "axiosUnsplashAPIError",
+    },
   },
 } satisfies SystemError;

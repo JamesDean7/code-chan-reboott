@@ -20,7 +20,7 @@ const BookmarkImage = ({
   const heartColor = isBookmarked
     ? theme.palette.red.main
     : theme.palette.common.white;
-  const { imageSrc, imageName } = imageInfo ?? {};
+  const { imageSrc, imageDesc } = imageInfo ?? {};
 
   return (
     <HoverContainer
@@ -34,7 +34,7 @@ const BookmarkImage = ({
         justifyContent="flex-end"
         alignItems="flex-end"
       >
-        <Image src={imageSrc} alt={imageName} width={width} height={height} />
+        <Image src={imageSrc} alt={imageDesc} width={width} height={height} />
         {isMouseEnter && (
           <HoverContainer
             position="absolute"

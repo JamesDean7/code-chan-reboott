@@ -6,3 +6,7 @@ export type StandardErrorFormat = {
   original: any;
   code?: string;
 };
+
+export type UnsplashApiError = {
+  errors: string[];
+};
