@@ -1,13 +1,18 @@
 import { getGalleryImageList } from "@/api/gallery/gallery";
 import type { GalleryImage } from "@/api/gallery/types";
 import { QUERY_KEY } from "@/const/constraint/constraint";
-import type { UseBaseInfiniteQueryBasedFn } from "@/hooks/query/base/types";
+import type {
+  UseBaseInfiniteQueryBasedFnParams,
+  UseBaseInfiniteQueryBasedFnReturn,
+} from "@/hooks/query/base/types";
 import { useBaseSuspenseInfiniteQuery } from "@/hooks/query/base/useBaseInfiniteQuery";
 import { createQueryKey } from "@/utils/format/format";
 
-export const useSusInfiniteGalleryList: UseBaseInfiniteQueryBasedFn<
+export const useSusInfiniteGalleryList = ({
+  ...rest
+}: UseBaseInfiniteQueryBasedFnParams<
   GalleryImage[]
-> = ({ ...rest } = {}) => {
+> = {}): UseBaseInfiniteQueryBasedFnReturn<GalleryImage[]> => {
   return useBaseSuspenseInfiniteQuery({
     initialPageParam: 1,
     queryKey: createQueryKey({

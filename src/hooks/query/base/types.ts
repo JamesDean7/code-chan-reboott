@@ -20,7 +20,7 @@ type QueryApiLPayload<T> = {
 export type UseBaseSuspenseQueryOptions<DataType = unknown> =
   UseSuspenseQueryOptions<DataType, StandardErrorFormat>;
 
-type UseBaseSuspenseQueryBasedFnParams<
+export type UseBaseSuspenseQueryBasedFnParams<
   DataType = unknown,
   ApiPayload = undefined
 > = ApiPayload extends undefined
@@ -28,12 +28,8 @@ type UseBaseSuspenseQueryBasedFnParams<
   : OmitByKey<UseBaseSuspenseQueryOptions<DataType>, "queryKey" | "queryFn"> &
       Partial<QueryApiLPayload<ApiPayload>>;
 
-export type UseBaseSuspenseQueryBasedFn<
-  DataType = unknown,
-  ApiPayload = undefined
-> = (
-  params?: UseBaseSuspenseQueryBasedFnParams<DataType, ApiPayload>
-) => UseSuspenseQueryResult<DataType, StandardErrorFormat>;
+export type UseBaseSuspenseQueryBasedFnReturn<DataType = unknown> =
+  UseSuspenseQueryResult<DataType, StandardErrorFormat>;
 
 /* ::: UseBaseInfiniteQuery ::: */
 
@@ -46,7 +42,7 @@ export type UseBaseSuspenseInfiniteQueryOptions<
   InfiniteData<DataType, PageParam>
 >;
 
-type UseBaseInfiniteQueryBasedFnParams<
+export type UseBaseInfiniteQueryBasedFnParams<
   DataType = unknown,
   PageParam = number,
   ApiPayload = undefined
@@ -61,13 +57,10 @@ type UseBaseInfiniteQueryBasedFnParams<
     > &
       Partial<QueryApiLPayload<ApiPayload>>;
 
-export type UseBaseInfiniteQueryBasedFn<
+export type UseBaseInfiniteQueryBasedFnReturn<
   DataType = unknown,
-  PageParam = number,
-  ApiPayload = undefined
-> = (
-  params?: UseBaseInfiniteQueryBasedFnParams<DataType, PageParam, ApiPayload>
-) => UseSuspenseInfiniteQueryResult<
+  PageParam = number
+> = UseSuspenseInfiniteQueryResult<
   InfiniteData<DataType, PageParam>,
   StandardErrorFormat
 >;
@@ -82,11 +75,10 @@ export type UseBaseMutationProps<DataType, ApiPayload> = UseMutationOptions<
   baseInvalidateQueries?: InvalidateQueryFilters;
 };
 
-type UseBaseMutationBasedFnParams<DataType, ApiPayload> = OmitByKey<
+export type UseBaseMutationBasedFnParams<DataType, ApiPayload> = OmitByKey<
   UseBaseMutationProps<DataType, ApiPayload>,
   "mutationFn"
 >;
 
-export type UseBaseMutationBasedFn<DataType, ApiPayload> = (
-  params?: UseBaseMutationBasedFnParams<DataType, ApiPayload>
-) => UseMutationResult<DataType, StandardErrorFormat, ApiPayload, unknown>;
+export type UseBaseMutationBasedFnReturn<DataType, ApiPayload> =
+  UseMutationResult<DataType, StandardErrorFormat, ApiPayload, unknown>;
