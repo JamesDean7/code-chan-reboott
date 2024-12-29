@@ -90,10 +90,11 @@ const BookmarkImageGallery = ({
       </BookmarkImageGalleryContainer>
       {isModalOpen && selectedImageInfo && (
         <BookmarkModal
-          width={{ sm: "80%", lg: "50%" }}
+          isBookmarked={bookmarkObjById[selectedImageInfo.id] ? true : false}
           selectedImageInfo={selectedImageInfo}
+          width={{ sm: "80%", lg: "50%" }}
           onClose={handleModalClose}
-          onLikeClick={handleImageClick}
+          onLikeClick={handleLikeClick}
         />
       )}
     </>

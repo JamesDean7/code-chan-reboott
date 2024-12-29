@@ -18,7 +18,7 @@ export type BookmarkModalHeadProps = BookmarkModalSelectedImageInfoProp & {
 
 export type BookmarkModalProps = ModalContainerProps &
   BookmarkModalSelectedImageInfoProp &
-  Pick<BookmarkModalHeadProps, "onClose" | "onLikeClick">;
+  Pick<BookmarkModalHeadProps, "isBookmarked" | "onClose" | "onLikeClick">;
 
 /* ::: BookmarkImage ::: */
 type BookmarkImageInfo = GalleryImage;

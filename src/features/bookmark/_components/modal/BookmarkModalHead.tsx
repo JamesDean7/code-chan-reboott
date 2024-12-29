@@ -17,7 +17,7 @@ const BookmarkModalHead = ({
   const { userImage, userName } = selectedImageInfo;
   const heartColor = isBookmarked
     ? theme.palette.red.main
-    : theme.palette.common.white;
+    : theme.palette.common.black;
   return (
     <FlexRowContainer alignItems="center" justifyContent="space-between">
       <FlexRowContainer columnGap={{ sm: "12px" }}>

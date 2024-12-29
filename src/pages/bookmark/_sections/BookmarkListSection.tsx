@@ -15,7 +15,6 @@ const BookmarkListSection = () => {
         imageList={bookmarkedList}
         bookmarkedList={bookmarkedList}
       />
-
       {isBookmarkEmpty && (
         <FlexColumnContainer
           rowGap={{ sm: "12px" }}
