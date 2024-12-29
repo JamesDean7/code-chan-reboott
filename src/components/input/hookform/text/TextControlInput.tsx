@@ -24,6 +24,7 @@ const TextControlInput = <T extends FieldValues>({
   control,
   inputName,
   displayError,
+  borderWidth = "2px",
   onChange,
   customValidateFn,
   ...props
@@ -52,7 +53,12 @@ const TextControlInput = <T extends FieldValues>({
 
   return (
     <FlexColumnContainer position="relative" rowGap={{ sm: "4px" }}>
-      <TextInput onChange={applyDebounce(handleInputChange, 700)} {...props} />
+      <TextInput
+        borderWidth={borderWidth}
+        borderColor={error ? themeColorRed.main : "transparent"}
+        onChange={applyDebounce(handleInputChange, 700)}
+        {...props}
+      />
       {displayError && error && (
         <Typography color={themeColorRed.main}>{error?.message}</Typography>
       )}

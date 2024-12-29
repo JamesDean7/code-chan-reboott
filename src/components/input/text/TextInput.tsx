@@ -4,7 +4,10 @@ import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
 import { getThemeTypographyWeight } from "@/utils/theme/theme";
 import { createStyledCompStyleByBreakpoint } from "@/utils/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import type { TextInpputStyleProps, TextInputProps } from "@/components/input/types";
+import type {
+  TextInpputStyleProps,
+  TextInputProps,
+} from "@/components/input/types";
 
 const TextInputStyle = styled("input", {
   shouldForwardProp: (propName) =>

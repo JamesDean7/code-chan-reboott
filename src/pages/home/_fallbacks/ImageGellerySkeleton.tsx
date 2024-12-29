@@ -4,16 +4,22 @@ import {
 } from "@/pages/home/_const/style";
 import BookmarkImagSkeleton from "@/components/bookmark/image/BookmarkImagSkeleton";
 import GridContainer from "@/components/container/grid/GridContainer";
+import { PartialStyleByBreakpoints } from "@/theme/types";
+import useCurrentBreakpoint from "@/hooks/event/useCurrentBreakpoint";
 
 type ImageGellerySkeletonProps = {
-  skeletonNumber?: number;
+  skeletonNumber?: PartialStyleByBreakpoints<number>;
 };
 
 const ImageGellerySkeleton = ({
-  skeletonNumber = 2,
+  skeletonNumber = { sm: 1, md: 2, lg: 3, xl: 3 },
 }: ImageGellerySkeletonProps) => {
+  const currentBreakpoint = useCurrentBreakpoint();
+
+  const skeletonDisplayNumber = skeletonNumber[currentBreakpoint ?? "sm"] ?? 1;
+
   const skeletonNumberArray = Array.from(
-    { length: skeletonNumber },
+    { length: skeletonDisplayNumber },
     (v, i) => i
   );
 

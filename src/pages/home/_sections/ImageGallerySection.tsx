@@ -20,6 +20,8 @@ import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQu
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
 import type { BookmarkImageProps } from "@/components/bookmark/types";
+import SimpleSpinner from "@/components/spinner/simple/SimpleSpinner";
+import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 
 const ImageGallerySection = () => {
   const { selectedImageInfo, handleSelectedImageInfoUpdate } =
@@ -120,7 +122,7 @@ const ImageGallerySection = () => {
           />
         ))}
       </GridContainer>
-      {isFetchingNextPage && <ImageGellerySkeleton skeletonNumber={2} />}
+      {isFetchingNextPage && <SimpleSpinner margin={{ sm: "30px auto" }} />}
       {isModalOpen && selectedImageInfo && (
         <BookmarkModal
           width={{ sm: "80%", lg: "50%" }}

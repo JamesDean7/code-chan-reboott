@@ -25,12 +25,12 @@ export type AppThemeShadowCustomColorParams = {
   color: string;
 };
 
-export type StyleByBreakpoints<T extends string> = Record<
+export type StyleByBreakpoints<T extends unknown = string> = Record<
   AppThemeBreakpointsKeys,
   T
 >;
 
-export type PartialStyleByBreakpoints<T extends string> = Partial<
+export type PartialStyleByBreakpoints<T extends unknown = string> = Partial<
   StyleByBreakpoints<T>
 >;
 

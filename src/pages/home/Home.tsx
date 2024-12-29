@@ -11,7 +11,7 @@ const Home = () => {
     <PageContainer rowGap={{ sm: "40px" }}>
       <ImageSearchSection />
       <ErrorBoundary FallbackComponent={ImageGalleryErrorFallback}>
-        <Suspense fallback={<ImageGellerySkeleton skeletonNumber={3} />}>
+        <Suspense fallback={<ImageGellerySkeleton />}>
           <ImageGallerySection />
         </Suspense>
       </ErrorBoundary>
