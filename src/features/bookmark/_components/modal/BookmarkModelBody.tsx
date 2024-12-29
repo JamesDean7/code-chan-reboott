@@ -1,4 +1,4 @@
-import type { BookmarkModalSelectedImageInfoProp } from "@/components/bookmark/types";
+import type { BookmarkModalSelectedImageInfoProp } from "@/features/bookmark/types";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import Image from "@/components/image/base/Image";
 

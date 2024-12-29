@@ -3,10 +3,10 @@ import { ErrorBoundary } from "react-error-boundary";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import HorizontalDivider from "@/components/divider/horizontal/HorizontalDivider";
 import Typography from "@/components/typography/base/Typography";
-import BookmarkListErrorFallback from "@/pages/bookmark/_fallbacks/BookmarkListErrorFallback";
-import BookmarkListSkeleton from "@/pages/bookmark/_fallbacks/BookmarkListSkeleton";
 import BookmarkListSection from "@/pages/bookmark/_sections/BookmarkListSection";
 import PageContainer from "@/components/container/page/PageContainer";
+import BookmarkGalleryErrorFallback from "@/features/bookmark/_fallback/BookmarkGalleryErrorFallback";
+import BookmarkGallerySkeleton from "@/features/bookmark/_fallback/BookmarkGallerySkeleton";
 
 const Bookmark = () => {
   return (
@@ -21,8 +21,8 @@ const Bookmark = () => {
         </Typography>
         <HorizontalDivider />
       </FlexColumnContainer>
-      <ErrorBoundary FallbackComponent={BookmarkListErrorFallback}>
-        <Suspense fallback={<BookmarkListSkeleton skeletonNumber={3} />}>
+      <ErrorBoundary FallbackComponent={BookmarkGalleryErrorFallback}>
+        <Suspense fallback={<BookmarkGallerySkeleton />}>
           <BookmarkListSection />
         </Suspense>
       </ErrorBoundary>

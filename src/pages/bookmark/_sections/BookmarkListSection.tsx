@@ -1,86 +1,20 @@
-import { useCallback } from "react";
-import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
-import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
-import GridContainer from "@/components/container/grid/GridContainer";
-import { QUERY_KEY } from "@/const/constraint/constraint";
-import useOnOffState from "@/hooks/data/useOnOffState";
-import { useBookmarkDeletion } from "@/hooks/query/bookmark/useBookmarkMutation";
-import { useSusBookmarkList } from "@/hooks/query/bookmark/useBookmarkSusQuery";
-import {
-  PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER,
-  PAGE_BOOKMARK_STYLE_GALLERY_IMAGE,
-} from "@/pages/bookmark/_const/styles";
-import { createQueryKey } from "@/utils/format/format";
+import { useSusBookmarkedList } from "@/hooks/query/bookmark/useBookmarkSusQuery";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import Typography from "@/components/typography/base/Typography";
 import IconHeart from "@/assets/svg/IconHeart";
-import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
-import type { BookmarkImageProps } from "@/components/bookmark/types";
+import BookmarkImageGallery from "@/features/bookmark/_components/gallery/BookmarkImageGallery";
 
 const BookmarkListSection = () => {
-  const { selectedImageInfo, handleSelectedImageInfoUpdate } =
-    useSelectedBookmarkImage();
+  const { data: bookmarkedList } = useSusBookmarkedList();
 
-  const {
-    isOn: isModalOpen,
-    handleUpdateToOn: handleModalOpen,
-    handleUpdateToOff: handleModalClose,
-  } = useOnOffState();
-
-  const { data: bookmarkList } = useSusBookmarkList();
-
-  const { mutateAsync: asyncRemoveBookmark } = useBookmarkDeletion({
-    baseInvalidateQueries: {
-      queryKey: createQueryKey({
-        queryKey: [QUERY_KEY.bookmark.root, QUERY_KEY.bookmark.list],
-      }),
-    },
-  });
-
-  const handleImageClick: BookmarkImageProps["onImageClick"] = useCallback(
-    (imageInfo) => () => {
-      handleModalOpen();
-    },
-    []
-  );
-
-  const handleLikeClick: BookmarkImageProps["onLikeClick"] = useCallback(
-    (imageInfo) => (e) => {
-      e.stopPropagation();
-      asyncRemoveBookmark(imageInfo.id);
-    },
-    []
-  );
-
-  const isBookmarkEmpty = bookmarkList.length === 0;
+  const isBookmarkEmpty = bookmarkedList.length === 0;
 
   return (
     <>
-      {!isBookmarkEmpty && (
-        <GridContainer
-          margin={PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.margin}
-          width={PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.width}
-          maxWidth={PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.maxWidth}
-          padding={PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.padding}
-          columnGap={PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.columnGap}
-          rowGap={PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.rowGap}
-          gridTemplateColumns={
-            PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER.gridTemplateColumns
-          }
-        >
-          {bookmarkList.map((image) => (
-            <BookmarkImage
-              key={image.id}
-              imageInfo={image}
-              isBookmarked={true}
-              width={PAGE_BOOKMARK_STYLE_GALLERY_IMAGE.width}
-              height={PAGE_BOOKMARK_STYLE_GALLERY_IMAGE.height}
-              onImageClick={handleImageClick}
-              onLikeClick={handleLikeClick}
-            />
-          ))}
-        </GridContainer>
-      )}
+      <BookmarkImageGallery
+        imageList={bookmarkedList}
+        bookmarkedList={bookmarkedList}
+      />
 
       {isBookmarkEmpty && (
         <FlexColumnContainer
@@ -94,15 +28,6 @@ const BookmarkListSection = () => {
             북마크가 비어 있습니다
           </Typography>
         </FlexColumnContainer>
-      )}
-
-      {isModalOpen && selectedImageInfo && (
-        <BookmarkModal
-          width={{ sm: "80%", lg: "50%" }}
-          selectedImageInfo={selectedImageInfo}
-          onClose={handleModalClose}
-          onLikeClick={handleImageClick}
-        />
       )}
     </>
   );

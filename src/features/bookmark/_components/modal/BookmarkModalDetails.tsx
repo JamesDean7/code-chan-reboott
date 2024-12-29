@@ -1,8 +1,8 @@
 import IconCalendar from "@/assets/svg/IconCalendar";
 import IconDownload from "@/assets/svg/IconDownload";
 import IconScale from "@/assets/svg/IconScale";
-import BookmarkDetailText from "@/components/bookmark/modal/BookmarkDetailText";
-import type { BookmarkModalSelectedImageInfoProp } from "@/components/bookmark/types";
+import BookmarkDetailText from "@/features/bookmark/_components/modal/BookmarkDetailText";
+import type { BookmarkModalSelectedImageInfoProp } from "@/features/bookmark/types";
 import Button from "@/components/button/base/Button";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import FlexRowContainer from "@/components/container/flex/FlexRowContainer";

@@ -3,7 +3,7 @@ import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import SimpleErrorScreen from "@/components/error/simple/SimpleErrorScreen";
 
-const BookmarkListErrorFallback = ({
+const BookmarkGalleryErrorFallback = ({
   error,
   resetErrorBoundary,
 }: FallbackProps) => {
@@ -27,4 +27,4 @@ const BookmarkListErrorFallback = ({
   );
 };
 
-export default BookmarkListErrorFallback;
+export default BookmarkGalleryErrorFallback;

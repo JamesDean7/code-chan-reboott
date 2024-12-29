@@ -5,7 +5,7 @@ import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import HoverContainer from "@/components/container/hover/HoverContainer";
 import Profile from "@/components/image/profile/Profile";
 import Typography from "@/components/typography/base/Typography";
-import type { BookmarkModalHeadProps } from "@/components/bookmark/types";
+import type { BookmarkModalHeadProps } from "@/features/bookmark/types";
 
 const BookmarkModalHead = ({
   isBookmarked,

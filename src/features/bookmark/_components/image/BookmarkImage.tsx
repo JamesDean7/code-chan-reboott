@@ -5,7 +5,7 @@ import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import HoverContainer from "@/components/container/hover/HoverContainer";
 import Image from "@/components/image/base/Image";
 import useMouseEnter from "@/hooks/event/useMouseEnter";
-import type { BookmarkImageProps } from "@/components/bookmark/types";
+import type { BookmarkImageProps } from "@/features/bookmark/types";
 
 const BookmarkImage = ({
   isBookmarked,

@@ -1,4 +1,4 @@
-import type { BookmarkImageProps } from "@/components/bookmark/types";
+import type { BookmarkImageProps } from "@/features/bookmark/types";
 import Container from "@/components/container/base/Container";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 

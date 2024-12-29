@@ -1,10 +1,10 @@
 import { useTheme } from "@emotion/react";
-import BookmarkModalDetails from "@/components/bookmark/modal/BookmarkModalDetails";
-import BookmarkModalHead from "@/components/bookmark/modal/BookmarkModalHead";
-import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
+import BookmarkModalDetails from "@/features/bookmark/_components/modal/BookmarkModalDetails";
+import BookmarkModalHead from "@/features/bookmark/_components/modal/BookmarkModalHead";
+import BookmarkModelBody from "@/features/bookmark/_components/modal/BookmarkModelBody";
 import FullscreenFilter from "@/components/filter/fullscreen/FullscreenFilter";
 import ModalContainer from "@/components/modal/base/ModalContainer";
-import type { BookmarkModalProps } from "@/components/bookmark/types";
+import type { BookmarkModalProps } from "@/features/bookmark/types";
 
 const BookmarkModal = ({
   selectedImageInfo,
