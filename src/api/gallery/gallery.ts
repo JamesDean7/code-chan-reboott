@@ -21,7 +21,7 @@ export const getUnsplashImageList: AsyncApiRequestFn<
       {
         params: {
           page,
-          ...(search && { query: search }),
+          query: search,
         },
       }
     );
