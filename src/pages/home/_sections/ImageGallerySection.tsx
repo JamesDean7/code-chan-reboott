@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import BookmarkImage from "@/components/bookmark/image/BookmarkImage";
 import GridContainer from "@/components/container/grid/GridContainer";
 import BookmarkModal from "@/components/bookmark/modal/BookmarkModal";
@@ -15,13 +15,11 @@ import {
 import { createQueryKey } from "@/utils/format/format";
 import { QUERY_KEY } from "@/const/constraint/constraint";
 import useScrollBottomDetect from "@/hooks/event/useScrollBottomDetect";
-import ImageGellerySkeleton from "@/pages/home/_fallbacks/ImageGellerySkeleton";
 import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQuery";
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 import useSelectedBookmarkImage from "@/components/bookmark/modal/_hooks/useSelectedBookmarkImage";
 import type { BookmarkImageProps } from "@/components/bookmark/types";
 import SimpleSpinner from "@/components/spinner/simple/SimpleSpinner";
-import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 
 const ImageGallerySection = () => {
   const { selectedImageInfo, handleSelectedImageInfoUpdate } =
@@ -73,6 +71,7 @@ const ImageGallerySection = () => {
 
   const handleImageClick: BookmarkImageProps["onImageClick"] = useCallback(
     (imageInfo) => () => {
+      handleSelectedImageInfoUpdate(imageInfo);
       handleModalOpen();
     },
     []
@@ -96,6 +95,8 @@ const ImageGallerySection = () => {
   }, {} as { [x: string]: string });
 
   const imageFlatList = imageList.pages.flat();
+
+  console.log({ isModalOpen, selectedImageInfo });
 
   return (
     <>

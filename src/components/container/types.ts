@@ -18,6 +18,7 @@ export type ContainerStyleProps = Pick<
   | "transform"
   | "backgroundColor"
   | "borderRadius"
+  | "zIndex"
 > &
   Pick<
     PartialStylePropsByBreakpointsCollection,
@@ -40,6 +41,7 @@ export type FlexContainerStyleProps = Pick<
   | "alignItems"
   | "flex"
   | "position"
+  | "zIndex"
 > &
   Pick<
     PartialStylePropsByBreakpointsCollection,

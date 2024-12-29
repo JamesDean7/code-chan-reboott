@@ -8,6 +8,9 @@ import TextControlInput from "@/components/input/hookform/text/TextControlInput"
 import { isEmptyString } from "@/utils/verify/verify";
 import { PAGE_HOME_ERROR } from "@/pages/home/_const/error";
 import type { HookFormCommonCollection } from "@/components/input/types";
+import Filter from "@/components/filter/base/Filter";
+import { ZINDEX } from "@/const/style/style";
+import FilterContainer from "@/components/container/filter/FilterContainer";
 
 type SearchForm = {
   search: string;
@@ -42,22 +45,23 @@ const ImageSearchSection = () => {
     };
 
   return (
-    <FlexRowContainer
+    <FilterContainer
       flex={1}
-      position="relative"
+      flexDirection="row"
       justifyContent="center"
       alignItems="center"
     >
       <Image
-        src="/test.jpg"
+        src="/main-bg.jpg"
         alt="main image"
         width={{ sm: "100%" }}
-        height={{ sm: "300px", md: "400px" }}
+        height={{ sm: "300px", md: "400px", lg: "500px" }}
       />
       <FlexColumnContainer
         position="absolute"
         justifyContent="center"
         rowGap={{ sm: "12px" }}
+        zIndex={ZINDEX.bgFilterContent}
       >
         <Typography
           element="h1"
@@ -87,7 +91,7 @@ const ImageSearchSection = () => {
           customValidateFn={validateSearchInput}
         />
       </FlexColumnContainer>
-    </FlexRowContainer>
+    </FilterContainer>
   );
 };
 

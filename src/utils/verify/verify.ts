@@ -30,6 +30,8 @@ export const isObjectType = (checkVal: any): checkVal is object =>
 export const isArrayType = <T = any>(checkVal: any): checkVal is Array<T> =>
   Array.isArray(checkVal);
 
+export const isNaNType = (checkVal: any) => Number.isNaN(checkVal);
+
 export const isEmptyString = (checkVal: string) => {
   if (removeWhiteSpace(String(checkVal)) !== "") {
     return false;

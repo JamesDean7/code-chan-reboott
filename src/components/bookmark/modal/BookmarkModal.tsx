@@ -2,7 +2,7 @@ import { useTheme } from "@emotion/react";
 import BookmarkModalDetails from "@/components/bookmark/modal/BookmarkModalDetails";
 import BookmarkModalHead from "@/components/bookmark/modal/BookmarkModalHead";
 import BookmarkModelBody from "@/components/bookmark/modal/BookmarkModelBody";
-import BackgroundFilter from "@/components/filter/background/BackgroundFilter";
+import FullscreenFilter from "@/components/filter/fullscreen/FullscreenFilter";
 import ModalContainer from "@/components/modal/base/ModalContainer";
 import type { BookmarkModalProps } from "@/components/bookmark/types";
 
@@ -16,7 +16,7 @@ const BookmarkModal = ({
 
   return (
     <>
-      <BackgroundFilter onClick={onClose} />
+      <FullscreenFilter onClick={onClose} />
       <ModalContainer
         flexDirection="column"
         alignItems="stretch"

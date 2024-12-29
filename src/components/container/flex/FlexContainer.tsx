@@ -24,6 +24,7 @@ const FlexContainerStyle = styled("div", {
     height,
     minHeight,
     padding,
+    zIndex,
   }) => {
     const styleByBreakpoint = createStyledCompStyleByBreakpoint({
       height,
@@ -42,6 +43,7 @@ const FlexContainerStyle = styled("div", {
       flexWrap,
       justifyContent,
       alignItems,
+      zIndex,
       ...styleByBreakpoint.sm,
       [MEDIA_MIN_WIDTH.md]: {
         ...styleByBreakpoint.md,
