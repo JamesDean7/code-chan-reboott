@@ -1,5 +1,8 @@
 import { addToBookmark, removeFromBookmark } from "@/api/gallery/gallery";
-import type { AddToBookmarkFnParams, GalleryImage } from "@/api/gallery/types";
+import type {
+  AddToBookmarkFnParams,
+  BookmarkImageInfo,
+} from "@/features/bookmark/types";
 import type {
   UseBaseMutationBasedFnParams,
   UseBaseMutationBasedFnReturn,
@@ -9,10 +12,10 @@ import useBaseMutation from "@/hooks/query/base/useBaseMutation";
 export const useBookmarkAddition = ({
   ...rest
 }: UseBaseMutationBasedFnParams<
-  GalleryImage[],
+  BookmarkImageInfo[],
   AddToBookmarkFnParams
 > = {}): UseBaseMutationBasedFnReturn<
-  GalleryImage[],
+  BookmarkImageInfo[],
   AddToBookmarkFnParams
 > => {
   return useBaseMutation({
@@ -26,9 +29,9 @@ export const useBookmarkAddition = ({
 export const useBookmarkDeletion = ({
   ...rest
 }: UseBaseMutationBasedFnParams<
-  GalleryImage[],
+  BookmarkImageInfo[],
   string
-> = {}): UseBaseMutationBasedFnReturn<GalleryImage[], string> => {
+> = {}): UseBaseMutationBasedFnReturn<BookmarkImageInfo[], string> => {
   return useBaseMutation({
     mutationFn: async (mutationParam: string) => {
       return await removeFromBookmark(mutationParam);

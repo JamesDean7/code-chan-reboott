@@ -1,6 +1,6 @@
 import { getMyBookmarkedList } from "@/api/gallery/gallery";
-import type { GalleryImage } from "@/api/gallery/types";
 import { QUERY_KEY } from "@/const/constraint/constraint";
+import type { BookmarkImageInfo } from "@/features/bookmark/types";
 import type {
   UseBaseSuspenseQueryBasedFnParams,
   UseBaseSuspenseQueryBasedFnReturn,
@@ -11,8 +11,8 @@ import { createQueryKey } from "@/utils/format/format";
 export const useSusBookmarkedList = ({
   ...rest
 }: UseBaseSuspenseQueryBasedFnParams<
-  GalleryImage[]
-> = {}): UseBaseSuspenseQueryBasedFnReturn<GalleryImage[]> => {
+  BookmarkImageInfo[]
+> = {}): UseBaseSuspenseQueryBasedFnReturn<BookmarkImageInfo[]> => {
   return useBaseSuspenseQuery({
     queryKey: createQueryKey({
       queryKey: [QUERY_KEY.bookmark.root, QUERY_KEY.bookmark.list],

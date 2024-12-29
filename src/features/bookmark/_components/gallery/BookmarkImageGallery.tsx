@@ -1,10 +1,12 @@
 import { useCallback } from "react";
-import { GalleryImage } from "@/api/gallery/types";
 import BookmarkImageGalleryContainer from "@/features/bookmark/_components/gallery/BookmarkImageGalleryContainer";
 import BookmarkImage from "@/features/bookmark/_components/image/BookmarkImage";
 import BookmarkModal from "@/features/bookmark/_components/modal/BookmarkModal";
 import useSelectedBookmarkImage from "@/features/bookmark/_hooks/useSelectedBookmarkImage";
-import { BookmarkImageProps } from "@/features/bookmark/types";
+import type {
+  BookmarkImageInfo,
+  BookmarkImageProps,
+} from "@/features/bookmark/types";
 import useOnOffState from "@/hooks/data/useOnOffState";
 import { PAGE_BOOKMARK_STYLE_GALLERY_IMAGE } from "@/pages/bookmark/_const/styles";
 import {
@@ -15,8 +17,8 @@ import { createQueryKey } from "@/utils/format/format";
 import { QUERY_KEY } from "@/const/constraint/constraint";
 
 type BookmarkImageGalleryProps = {
-  imageList: GalleryImage[];
-  bookmarkedList: GalleryImage[];
+  imageList: BookmarkImageInfo[];
+  bookmarkedList: BookmarkImageInfo[];
 };
 
 const BookmarkImageGallery = ({

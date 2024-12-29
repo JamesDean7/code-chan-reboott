@@ -1,3 +1,5 @@
+import type { FieldValues } from "react-hook-form";
+import { useController } from "react-hook-form";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
 import type {
   HookFormCommonCollection,
@@ -8,8 +10,6 @@ import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
 import type { OmitByKey } from "@/types/utils";
 import { applyDebounce } from "@/utils/timer/timer";
-import type { FieldValues } from "react-hook-form";
-import { useController } from "react-hook-form";
 
 type TextControlInputProps<T extends FieldValues> = {
   displayError?: boolean;
@@ -56,11 +56,13 @@ const TextControlInput = <T extends FieldValues>({
       <TextInput
         borderWidth={borderWidth}
         borderColor={error ? themeColorRed.main : "transparent"}
-        onChange={applyDebounce(handleInputChange, 700)}
+        onChange={applyDebounce(handleInputChange, 600)}
         {...props}
       />
       {displayError && error && (
-        <Typography color={themeColorRed.main}>{error?.message}</Typography>
+        <Typography fontSize={{ sm: "body2" }} color={themeColorRed.main}>
+          {error?.message}
+        </Typography>
       )}
     </FlexColumnContainer>
   );

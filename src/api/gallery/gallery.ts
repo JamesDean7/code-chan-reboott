@@ -1,12 +1,11 @@
 import type { AsyncApiRequestFn } from "@/api/types";
+import { axiosClient } from "@/api/axiosClient";
 import type {
   AddToBookmarkFnParams,
-  BookmarkedImage,
-  GalleryImage,
-} from "@/api/gallery/types";
-import { axiosClient } from "@/api/axiosClient";
+  BookmarkImageInfo,
+} from "@/features/bookmark/types";
 
-export const DEMO_IMAGE_LIST: GalleryImage[] = [
+export const DEMO_IMAGE_LIST: BookmarkImageInfo[] = [
   {
     id: "1",
     imageSrc: "/test.jpg",
@@ -31,27 +30,18 @@ export const DEMO_IMAGE_LIST: GalleryImage[] = [
     userName: "Jack Moa",
     imageName: "test",
   },
-  {
-    id: "3",
-    imageSrc: "/test.jpg",
-    downloads: 200,
-    imageHeight: 300,
-    imageWidth: 200,
-    tags: ["ad"],
-    updateDate: "2024-12-10",
-    userImage: "/test.jpg",
-    userName: "Jack Moa",
-    imageName: "test",
-  },
 ] as const;
 
 export const getGalleryImageList: AsyncApiRequestFn<
-  GalleryImage[],
+  BookmarkImageInfo[],
   number
 > = async (page: number) => {
-  const result = await axiosClient.get<GalleryImage[]>(
+  const result = await axiosClient.get<BookmarkImageInfo[]>(
     "http://localhost:4000/orders"
   );
+  // const result = await axiosClient.get<BookmarkImageInfo[]>(
+  //   "http://localhost:4000/orders"
+  // );
   // return result.data;
   return DEMO_IMAGE_LIST.map((item) => {
     const { id, ...rest } = item;
@@ -60,16 +50,16 @@ export const getGalleryImageList: AsyncApiRequestFn<
   });
 };
 
-let DEMO_BOOKMARK_LIST: BookmarkedImage[] = [];
+let DEMO_BOOKMARK_LIST: BookmarkImageInfo[] = [];
 
 export const getMyBookmarkedList: AsyncApiRequestFn<
-  GalleryImage[]
+  BookmarkImageInfo[]
 > = async () => {
   return DEMO_BOOKMARK_LIST;
 };
 
 export const addToBookmark: AsyncApiRequestFn<
-  GalleryImage[],
+  BookmarkImageInfo[],
   AddToBookmarkFnParams
 > = async ({ ...rest }) => {
   DEMO_BOOKMARK_LIST.push({ ...rest });
@@ -77,7 +67,7 @@ export const addToBookmark: AsyncApiRequestFn<
 };
 
 export const removeFromBookmark: AsyncApiRequestFn<
-  GalleryImage[],
+  BookmarkImageInfo[],
   string
 > = async (id: string) => {
   const newBookMark = DEMO_BOOKMARK_LIST.filter(

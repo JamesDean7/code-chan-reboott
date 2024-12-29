@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { ZINDEX } from "@/const/style/style";
 import { customShouldForwardProp } from "@/utils/verify/verify";
-import { FilterProps, FilterStyleProps } from "@/components/filter/types";
+import type { FilterProps, FilterStyleProps } from "@/components/filter/types";
 
 const FilterStyle = styled("div", {
   shouldForwardProp: (propName) =>

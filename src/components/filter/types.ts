@@ -1,6 +1,6 @@
-import { ElementMouseEventCollection } from "@/types/event";
-import { ReactNodeChildren } from "@/types/lib-react";
-import { CSSStyleProperties } from "@/types/styles";
+import type { ElementMouseEventCollection } from "@/types/event";
+import type { ReactNodeChildren } from "@/types/lib-react";
+import type { CSSStyleProperties } from "@/types/styles";
 
 export type FilterStyleProps = Pick<
   CSSStyleProperties,

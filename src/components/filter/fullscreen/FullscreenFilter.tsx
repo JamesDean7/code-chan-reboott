@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Filter from "@/components/filter/base/Filter";
-import { FilterProps } from "@/components/filter/types";
+import type { FilterProps } from "@/components/filter/types";
 
 type FullscreenFilterProps = FilterProps;
 

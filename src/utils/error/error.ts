@@ -1,10 +1,13 @@
 import { ERROR_SYSTEM } from "@/const/error/error";
-import type { AxiosError} from "axios";
+import type { AxiosError } from "axios";
 import { isAxiosError } from "axios";
 import type { StandardErrorFormat } from "@/utils/error/types";
 
 export const createAxiosError = (axiosErr: AxiosError): StandardErrorFormat => {
   const { data } = axiosErr?.response ?? {};
+
+  console.log(" ::: createAxiosError ::: ");
+  console.log({ axiosErr });
 
   if (!data) {
     return {

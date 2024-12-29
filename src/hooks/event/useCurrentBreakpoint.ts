@@ -1,4 +1,5 @@
-import { AppThemeBreakpointsKeys } from "@/theme/types";
+import type { AppThemeBreakpointsKeys } from "@/theme/types";
+import { applyDebounce } from "@/utils/timer/timer";
 import { useTheme } from "@emotion/react";
 import { useCallback, useEffect, useState } from "react";
 
@@ -21,9 +22,10 @@ const useCurrentBreakpoint = () => {
     setCurrentBreakpoint(getBreakpoint());
   }, []);
 
-  const handleWindowResize = useCallback(() => {
-    handleBreakpointUpdate();
-  }, [handleBreakpointUpdate]);
+  const handleWindowResize = useCallback(
+    applyDebounce(handleBreakpointUpdate, 200),
+    [handleBreakpointUpdate]
+  );
 
   const getBreakpoint = (): AppThemeBreakpointsKeys => {
     const width = window.innerWidth;

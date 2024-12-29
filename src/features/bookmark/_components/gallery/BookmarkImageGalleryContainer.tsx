@@ -1,6 +1,6 @@
 import GridContainer from "@/components/container/grid/GridContainer";
 import { PAGE_BOOKMARK_STYLE_GALLERY_CONTAINER } from "@/pages/bookmark/_const/styles";
-import { ReactNodeChildren } from "@/types/lib-react";
+import type { ReactNodeChildren } from "@/types/lib-react";
 
 type BookmarkImageGalleryContainerProps = ReactNodeChildren;
 

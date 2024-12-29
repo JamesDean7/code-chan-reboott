@@ -1,10 +1,24 @@
-import type { GalleryImage } from "@/api/gallery/types";
 import type { ImageProps } from "@/components/image/types";
 import type { ModalContainerProps } from "@/components/modal/types";
 
+export type BookmarkImageInfo = {
+  id: string;
+  updateDate: string;
+  downloads: number;
+  imageWidth: number;
+  imageHeight: number;
+  userImage: string;
+  userName: string;
+  imageName: string;
+  imageSrc: string;
+  tags: string[];
+};
+
+export type AddToBookmarkFnParams = BookmarkImageInfo;
+
 /* ::: BookmarkModal ::: */
 export type BookmarkModalSelectedImageInfoProp = {
-  selectedImageInfo: GalleryImage;
+  selectedImageInfo: BookmarkImageInfo;
 };
 
 export type BookmarkModalHeadProps = BookmarkModalSelectedImageInfoProp & {
@@ -21,7 +35,6 @@ export type BookmarkModalProps = ModalContainerProps &
   Pick<BookmarkModalHeadProps, "isBookmarked" | "onClose" | "onLikeClick">;
 
 /* ::: BookmarkImage ::: */
-type BookmarkImageInfo = GalleryImage;
 
 export type BookmarkImageProps = {
   imageInfo: BookmarkImageInfo;

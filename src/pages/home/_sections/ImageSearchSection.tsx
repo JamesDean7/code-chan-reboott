@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import FlexColumnContainer from "@/components/container/flex/FlexColumnContainer";
-import FlexRowContainer from "@/components/container/flex/FlexRowContainer";
 import Image from "@/components/image/base/Image";
 import Typography from "@/components/typography/base/Typography";
 import useThemePalette from "@/hooks/theme/useThemePalette";
@@ -8,7 +7,6 @@ import TextControlInput from "@/components/input/hookform/text/TextControlInput"
 import { isEmptyString } from "@/utils/verify/verify";
 import { PAGE_HOME_ERROR } from "@/pages/home/_const/error";
 import type { HookFormCommonCollection } from "@/components/input/types";
-import Filter from "@/components/filter/base/Filter";
 import { ZINDEX } from "@/const/style/style";
 import FilterContainer from "@/components/container/filter/FilterContainer";
 

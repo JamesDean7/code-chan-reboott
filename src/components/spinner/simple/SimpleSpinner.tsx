@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { MEDIA_MIN_WIDTH } from "@/theme/breakpoints";
-import {
+import type {
   CSSStyleProperties,
   PartialStylePropsByBreakpointsCollection,
 } from "@/types/styles";

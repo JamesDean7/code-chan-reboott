@@ -1,7 +1,7 @@
 import Filter from "@/components/filter/base/Filter";
 import FlexContainer from "@/components/container/flex/FlexContainer";
-import { FlexContainerProps } from "@/components/container/types";
-import { FilterProps } from "@/components/filter/types";
+import type { FlexContainerProps } from "@/components/container/types";
+import type { FilterProps } from "@/components/filter/types";
 
 type FilterContainerProps = FlexContainerProps &
   Pick<FilterProps, "mode"> & {
