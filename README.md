@@ -1,9 +1,6 @@
-## 프론트엔드 지원자 : 송찬규
+## Frontend 사전과제
 
-사전과제 코드는 mater branch와 feature/electron branch로 구분되어 있습니다.
-
-- master : web project
-- feature/electron - web 기반 pc app project
+지원자 : 송찬규
 
 ## 프로젝트 준비하기
 
@@ -18,9 +15,9 @@
 npm install
 ```
 
-## 프로젝트 시작하기
+## 웹 프로젝트 시작하기
 
-프로젝트 실행은 development, production 중 어떤 mode로 실행해도 무관합니다.  
+웹 프로젝트 실행은 development, production 중 어떤 mode로 실행해도 무관합니다.  
 development mode로 실행하고자 한다면 다음 command를 통해 실행할 수 있습니다.
 
 ```command
@@ -37,6 +34,20 @@ npm run preview
 ```
 
 production mode로 실행한 project는 4173 port를 통해 실행됩니다. ( http://localhost:4173 )
+
+## Electron 프로젝트 시작하기
+
+Electron 프로젝트는 다음 command를 통해 build없이 실행할 수 있습니다.
+
+```command
+npm run start
+```
+
+Election 프로젝트는 다음 command를 통해 build 할 수 있습니다.
+
+```command
+npm run make
+```
 
 ## 주의사항
 
