@@ -14,7 +14,6 @@ axiosClient.interceptors.request.use(
   (config) => {
     config.headers["Accept-Version"] = "v1";
     config.headers.Authorization = `${tokenScheme} ${accessKey}`;
-
     return config;
   },
   (error) => {

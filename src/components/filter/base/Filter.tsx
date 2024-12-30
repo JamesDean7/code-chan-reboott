@@ -27,9 +27,18 @@ const FilterStyle = styled("div", {
   })
 );
 
-const Filter = ({ mode = "dark", opacity = 0.3, children }: FilterProps) => {
+const Filter = ({
+  children,
+  mode = "dark",
+  opacity = 0.3,
+  ...rest
+}: FilterProps) => {
   const filterOpacity = mode === "transparent" ? 0 : opacity;
-  return <FilterStyle opacity={filterOpacity}>{children}</FilterStyle>;
+  return (
+    <FilterStyle opacity={filterOpacity} {...rest}>
+      {children}
+    </FilterStyle>
+  );
 };
 
 export default Filter;

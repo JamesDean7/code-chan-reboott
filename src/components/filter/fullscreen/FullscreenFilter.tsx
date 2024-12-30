@@ -4,7 +4,9 @@ import type { FilterProps } from "@/components/filter/types";
 
 type FullscreenFilterProps = FilterProps;
 
-const FullscreenFilterStyle = styled(Filter)({ position: "fixed" });
+const FullscreenFilterStyle = styled(Filter)({
+  position: "fixed",
+});
 
 const FullscreenFilter = ({ children, ...rest }: FullscreenFilterProps) => {
   return <FullscreenFilterStyle {...rest}>{children}</FullscreenFilterStyle>;
