@@ -43,7 +43,7 @@ Electron 프로젝트는 다음 command를 통해 build없이 실행할 수 있�
 npm run start
 ```
 
-Election 프로젝트는 다음 command를 통해 build 할 수 있습니다.
+Election 프로젝트는 다음 command를 통해 build 할 수 있습니다. ( build 파일은 project root의 out 폴더에 생성됩니다 )
 
 ```command
 npm run make

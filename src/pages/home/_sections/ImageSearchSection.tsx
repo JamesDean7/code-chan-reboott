@@ -9,6 +9,7 @@ import { PAGE_HOME_ERROR } from "@/pages/home/_const/error";
 import type { HookFormCommonCollection } from "@/components/input/types";
 import { ZINDEX } from "@/const/style/style";
 import FilterContainer from "@/components/container/filter/FilterContainer";
+import mainBgImage from "@/assets/images/main-bg.jpg";
 
 type SearchForm = {
   search: string;
@@ -56,7 +57,7 @@ const ImageSearchSection = ({ onSearchRequest }: ImageSearchSectionProp) => {
       alignItems="center"
     >
       <Image
-        src="/main-bg.jpg"
+        src={mainBgImage}
         alt="main image"
         width={{ sm: "100%" }}
         height={{ sm: "300px", md: "400px", lg: "500px" }}
