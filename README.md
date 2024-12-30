@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+## 프론트엔드 지원자 : 송찬규
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+사전과제 코드는 mater branch와 feature/electron branch로 구분되어 있습니다.
 
-Currently, two official plugins are available:
+- master : web project
+- feature/electron - web 기반 pc app project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 프로젝트 준비하기
 
-## Expanding the ESLint configuration
+사전과제 코드는 요구사항에 따라 unsplash api를 사용하고 있습니다. unsplash api를 통한 데이터 요청을 위해 다음 설정이 필요합니다.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- project root에 .env 파일을 생성합니다.
+- .env 파일에 VITE_UNSPLASH_ACCESS_KEY env variable을 추가하고 unsplash developers에서 등록한 application의 access key를 설정하여 주십시요. ex) VITE_UNSPLASH_ACCESS_KEY=abcsdf12345...
 
-- Configure the top-level `parserOptions` property like this:
+프로젝트를 시작하기 위해 다음 command를 통해 dependency를 설치하여 주십시요.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```command
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 프로젝트 시작하기
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+프로젝트 실행은 development, production 중 어떤 mode로 실행해도 무관합니다.  
+development mode로 실행하고자 한다면 다음 command를 통해 실행할 수 있습니다.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```command
+npm run dev
 ```
+
+development mode로 실행한 project는 5173 port를 통해 실행됩니다. ( http://localhost:5173 )
+
+production mode로 실행하고자 한다면 다음 command를 차례대로 실행하여 주십시요.
+
+```command
+npm run build
+npm run preview
+```
+
+production mode로 실행한 project는 4173 port를 통해 실행됩니다. ( http://localhost:4173 )
+
+## 주의사항
+
+- unsplash developers에 등록한 application이 demo 상태일 때 한 시간당 최대 50회 까지 api request를 허용하므로 테스트 진행 시 주의가 필요합니다.
