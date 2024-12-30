@@ -16,6 +16,7 @@ const BookmarkModalDetails = ({
   imageDetailInfo,
 }: BookmarkModalDetailsProps) => {
   const themeGrayColor = useThemePalette({ usePallete: "gray" });
+
   const { imageHeight, imageWidth, uploadDate, downloads, tags } =
     imageDetailInfo ?? {};
 

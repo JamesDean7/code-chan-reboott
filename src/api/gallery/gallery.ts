@@ -4,29 +4,36 @@ import type {
   AddToBookmarkFnParams,
   BookmarkImageInfo,
 } from "@/features/bookmark/types";
-import {
+import type {
+  GetUnsplashImageDetailedParams,
+  GetUnsplashImageListBySearchParams,
+  GetUnsplashImageListParams,
   UnsplashImageListInfo,
   UpsplashImageDetailed,
 } from "@/api/gallery/types";
 
 let BOOKMARKED_LIST: BookmarkImageInfo[] = [];
 
+export const getUnsplashImageListBySearch: AsyncApiRequestFn<
+  UnsplashImageListInfo[],
+  GetUnsplashImageListBySearchParams
+> = async ({ search, page } = {}) => {
+  const result = await axiosClient.get<{ results: UnsplashImageListInfo[] }>(
+    `search/photos`,
+    {
+      params: {
+        page,
+        query: search,
+      },
+    }
+  );
+  return result.data.results;
+};
+
 export const getUnsplashImageList: AsyncApiRequestFn<
   UnsplashImageListInfo[],
-  { page: number; search: string }
-> = async ({ page, search }) => {
-  if (search) {
-    const result = await axiosClient.get<{ results: UnsplashImageListInfo[] }>(
-      `search/photos`,
-      {
-        params: {
-          page,
-          query: search,
-        },
-      }
-    );
-    return result.data.results;
-  }
+  GetUnsplashImageListParams
+> = async ({ page } = {}) => {
   const result = await axiosClient.get<UnsplashImageListInfo[]>(`photos`, {
     params: {
       page,
@@ -37,12 +44,10 @@ export const getUnsplashImageList: AsyncApiRequestFn<
 
 export const getUnsplashImageDetailed: AsyncApiRequestFn<
   UpsplashImageDetailed,
-  string
-> = async (id: string) => {
+  GetUnsplashImageDetailedParams
+> = async ({ id } = {}) => {
   const result = await axiosClient.get<UpsplashImageDetailed>(`photos/${id}`);
-  console.log({ result });
   return result.data;
-  // return MOCK_UNSPLASH_DETAILED;
 };
 
 export const getMyBookmarkedList: AsyncApiRequestFn<
@@ -56,14 +61,13 @@ export const addToBookmark: AsyncApiRequestFn<
   AddToBookmarkFnParams
 > = async ({ ...rest }) => {
   BOOKMARKED_LIST.push({ ...rest });
-  console.log({ rest, result: BOOKMARKED_LIST });
   return BOOKMARKED_LIST;
 };
 
 export const removeFromBookmark: AsyncApiRequestFn<
   BookmarkImageInfo[],
   string
-> = async (id: string) => {
+> = async (id?: string) => {
   const newBookMark = BOOKMARKED_LIST.filter((bookmark) => bookmark.id !== id);
   BOOKMARKED_LIST = newBookMark;
   return BOOKMARKED_LIST;

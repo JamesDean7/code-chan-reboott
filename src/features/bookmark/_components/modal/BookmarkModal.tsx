@@ -17,11 +17,14 @@ const BookmarkModal = ({
   onLikeClick,
   ...props
 }: BookmarkModalProps) => {
-  const { id } = selectedImageInfo;
   const theme = useTheme();
+
+  const { id } = selectedImageInfo;
+
   const { data: unsplashImageDetail } = useSusImageDetail({
     apiPayload: { id },
   });
+
   const {
     downloads,
     alt_description,

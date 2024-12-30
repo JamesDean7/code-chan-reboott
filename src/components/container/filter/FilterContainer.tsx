@@ -18,7 +18,7 @@ const FilterContainer = ({
 }: FilterContainerProps) => {
   return (
     <FlexContainer position="relative" {...rest}>
-      <Filter opacity={filterOpacity} mode={mode} />
+      <Filter opacity={filterOpacity} mode={mode} onClick={onFilterClick} />
       {children}
     </FlexContainer>
   );

@@ -1,8 +1,8 @@
+import useCurrentBreakpoint from "@/hooks/event/useCurrentBreakpoint";
 import BookmarkImagSkeleton from "@/features/bookmark/_components/image/BookmarkImagSkeleton";
 import { PAGE_BOOKMARK_STYLE_GALLERY_IMAGE } from "@/pages/bookmark/_const/styles";
 import BookmarkImageGalleryContainer from "@/features/bookmark/_components/gallery/BookmarkImageGalleryContainer";
 import type { PartialStyleByBreakpoints } from "@/theme/types";
-import useCurrentBreakpoint from "@/hooks/event/useCurrentBreakpoint";
 
 type ImageGellerySkeletonProps = {
   skeletonNumber?: PartialStyleByBreakpoints<number>;

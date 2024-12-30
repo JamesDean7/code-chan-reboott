@@ -1,13 +1,13 @@
 import {
   getUnsplashImageDetailed,
   getUnsplashImageList,
+  getUnsplashImageListBySearch,
 } from "@/api/gallery/gallery";
-import {
+import type {
   UnsplashImageListInfo,
   UpsplashImageDetailed,
 } from "@/api/gallery/types";
 import { QUERY_KEY } from "@/const/constraint/constraint";
-import type { BookmarkImageInfo } from "@/features/bookmark/types";
 import type {
   UseBaseInfiniteQueryBasedFnParams,
   UseBaseInfiniteQueryBasedFnReturn,
@@ -32,9 +32,17 @@ export const useSusInfiniteGalleryList = ({
       apiPayload,
     }),
     queryFn: async ({ pageParam }) => {
+      const { search } = apiPayload ?? {};
+
+      if (search) {
+        return await getUnsplashImageListBySearch({
+          page: Number(pageParam),
+          search,
+        });
+      }
+
       return await getUnsplashImageList({
         page: Number(pageParam),
-        search: apiPayload?.search,
       });
     },
     getNextPageParam: (fetchedData, allFetchedData, currentPageCursor) => {
@@ -58,7 +66,7 @@ export const useSusImageDetail = ({
       apiPayload,
     }),
     queryFn: async () => {
-      return await getUnsplashImageDetailed(apiPayload.id);
+      return await getUnsplashImageDetailed(apiPayload);
     },
     ...rest,
   });

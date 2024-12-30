@@ -1,4 +1,4 @@
-import {
+import type {
   UnsplashImageListInfo,
   UpsplashImageDetailed,
 } from "@/api/gallery/types";

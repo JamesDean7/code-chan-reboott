@@ -7,7 +7,6 @@ const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
 export const axiosClient = axios.create({
   baseURL: `https://api.unsplash.com/`,
-  // baseURL: `http://localhost:4000`,
   timeout: 10000,
 });
 
@@ -16,7 +15,6 @@ axiosClient.interceptors.request.use(
     config.headers["Accept-Version"] = "v1";
     config.headers.Authorization = `${tokenScheme} ${accessKey}`;
 
-    console.log({ header: config, accessKey });
     return config;
   },
   (error) => {

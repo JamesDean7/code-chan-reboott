@@ -4,7 +4,7 @@ import { useSusInfiniteGalleryList } from "@/hooks/query/gallery/useGallerySusQu
 import useHomePageEffects from "@/pages/home/_hooks/useHomePageEffects";
 import SimpleSpinner from "@/components/spinner/simple/SimpleSpinner";
 import BookmarkImageGallery from "@/features/bookmark/_components/gallery/BookmarkImageGallery";
-import { BookmarkImageInfo } from "@/features/bookmark/types";
+import type { BookmarkImageInfo } from "@/features/bookmark/types";
 
 type ImageGallerySectionProps = {
   searchValue: string;

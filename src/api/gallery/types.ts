@@ -1,3 +1,18 @@
+import type { RequestCommonParams } from "@/api/types";
+
+export type GetUnsplashImageListBySearchParams = Pick<
+  RequestCommonParams,
+  "page"
+> & {
+  search?: string;
+};
+
+export type GetUnsplashImageListParams = Pick<RequestCommonParams, "page">;
+
+export type GetUnsplashImageDetailedParams = {
+  id?: string;
+};
+
 export type UpsplashImageDetailed = {
   id: string;
   slug: string;

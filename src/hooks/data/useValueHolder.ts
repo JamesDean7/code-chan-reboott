@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useValueHolder = <T extends unknown>(defaultVal: T) => {
+const useValueHolder = <T>(defaultVal: T) => {
   const [value, setValue] = useState<T>(defaultVal);
 
   const handleValueUpdate = (param: T) => {

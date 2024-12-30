@@ -26,7 +26,7 @@ export type UseBaseSuspenseQueryBasedFnParams<
 > = ApiPayload extends undefined
   ? OmitByKey<UseBaseSuspenseQueryOptions<DataType>, "queryKey" | "queryFn">
   : OmitByKey<UseBaseSuspenseQueryOptions<DataType>, "queryKey" | "queryFn"> &
-      QueryApiLPayload<ApiPayload>;
+      Partial<QueryApiLPayload<ApiPayload>>;
 
 export type UseBaseSuspenseQueryBasedFnReturn<DataType = unknown> =
   UseSuspenseQueryResult<DataType, StandardErrorFormat>;
@@ -55,7 +55,7 @@ export type UseBaseInfiniteQueryBasedFnParams<
       UseBaseSuspenseInfiniteQueryOptions<DataType, PageParam>,
       "queryKey" | "queryFn" | "initialPageParam" | "getNextPageParam"
     > &
-      QueryApiLPayload<ApiPayload>;
+      Partial<QueryApiLPayload<ApiPayload>>;
 
 export type UseBaseInfiniteQueryBasedFnReturn<
   DataType = unknown,
