@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from "electron";
-import { fileURLToPath } from "node:url";
 import started from "electron-squirrel-startup";
 import path from "node:path";
 
@@ -7,10 +6,6 @@ import path from "node:path";
 if (started) {
   app.quit();
 }
-
-// const __filename = fileURLToPath(import.meta.url);
-
-// const __dirname = path.dirname(__filename);
 
 const createWindow = () => {
   const preloadPath = path.resolve(app.getAppPath(), ".vite/build/preload.js");
