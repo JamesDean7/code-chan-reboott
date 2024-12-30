@@ -8,15 +8,16 @@ import BookmarkGallerySkeleton from "@/features/bookmark/_fallback/BookmarkGalle
 import useValueHolder from "@/hooks/data/useValueHolder";
 
 const Home = () => {
+  alert("test 123");
   const { value: searchValue, handleValueUpdate } = useValueHolder("");
   return (
     <PageContainer rowGap={{ sm: "40px" }}>
       <ImageSearchSection onSearchRequest={handleValueUpdate} />
-      <ErrorBoundary FallbackComponent={BookmarkGalleryErrorFallback}>
+      {/* <ErrorBoundary FallbackComponent={BookmarkGalleryErrorFallback}>
         <Suspense fallback={<BookmarkGallerySkeleton />}>
           <ImageGallerySection searchValue={searchValue} />
         </Suspense>
-      </ErrorBoundary>
+      </ErrorBoundary> */}
     </PageContainer>
   );
 };
